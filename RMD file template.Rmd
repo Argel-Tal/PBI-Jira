@@ -1,0 +1,32 @@
+---
+title: "TCO data exploration"
+author: "Jack MacCormick (JMXZ78)"
+date: "09/11/2022"
+output: word_document
+---
+
+```{r data set up, echo = FALSE, message = FALSE, warning = FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+# libraries
+library(pdftools)
+library(stringr)
+library(readr)
+library(plyr)
+library(lubridate)
+library(tidyverse)
+library(NZPoliceUtilities)
+library(finalfit)
+
+# resources and file paths
+setwd("SOMETHING/SOMETHING/scripts")
+
+# supporting files
+
+# paths
+pathIn       <- "SOMETHING/SOMETHING/input"
+pathout      <- "SOMETHING/SOMETHING/output"
+
+```
+
+Resources:
