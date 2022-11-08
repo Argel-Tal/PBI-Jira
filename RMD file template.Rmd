@@ -5,8 +5,17 @@ date: "09/11/2022"
 output: word_document
 ---
 
-```{r data set up, echo = FALSE, message = FALSE, warning = FALSE}
+```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+# libraries
+library(pdftools)
+library(stringr)
+library(readr)
+library(plyr)
+library(lubridate)
+library(tidyverse)
+library(NZPoliceUtilities)
+library(finalfit)
 
 # libraries
 library(pdftools)
@@ -29,4 +38,8 @@ pathout      <- "SOMETHING/SOMETHING/output"
 
 ```
 
-Resources:
+__Resources:__
+
+```{r next chunk, echo = FALSE, message = FALSE, warning = FALSE}
+
+```
