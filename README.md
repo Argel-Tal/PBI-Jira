@@ -7,3 +7,8 @@ __All code fragments must have:__
 - links to resources used
 - commented code (ideally line above)
 - library loads for required packages
+
+## Links to resources and tutes:
+- RShiny
+  - https://mastering-shiny.org/action-workflow.html
+  - https://shiny.rstudio.com/tutorial/written-tutorial/lesson3/
