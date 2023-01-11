@@ -12,3 +12,5 @@ __All code fragments must have:__
 - RShiny
   - https://mastering-shiny.org/action-workflow.html
   - https://shiny.rstudio.com/tutorial/written-tutorial/lesson3/
+- Maps
+  - https://rstudio.github.io/leaflet/
