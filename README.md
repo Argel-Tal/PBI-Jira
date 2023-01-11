@@ -12,5 +12,7 @@ __All code fragments must have:__
 - RShiny
   - https://mastering-shiny.org/action-workflow.html
   - https://shiny.rstudio.com/tutorial/written-tutorial/lesson3/
+  - https://shinyapps.dreamrs.fr/shinyWidgets/
+  - https://github.com/daattali/shinycssloaders
 - Maps
   - https://rstudio.github.io/leaflet/
