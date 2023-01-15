@@ -23,7 +23,7 @@ allPathFiles_CSV <- allPathFiles[which(str_detect(allPathFiles,"csv"))]
 # fix is standardising text format: https://stackoverflow.com/questions/24568056/rs-read-csv-prepending-1st-column-name-with-junk-text
 
 
-output <- ldply(allDistFiles_CSV, .fun = function(x){
+output <- ldply(allPathFiles_CSV, .fun = function(x){
   as.data.frame(read.csv(str_c(A_PATH_OBJECT, "/", x), fileEncoding="UTF-8-BOM", colClasses=c(rep("character", nCols))), 
                 header = TRUE
                 ) # end as.data.frame
