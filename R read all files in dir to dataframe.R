@@ -1,4 +1,5 @@
 #' @author Jack MacCormick  ::  JMXZ78
+#' This file reads in all .csv files from a folder, and puts them into one big dataframe
 
 library(tidyverse)
 library(plyr)
@@ -19,7 +20,7 @@ allPathFiles <- list.files()
 allPathFiles_CSV <- allPathFiles[which(str_detect(allPathFiles,"csv"))]
 
 ## Removing encoding inconsistency character
-# found this "ï.."
+# found this "Ã¯.."
 # fix is standardising text format: https://stackoverflow.com/questions/24568056/rs-read-csv-prepending-1st-column-name-with-junk-text
 
 
