@@ -16,5 +16,4 @@ __All code fragments must have:__
   - https://github.com/daattali/shinycssloaders
 - Maps
   - https://rstudio.github.io/leaflet/
- - PowerBI refresh error
-  - https://community.powerbi.com/t5/Power-Query/Query-references-other-queries-or-steps-so-it-may-not-directly/td-p/2836287
+ - PowerBI refresh error: https://community.powerbi.com/t5/Power-Query/Query-references-other-queries-or-steps-so-it-may-not-directly/td-p/2836287
