@@ -17,3 +17,5 @@ __All code fragments must have:__
 - Maps
   - https://rstudio.github.io/leaflet/
  - PowerBI refresh error: https://community.powerbi.com/t5/Power-Query/Query-references-other-queries-or-steps-so-it-may-not-directly/td-p/2836287
+- Markdown
+  - Colour icons in MD files ![#f03c15](https://placehold.co/15x15/f03c15/f03c15.png) - https://stackoverflow.com/questions/11509830/how-to-add-color-to-githubs-readme-md-file
