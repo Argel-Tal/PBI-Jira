@@ -1,5 +1,5 @@
 # Argel-Tal-Handy-R-Code
-Useful chunks of sanitised R code that overlap across various projects 
+Useful chunks of sanitised code that overlap across various projects 
 
 ## Requirements
 __All code fragments must have:__
