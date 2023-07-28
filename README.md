@@ -1,4 +1,4 @@
-# Argel-Tal-Handy-R-Code
+# Argel-Tal-Handy-Code
 Useful chunks of sanitised code that overlap across various projects 
 
 ## Requirements
