@@ -67,7 +67,7 @@ Address3   |   db3
 
 Once you have created your data source in your report using the above details, and you publish the report to the PBI Platform (_online "Service"_), you have to edit the Data Set and enable the system to use the gateway source. To do that, access the PBI Portal and find your data set, edit the data set settings and you should see the option to enable the use of data gateway for your report's data set.
 
-![Gateway Setup](./PowerBI/ReadMeImages/GatewaySettings.png)
+![Gateway Setup](./ReadMeImages/GatewaySettings.png)
 
 If you don't see this option then you either;
     1. don't have permissions to the data gateway source or 
@@ -77,7 +77,7 @@ Once you have the data gateway option enabled, you have to map your data sources
 
 You should also setup the refresh schedule as per the image below;
 
-![Refresh Schedule](./PowerBI/ReadMeImages/RefreshSchedule.png)
+![Refresh Schedule](./ReadMeImages/RefreshSchedule.png)
 
 There is a maximum of 8 times per 24 hrs that you can set. The default is every 24 hrs. Times closer than 1 hr are not recommended as the platform only refreshes within the hour scheduled.
 - The org datamart (dbo) only refreshes once per day, so there's not much point setting it more than once per day unless you're accessing the CRM (_which we're not scoped to do_)
@@ -160,7 +160,7 @@ Steps:
     - a query is run Paginated Report, including with any parameters, with a specified format
     - An email is sent to the DL members, containing the contents of the paginated report
 
-    ![Power Automate paginated report process](./PowerBI/ReadMeImages/PowerAutomatePaginatedReport.png)
+    ![Power Automate paginated report process](./ReadMeImages/PowerAutomatePaginatedReport.png)
 
 0. Export your working flow as a `Zip` "package", and save it into the `./ExternalReports` folder of this repo, so that it too is version-controlled; 
 
@@ -192,7 +192,7 @@ External Reports PPU`
     - a CSV table is created from this query return
     - the file is saved into the ^^ SharePoint site folder, with an appropriate name (including execution time)
 
-    ![Power Automate data extract process](./PowerBI/ReadMeImages/PowerAutomateDataExtract.png)
+    ![Power Automate data extract process](./ReadMeImages/PowerAutomateDataExtract.png)
 
 ## 07 Post Creation Steps
 __If report is new:__ Submit a ticket to add the new report to the "list of reports" list in Jira - LINK 3 , so clients can select it in "Request changes to a report" tickets
