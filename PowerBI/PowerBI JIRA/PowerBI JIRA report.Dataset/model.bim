@@ -158,7 +158,7 @@
           }
         ],
         "description": "Jira's URL",
-        "expression": "\"https://diabetesaustralia.atlassian.net\" meta [IsParameterQuery=true, Type=\"Any\", IsParameterQueryRequired=true]",
+        "expression": "\"YOUR_JIRA_DOMAIN\" meta [IsParameterQuery=true, Type=\"Any\", IsParameterQueryRequired=true]",
         "kind": "m",
         "lineageTag": "ed83b390-9817-4fd6-bc11-dfe2487610af",
         "queryGroup": "00 Params"
