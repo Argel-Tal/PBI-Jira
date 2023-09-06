@@ -1,8 +1,14 @@
 # What is this place??
-__A repo containing code for the Power BI environment. DO NOT Upload .pbix files!!__
+__A repo containing code for the MH4L Power BI environment. DO NOT Upload .pbix files (these should be stored in Diabetes Australia SharePoint)__
 
-# Reporting Guide for Data Analysts
-This PowerBI delivery article is based on content from Andrew Robinson @SKEDA's original knowledge base article
+#### Authors: 
+Who | Role
+----|---------
+Jack MacCormick (JM)    |   Data Analyst (DA)
+Andrew Robinson (AR)    |   Data Engineer/Architect (_External - SKEDA_)
+
+# Reporting Guide for MH4L Data Analysts
+This PowerBI delivery article is based on content from Andrew Robinson’s original knowledge base article
 
 ## 00 Scoping and Requests
 Requests for new reports and interactive dashboards should come in through the Jira ticketing system, which provides workflow intergration, approvals and triage. 
@@ -46,11 +52,22 @@ I (JM) then convert the Jira form output into the following requirements templat
         - 
 
 
-## 01 For initial development
-__Develop reports in the desktop client, not on the portal.__ Create a pbix file you work in and save it locally before it's uploaded to the portal. As you're developing, at milestones export the file as a template, into a version controlled folder pulling from this Repo, so we can make annoated changes and rollback to a previous version if we have a problem with the report.
+## 01 Initial development
+##### Develop reports in the desktop client, not on the portal.
+1. __Create a Branch for your project / change.__
+    This should be named `JIRA-DA-XX` if it's referencing a JIRA ticket, where XX is the Data Analyst (DA) ticket ID number. 
 
-__Once your pbix file is ready for testing in the portal, please publish it to the `Dev/UAT Workspace`.__ If you don't have access please request it. Don't publish to your personal workspace as it makes it more difficult to share development and if you leave all the reports will have to be downloaded from your workspace and republished to somewhere else. 
-You can share the report/data set from within the Dev workspace to others for testing. In general, only devs should have overall access to the dev workspace (_it would be nice that we can assume publishing to dev will not automatically give non-devs access to the report so we should keep permissions granular in the dev site - users only get direct access to the report/dataset/dashboard_). 
+0. __Create/open a Power BI Project `.pbip` file which you develop in inside the cloned instance of this Repo.__
+    Doing so will mean your work can be saved and commit with annoated changes, and allows us to rollback to a previous version if we have a problem with the report.
+    - As `.pbip` Project files are a "Preview feature" they can't be directly published to the PBI Service. 
+
+0. __Once your `.pbip` file is ready for testing in the portal, please publish it to a `Dev/UAT Workspace`.__ 
+    Don't publish to your personal workspace as it makes it more difficult to share development and if you leave all the reports will have to be downloaded from your workspace and republished to somewhere else. 
+    - To publish a `.pbip` file, you need to save it as a standard `.pbix` type file (until `.pbip`'s leave preview) first. This can be anywhere, as no work will be done in this file, it's only used for pressing the "Publish" button. I (JM) recommend you regularlly delete these, so you don't have versions from other branches hanging around
+    
+    You can share the report/data set from within the MH4L Dev workspace to others for testing. 
+    - In general, only devs should have overall access to the dev workspace, and directly to reports/datasets. 
+    - Report users should be granted access to the specific reports uploaded into Dev workspace via the Dev app. 
 
 
 ## 02 Data sources - using the gateway
@@ -103,6 +120,8 @@ You should also be able to test your data gateway refresh be running a Manual / 
 
 0. __Publish to the PowerBI (web) service__, within a workspace and set up gateway / refresh settings, per [above](#02-Data-sources---using-the-gateway)
 
+0. __Add the report to that workspace's App__
+
 0. __Add the required users within App audiences:__
     The intent is to have almost no-one in the workspaces themselves, besides backend staff. This allows us to run access with Azure AD groups, ensure no-one has links to files which get removed/overridden, and provide needs-based visibility of different reports within each workspace/app. 
 
@@ -116,12 +135,14 @@ You should also be able to test your data gateway refresh be running a Manual / 
 
 ## 04 Power BI Interactive Reports
 0. __Templates:__
-    - Open the PowerBI template `./Power BI Template 0.1.pbix`, and save into a local non-VC'ed folder. This will create your local `.pbix`, which you'll develop and publish to "Power BI (web) service". 
+    - Open the PowerBI template `./Power BI Template 0.1.pbix`, and save into a new folder in your parent VC'ed folder as a PowerBI Project type folder. This will create your local `.pbip`, which you'll develop and publish to "Power BI (web) service". 
     - Import the colour themes from `./YOUR_THEME.json`
     - Import your data sources as Direct Query if they're not processed APIs or another PowerBI dataset
 0. __Query creation:__
-    - You can copy tables from other PowerBI files inside the `Transform` menu. 
-    - Sources should be parameterised as `Source = Sql.Database(Server, Database)`, instead of the default fullname;
+    - __Tables:__
+    You can copy tables from other PowerBI files inside the `Transform` menu. 
+    - __Sources:__
+    Sources should be parameterised as `Source = Sql.Database(Server, Database)`, instead of the default fullname;
         ``` dax
         // Server
         "db_address" meta [IsParameterQuery=true, List={"db_address"}, DefaultValue="db_address", Type="Any", IsParameterQueryRequired=true]
@@ -132,11 +153,14 @@ You should also be able to test your data gateway refresh be running a Manual / 
         "PROD_DB_NAME" meta [IsParameterQuery=true, List={"DEV_DB_NAME", "UAT_DB_NAME", "PROD_DB_NAME"}, DefaultValue="PROD_DB_NAME", Type="Any", IsParameterQueryRequired=true]
         ```
         This is to allow quick swaps to Dev instances of the datamart for testing ETL changes. 
-    - Once you have tables established, you can use Tabular editor to copy Measures and Relationships between PowerBI models _(open `.pbix` and any `.pbit` file (open or not))_
+    - __Measures & Relationships:__
+    Once you have tables established, you can use Tabular editor to copy Measures and Relationships between PowerBI models _(open `.pbix` and any `.pbit` file (open or not))_
 0. __Visual elements:__
-    - All elements have a "no-fill" background. 
+    - All elements should have a "no-fill" background. 
     - Element groups share a ![white](https://placehold.co/15x15/FFFFFF/FFFFFF.png) backgrounded "grouping rectangle" shape, with an applied shadow effect and a 10pt wide border.
         - I've been using different coloured borders to visually seperate element groups by type. _i.e. all headers and primary content are ![Org blue](https://placehold.co/15x15/2BB8C8/2BB8C8.png), all slicers/toggles are ![Org purple](https://placehold.co/15x15/5B217C/5B217C.png), and reset buttons are_ ![Org yellow](https://placehold.co/15x15/FFE400/FFE400.png). 
+0. __Publishing:__
+    - ~~Once development is done, you need to save the file as a `.pbix` type file to enable publishing to PowerBI service. This file should have the same name as the report on service, so it overrides any existing content (and inherits it's settings).~~ Project File types can now publish too, don't need to use templates
 
 ## 05 Paginated Reports
 0. __Templates:__
@@ -162,7 +186,7 @@ Steps:
 
     ![Power Automate paginated report process](./ReadMeImages/PowerAutomatePaginatedReport.png)
 
-0. Export your working flow as a `Zip` "package", and save it into the `./ExternalReports` folder of this repo, so that it too is version-controlled; 
+0. Export your working flow as a `Zip` "package", and save it into the `./AutomatedReports` folder of this repo, so that it too is version-controlled; 
 
 
 ## 06 Periodic Data Extracts

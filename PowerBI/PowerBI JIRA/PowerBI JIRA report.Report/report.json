@@ -1,0 +1,619 @@
+{
+  "config": "{\"version\":\"5.42\",\"themeCollection\":{\"baseTheme\":{\"name\":\"CY22SU11\",\"version\":\"5.40\",\"type\":2},\"customTheme\":{\"name\":\"MH4L_Brand_Colours044819686356456945.json\",\"version\":\"5.47\",\"type\":1}},\"activeSectionIndex\":0,\"defaultDrillFilterOtherVisuals\":true,\"linguisticSchemaSyncVersion\":2,\"settings\":{\"useNewFilterPaneExperience\":true,\"allowChangeFilterTypes\":true,\"useStylableVisualContainerHeader\":true,\"exportDataMode\":1,\"useDefaultAggregateDisplayName\":true},\"objects\":{\"section\":[{\"properties\":{\"verticalAlignment\":{\"expr\":{\"Literal\":{\"Value\":\"'Top'\"}}}}}],\"outspacePane\":[{\"properties\":{\"expanded\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]}}",
+  "layoutOptimization": 0,
+  "pods": [
+    {
+      "boundSection": "ReportSection5951b40ccb1975905075",
+      "config": "{}",
+      "name": "Pod",
+      "parameters": "[{\"name\":\"Param_Filter18607db0ed8afb43fdbf\",\"boundFilter\":\"Filter18607db0ed8afb43fdbf\",\"fieldExpr\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"MH4L issues\"}},\"Property\":\"project.name\"}}}]",
+      "type": 1
+    },
+    {
+      "boundSection": "ReportSection3ed49b184513809c1b78",
+      "config": "{}",
+      "name": "Pod1",
+      "parameters": "[{\"name\":\"Param_Filter7a62f3e65975fa87b91a\",\"boundFilter\":\"Filter7a62f3e65975fa87b91a\",\"fieldExpr\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"MH4L issues\"}},\"Property\":\"project.name\"}}}]",
+      "type": 1
+    }
+  ],
+  "publicCustomVisuals": [],
+  "resourcePackages": [
+    {
+      "resourcePackage": {
+        "disabled": false,
+        "items": [
+          {
+            "name": "CY22SU11",
+            "path": "BaseThemes/CY22SU11.json",
+            "type": 202
+          }
+        ],
+        "name": "SharedResources",
+        "type": 2
+      }
+    },
+    {
+      "resourcePackage": {
+        "disabled": false,
+        "items": [
+          {
+            "name": "MH4L_Brand_Colours044819686356456945.json",
+            "path": "MH4L_Brand_Colours044819686356456945.json",
+            "type": 201
+          },
+          {
+            "name": "MH4L_logo+Yellow_Thumb6502785802817708.png",
+            "path": "MH4L_logo+Yellow_Thumb6502785802817708.png",
+            "type": 100
+          }
+        ],
+        "name": "RegisteredResources",
+        "type": 1
+      }
+    }
+  ],
+  "sections": [
+    {
+      "config": "{\"objects\":{\"background\":[{\"properties\":{\"color\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#F6EEE8'\"}}}}},\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"70D\"}}}}}]}}",
+      "displayName": "Summary",
+      "displayOption": 1,
+      "filters": "[]",
+      "height": 720.00,
+      "name": "ReportSection",
+      "visualContainers": [
+        {
+          "config": "{\"name\":\"0bb464e5dfc6cd144da7\",\"layouts\":[{\"id\":0,\"position\":{\"x\":477.27272727272725,\"y\":20.909090909090907,\"z\":1000,\"width\":141.8181818181818,\"height\":168.18181818181816,\"tabOrder\":1000}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"MH4L issues.assignee.active\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"m\",\"Entity\":\"MH4L issues\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"m\"}},\"Property\":\"assignee.active\"},\"Name\":\"MH4L issues.assignee.active\",\"NativeReferenceName\":\"assignee.active\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"data\":[{\"properties\":{\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Basic'\"}}}}}],\"items\":[{\"properties\":{\"textSize\":{\"expr\":{\"Literal\":{\"Value\":\"10D\"}}}}}],\"general\":[{\"properties\":{}}]}},\"parentGroupName\":\"317903f9e7f3dd1dbd7d\"}",
+          "filters": "[]",
+          "height": 168.18,
+          "width": 141.82,
+          "x": 477.27,
+          "y": 20.91,
+          "z": 1000.00
+        },
+        {
+          "config": "{\"name\":\"15f08a01f094685417f2\",\"layouts\":[{\"id\":0,\"position\":{\"x\":246.36363636363635,\"y\":20.909090909090907,\"z\":3000,\"width\":227.27272727272725,\"height\":168.18181818181816,\"tabOrder\":6000}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"Status Codes.Family\",\"active\":true},{\"queryRef\":\"Status Codes.status.name\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"s\",\"Entity\":\"Status Codes\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"s\"}},\"Property\":\"status name\"},\"Name\":\"Status Codes.status.name\",\"NativeReferenceName\":\"status.name1\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"s\"}},\"Property\":\"Status Family\"},\"Name\":\"Status Codes.Family\",\"NativeReferenceName\":\"Family\"}]},\"expansionStates\":[{\"roles\":[\"Values\"],\"levels\":[{\"queryRefs\":[\"Status Codes.Family\"],\"isCollapsed\":true,\"identityKeys\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"Status Codes\"}},\"Property\":\"Status Family\"}}],\"isPinned\":true},{\"queryRefs\":[\"Status Codes.status.name\"],\"isCollapsed\":true,\"isPinned\":true}],\"root\":{\"identityValues\":null}}],\"drillFilterOtherVisuals\":true,\"objects\":{\"data\":[{\"properties\":{\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Basic'\"}}}}}],\"general\":[{\"properties\":{\"orientation\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}},\"selfFilterEnabled\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}],\"items\":[{\"properties\":{\"textSize\":{\"expr\":{\"Literal\":{\"Value\":\"10D\"}}}}}]}},\"parentGroupName\":\"317903f9e7f3dd1dbd7d\"}",
+          "filters": "[]",
+          "height": 168.18,
+          "width": 227.27,
+          "x": 246.36,
+          "y": 20.91,
+          "z": 3000.00
+        },
+        {
+          "config": "{\"name\":\"1fa0f9c16045cec48b92\",\"layouts\":[{\"id\":0,\"position\":{\"x\":20,\"y\":19.999999999999986,\"z\":1000,\"width\":388.18181818181813,\"height\":196.36363636363635,\"tabOrder\":6000}}],\"singleVisual\":{\"visualType\":\"pivotTable\",\"projections\":{\"Rows\":[{\"queryRef\":\"MH4L issues.project.name\",\"active\":true},{\"queryRef\":\"Status Codes.Family\"},{\"queryRef\":\"Status Codes.status.name\"}],\"Values\":[{\"queryRef\":\"Min(MH4L issues.issue key)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"m\",\"Entity\":\"MH4L issues\",\"Type\":0},{\"Name\":\"s\",\"Entity\":\"Status Codes\",\"Type\":0}],\"Select\":[{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"m\"}},\"Property\":\"issue key\"}},\"Function\":2},\"Name\":\"Min(MH4L issues.issue key)\",\"NativeReferenceName\":\"Count of issue key\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"m\"}},\"Property\":\"project.name\"},\"Name\":\"MH4L issues.project.name\",\"NativeReferenceName\":\"project.name\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"s\"}},\"Property\":\"status name\"},\"Name\":\"Status Codes.status.name\",\"NativeReferenceName\":\"status.name1\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"s\"}},\"Property\":\"Status Family\"},\"Name\":\"Status Codes.Family\",\"NativeReferenceName\":\"Family\"}],\"OrderBy\":[{\"Direction\":1,\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"m\"}},\"Property\":\"project.name\"}}}]},\"expansionStates\":[{\"roles\":[\"Rows\"],\"levels\":[{\"queryRefs\":[\"MH4L issues.project.name\"],\"isCollapsed\":true,\"identityKeys\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"MH4L issues\"}},\"Property\":\"project.name\"}}],\"isPinned\":true},{\"queryRefs\":[\"Status Codes.Family\"],\"isCollapsed\":true,\"identityKeys\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"Status Codes\"}},\"Property\":\"Status Family\"}}],\"isPinned\":true},{\"queryRefs\":[\"Status Codes.status.name\"],\"isCollapsed\":true,\"isPinned\":true}],\"root\":{\"identityValues\":null}}],\"drillFilterOtherVisuals\":true,\"objects\":{\"columnWidth\":[{\"properties\":{\"value\":{\"expr\":{\"Literal\":{\"Value\":\"247.28319106397302D\"}}}},\"selector\":{\"metadata\":\"MH4L issues.project.name\"}}]},\"vcObjects\":{\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}},\"parentGroupName\":\"c561bae32918bc006ce0\"}",
+          "filters": "[]",
+          "height": 196.36,
+          "width": 388.18,
+          "x": 20.00,
+          "y": 20.00,
+          "z": 1000.00
+        },
+        {
+          "config": "{\"name\":\"26e8bdbfb7a8f7d81898\",\"layouts\":[{\"id\":0,\"position\":{\"height\":101.23022847100177,\"width\":1280,\"x\":0,\"y\":0,\"z\":0,\"tabOrder\":0}}],\"singleVisualGroup\":{\"displayName\":\"Title\",\"groupMode\":0}}",
+          "height": 101.23,
+          "width": 1280.00,
+          "x": 0.00,
+          "y": 0.00,
+          "z": 0.00
+        },
+        {
+          "config": "{\"name\":\"2be9eba47c313831f8f4\",\"layouts\":[{\"id\":0,\"position\":{\"x\":0,\"y\":0,\"z\":0,\"width\":426.3636363636363,\"height\":209.99999999999997,\"tabOrder\":0}}],\"singleVisual\":{\"visualType\":\"shape\",\"drillFilterOtherVisuals\":true,\"objects\":{\"shape\":[{\"properties\":{\"tileShape\":{\"expr\":{\"Literal\":{\"Value\":\"'rectangle'\"}}}}}],\"rotation\":[{\"properties\":{\"shapeAngle\":{\"expr\":{\"Literal\":{\"Value\":\"0L\"}}}}}],\"fill\":[{\"properties\":{\"fillColor\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":0,\"Percent\":0}}}}}},\"selector\":{\"id\":\"default\"}}],\"outline\":[{\"properties\":{\"lineColor\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":3,\"Percent\":0}}}}},\"weight\":{\"expr\":{\"Literal\":{\"Value\":\"10D\"}}}},\"selector\":{\"id\":\"default\"}}],\"shadow\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]}},\"parentGroupName\":\"a24c39abd0ecf9f00bf9\"}",
+          "filters": "[]",
+          "height": 210.00,
+          "width": 426.36,
+          "x": 0.00,
+          "y": 0.00,
+          "z": 0.00
+        },
+        {
+          "config": "{\"name\":\"317903f9e7f3dd1dbd7d\",\"layouts\":[{\"id\":0,\"position\":{\"height\":209.99999999999997,\"width\":640,\"x\":0,\"y\":100.9090909090909,\"z\":4000,\"tabOrder\":3000}}],\"singleVisualGroup\":{\"displayName\":\"Slicers\",\"groupMode\":0}}",
+          "height": 210.00,
+          "width": 640.00,
+          "x": 0.00,
+          "y": 100.91,
+          "z": 4000.00
+        },
+        {
+          "config": "{\"name\":\"3c5235aa61b5dcbe18d7\",\"layouts\":[{\"id\":0,\"position\":{\"x\":0,\"y\":0,\"z\":0,\"width\":426.3636363636363,\"height\":234.54545454545453,\"tabOrder\":7001}}],\"singleVisual\":{\"visualType\":\"shape\",\"drillFilterOtherVisuals\":true,\"objects\":{\"shape\":[{\"properties\":{\"tileShape\":{\"expr\":{\"Literal\":{\"Value\":\"'rectangle'\"}}}}}],\"rotation\":[{\"properties\":{\"shapeAngle\":{\"expr\":{\"Literal\":{\"Value\":\"0L\"}}}}}],\"fill\":[{\"properties\":{\"fillColor\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":0,\"Percent\":0}}}}}},\"selector\":{\"id\":\"default\"}}],\"outline\":[{\"properties\":{\"lineColor\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":3,\"Percent\":0}}}}},\"weight\":{\"expr\":{\"Literal\":{\"Value\":\"10D\"}}}},\"selector\":{\"id\":\"default\"}}],\"shadow\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]}},\"parentGroupName\":\"c561bae32918bc006ce0\"}",
+          "filters": "[]",
+          "height": 234.55,
+          "width": 426.36,
+          "x": 0.00,
+          "y": 0.00,
+          "z": 0.00
+        },
+        {
+          "config": "{\"name\":\"52cba5caf97e4ba7eefe\",\"layouts\":[{\"id\":0,\"position\":{\"x\":0,\"y\":0,\"z\":0,\"width\":640,\"height\":344.5454545454545,\"tabOrder\":1000}}],\"singleVisual\":{\"visualType\":\"shape\",\"drillFilterOtherVisuals\":true,\"objects\":{\"shape\":[{\"properties\":{\"tileShape\":{\"expr\":{\"Literal\":{\"Value\":\"'rectangle'\"}}}}}],\"rotation\":[{\"properties\":{\"shapeAngle\":{\"expr\":{\"Literal\":{\"Value\":\"0L\"}}}}}],\"fill\":[{\"properties\":{\"fillColor\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":0,\"Percent\":0}}}}}},\"selector\":{\"id\":\"default\"}}],\"outline\":[{\"properties\":{\"lineColor\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":3,\"Percent\":0}}}}},\"weight\":{\"expr\":{\"Literal\":{\"Value\":\"10D\"}}}},\"selector\":{\"id\":\"default\"}}],\"shadow\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]}},\"parentGroupName\":\"92de939925221ca869d5\"}",
+          "filters": "[]",
+          "height": 344.55,
+          "width": 640.00,
+          "x": 0.00,
+          "y": 0.00,
+          "z": 0.00
+        },
+        {
+          "config": "{\"name\":\"59a814617f08a59d453d\",\"layouts\":[{\"id\":0,\"position\":{\"x\":245.9519625073228,\"y\":20.995899238429995,\"z\":1000,\"width\":788.8459285295842,\"height\":59.238429994141775,\"tabOrder\":1000}}],\"singleVisual\":{\"visualType\":\"textbox\",\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"paragraphs\":[{\"textRuns\":[{\"value\":\"6.4 JIRA Tickets\",\"textStyle\":{\"fontWeight\":\"bold\",\"fontSize\":\"24pt\"}}],\"horizontalTextAlignment\":\"center\"}]}}]},\"vcObjects\":{\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"title\":[{\"properties\":{\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Title'\"}}}}}]}},\"parentGroupName\":\"26e8bdbfb7a8f7d81898\"}",
+          "filters": "[]",
+          "height": 59.24,
+          "width": 788.85,
+          "x": 245.95,
+          "y": 21.00,
+          "z": 1000.00
+        },
+        {
+          "config": "{\"name\":\"5c16b7dca4d39a02c33e\",\"layouts\":[{\"id\":0,\"position\":{\"x\":19.49619214997071,\"y\":20.246045694200355,\"z\":2000,\"width\":185.21382542472173,\"height\":63.73755125951963,\"tabOrder\":0}}],\"singleVisual\":{\"visualType\":\"image\",\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"imageUrl\":{\"expr\":{\"ResourcePackageItem\":{\"PackageName\":\"RegisteredResources\",\"PackageType\":1,\"ItemName\":\"MH4L_logo+Yellow_Thumb6502785802817708.png\"}}}}}]},\"vcObjects\":{\"title\":[{\"properties\":{\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Blue logo'\"}}}}}]}},\"parentGroupName\":\"26e8bdbfb7a8f7d81898\"}",
+          "filters": "[]",
+          "height": 63.74,
+          "width": 185.21,
+          "x": 19.50,
+          "y": 20.25,
+          "z": 2000.00
+        },
+        {
+          "config": "{\"name\":\"5d7e0f9769a9ef085de7\",\"layouts\":[{\"id\":0,\"position\":{\"x\":0,\"y\":0,\"z\":0,\"width\":640,\"height\":209.99999999999997,\"tabOrder\":4000}}],\"singleVisual\":{\"visualType\":\"shape\",\"drillFilterOtherVisuals\":true,\"objects\":{\"shape\":[{\"properties\":{\"tileShape\":{\"expr\":{\"Literal\":{\"Value\":\"'rectangle'\"}}}}}],\"rotation\":[{\"properties\":{\"shapeAngle\":{\"expr\":{\"Literal\":{\"Value\":\"0L\"}}}}}],\"fill\":[{\"properties\":{\"fillColor\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":0,\"Percent\":0}}}}}},\"selector\":{\"id\":\"default\"}}],\"outline\":[{\"properties\":{\"lineColor\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":2,\"Percent\":0}}}}},\"weight\":{\"expr\":{\"Literal\":{\"Value\":\"10D\"}}}},\"selector\":{\"id\":\"default\"}}],\"shadow\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]}},\"parentGroupName\":\"317903f9e7f3dd1dbd7d\"}",
+          "filters": "[]",
+          "height": 210.00,
+          "width": 640.00,
+          "x": 0.00,
+          "y": 0.00,
+          "z": 0.00
+        },
+        {
+          "config": "{\"name\":\"6aedd9b331bd70435786\",\"layouts\":[{\"id\":0,\"position\":{\"x\":19.09090909090909,\"y\":23.22314049586778,\"z\":1000,\"width\":600,\"height\":300.9090909090909,\"tabOrder\":0}}],\"singleVisual\":{\"visualType\":\"clusteredBarChart\",\"projections\":{\"Y\":[{\"queryRef\":\"CountNonNull(MH4L issues.id)\"}],\"Category\":[{\"queryRef\":\"MH4L issues.assignee.displayName\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"m\",\"Entity\":\"MH4L issues\",\"Type\":0}],\"Select\":[{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"m\"}},\"Property\":\"id\"}},\"Function\":5},\"Name\":\"CountNonNull(MH4L issues.id)\",\"NativeReferenceName\":\"Count of id\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"m\"}},\"Property\":\"assignee.displayName\"},\"Name\":\"MH4L issues.assignee.displayName\",\"NativeReferenceName\":\"assignee.displayName\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"m\"}},\"Property\":\"id\"}},\"Function\":5}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"categoryAxis\":[{\"properties\":{\"maxMarginFactor\":{\"expr\":{\"Literal\":{\"Value\":\"35L\"}}},\"concatenateLabels\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]},\"vcObjects\":{\"title\":[{\"properties\":{\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Tickets Assigned'\"}}},\"alignment\":{\"expr\":{\"Literal\":{\"Value\":\"'center'\"}}}}}],\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}},\"parentGroupName\":\"92de939925221ca869d5\"}",
+          "filters": "[]",
+          "height": 300.91,
+          "width": 600.00,
+          "x": 19.09,
+          "y": 23.22,
+          "z": 1000.00
+        },
+        {
+          "config": "{\"name\":\"7f925b508f21165444f4\",\"layouts\":[{\"id\":0,\"position\":{\"x\":19.09090909090909,\"y\":19.999999999999986,\"z\":2000,\"width\":227.27272727272725,\"height\":168.18181818181816,\"tabOrder\":3000}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"MH4L issues.issuetype\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"m\",\"Entity\":\"MH4L issues\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"m\"}},\"Property\":\"issuetype\"},\"Name\":\"MH4L issues.issuetype\",\"NativeReferenceName\":\"issuetype\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"data\":[{\"properties\":{\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Basic'\"}}}}}],\"general\":[{\"properties\":{\"orientation\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}},\"selfFilterEnabled\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}],\"items\":[{\"properties\":{\"textSize\":{\"expr\":{\"Literal\":{\"Value\":\"10D\"}}}}}]}},\"parentGroupName\":\"317903f9e7f3dd1dbd7d\"}",
+          "filters": "[]",
+          "height": 168.18,
+          "width": 227.27,
+          "x": 19.09,
+          "y": 20.00,
+          "z": 2000.00
+        },
+        {
+          "config": "{\"name\":\"92de939925221ca869d5\",\"layouts\":[{\"id\":0,\"position\":{\"x\":0,\"y\":310.9090909090909,\"z\":2000,\"width\":640,\"height\":344.5454545454545,\"tabOrder\":2000}}],\"singleVisualGroup\":{\"displayName\":\"Assigned tickets\",\"groupMode\":0}}",
+          "height": 344.55,
+          "width": 640.00,
+          "x": 0.00,
+          "y": 310.91,
+          "z": 2000.00
+        },
+        {
+          "config": "{\"name\":\"a24c39abd0ecf9f00bf9\",\"layouts\":[{\"id\":0,\"position\":{\"height\":209.99999999999997,\"width\":426.36363636363626,\"x\":640,\"y\":100.9090909090909,\"z\":3000,\"tabOrder\":4000}}],\"singleVisualGroup\":{\"displayName\":\"About\",\"groupMode\":0}}",
+          "height": 210.00,
+          "width": 426.36,
+          "x": 640.00,
+          "y": 100.91,
+          "z": 3000.00
+        },
+        {
+          "config": "{\"name\":\"c1d71928d9c142c0a19e\",\"layouts\":[{\"id\":0,\"position\":{\"x\":0,\"y\":0,\"z\":0,\"width\":1280,\"height\":101.23022847100177,\"tabOrder\":3000}}],\"singleVisual\":{\"visualType\":\"shape\",\"drillFilterOtherVisuals\":true,\"objects\":{\"shape\":[{\"properties\":{\"tileShape\":{\"expr\":{\"Literal\":{\"Value\":\"'rectangle'\"}}}}}],\"rotation\":[{\"properties\":{\"shapeAngle\":{\"expr\":{\"Literal\":{\"Value\":\"0L\"}}}}}],\"fill\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}},{\"properties\":{\"fillColor\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":0,\"Percent\":0}}}}}},\"selector\":{\"id\":\"default\"}}],\"outline\":[{\"properties\":{\"weight\":{\"expr\":{\"Literal\":{\"Value\":\"10D\"}}},\"lineColor\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":3,\"Percent\":0}}}}}},\"selector\":{\"id\":\"default\"}}],\"shadow\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]}},\"parentGroupName\":\"26e8bdbfb7a8f7d81898\"}",
+          "filters": "[]",
+          "height": 101.23,
+          "width": 1280.00,
+          "x": 0.00,
+          "y": 0.00,
+          "z": 0.00
+        },
+        {
+          "config": "{\"name\":\"c561bae32918bc006ce0\",\"layouts\":[{\"id\":0,\"position\":{\"x\":640,\"y\":310.9090909090909,\"z\":1000,\"width\":426.3636363636363,\"height\":234.54545454545453,\"tabOrder\":1000}}],\"singleVisualGroup\":{\"displayName\":\"Project Summary\",\"groupMode\":0}}",
+          "height": 234.55,
+          "width": 426.36,
+          "x": 640.00,
+          "y": 310.91,
+          "z": 1000.00
+        },
+        {
+          "config": "{\"name\":\"e8d73789395a4e5688de\",\"layouts\":[{\"id\":0,\"position\":{\"x\":20,\"y\":20.909090909090907,\"z\":1000,\"width\":388.18181818181813,\"height\":167.27272727272725,\"tabOrder\":1000}}],\"singleVisual\":{\"visualType\":\"textbox\",\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"paragraphs\":[{\"textRuns\":[{\"value\":\"Right-click and then select Drill through to view projects in detail\"}]}]}}]},\"vcObjects\":{\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}},\"parentGroupName\":\"a24c39abd0ecf9f00bf9\"}",
+          "filters": "[]",
+          "height": 167.27,
+          "width": 388.18,
+          "x": 20.00,
+          "y": 20.91,
+          "z": 1000.00
+        }
+      ],
+      "width": 1280.00
+    },
+    {
+      "config": "{\"objects\":{\"background\":[{\"properties\":{\"color\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#F6EEE8'\"}}}}},\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"70D\"}}}}}]},\"visibility\":0}",
+      "displayName": "Report Information",
+      "displayOption": 1,
+      "filters": "[]",
+      "height": 720.00,
+      "name": "ReportSection04bd3278cc5c566baf53",
+      "ordinal": 3,
+      "visualContainers": [
+        {
+          "config": "{\"name\":\"04723b09bb93167daba6\",\"layouts\":[{\"id\":0,\"position\":{\"x\":806.8341708542713,\"y\":19.2964824120603,\"z\":1000,\"width\":364.22110552763814,\"height\":459.4974874371859}}],\"singleVisual\":{\"visualType\":\"textbox\",\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"paragraphs\":[{\"textRuns\":[{\"value\":\"PBI Developed by :\",\"textStyle\":{\"fontSize\":\"12pt\"}}]},{\"textRuns\":[{\"value\":\"\"}]},{\"textRuns\":[{\"value\":\"Position :\",\"textStyle\":{\"fontSize\":\"12pt\"}}]},{\"textRuns\":[{\"value\":\"\"}]},{\"textRuns\":[{\"value\":\"Date:\",\"textStyle\":{\"fontSize\":\"12pt\"}}]},{\"textRuns\":[{\"value\":\"\"}]},{\"textRuns\":[{\"value\":\"Workspace allocated :\",\"textStyle\":{\"fontSize\":\"12pt\"}}]},{\"textRuns\":[{\"value\":\"\"}]},{\"textRuns\":[{\"value\":\"Current PBI Template Used: Power BI Template 0.1\",\"textStyle\":{\"fontSize\":\"12pt\"}}]},{\"textRuns\":[{\"value\":\"\"}]},{\"textRuns\":[{\"value\":\"Data Sources :\",\"textStyle\":{\"fontSize\":\"12pt\"}}]}]}}]},\"vcObjects\":{\"title\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Developer info'\"}}},\"alignment\":{\"expr\":{\"Literal\":{\"Value\":\"'center'\"}}},\"bold\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"background\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#F68B1F'\"}}}}},\"fontColor\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":1,\"Percent\":0}}}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"15D\"}}}}}],\"background\":[{\"properties\":{\"color\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":0,\"Percent\":0}}}}}}}],\"border\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 459.50,
+          "width": 364.22,
+          "x": 806.83,
+          "y": 19.30,
+          "z": 1000.00
+        },
+        {
+          "config": "{\"name\":\"245c74d7578f6d397f87\",\"layouts\":[{\"id\":0,\"position\":{\"x\":410.0502512562814,\"y\":186.93467336683415,\"z\":3000,\"width\":364.22110552763814,\"height\":291.85929648241205}}],\"singleVisual\":{\"visualType\":\"textbox\",\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"paragraphs\":[{\"textRuns\":[{\"value\":\"1st Review Date :\",\"textStyle\":{\"fontSize\":\"12pt\"}}]},{\"textRuns\":[{\"value\":\"\"}]},{\"textRuns\":[{\"value\":\"Comments by User :\",\"textStyle\":{\"fontSize\":\"12pt\"}}]},{\"textRuns\":[{\"value\":\"\"}]},{\"textRuns\":[{\"value\":\"Comments by Developer :\",\"textStyle\":{\"fontSize\":\"16px\"}}]},{\"textRuns\":[{\"value\":\"\"}]},{\"textRuns\":[{\"value\":\"Next review Date :\",\"textStyle\":{\"fontSize\":\"12pt\"}}]},{\"textRuns\":[{\"value\":\"\"}]},{\"textRuns\":[{\"value\":\"\"}]},{\"textRuns\":[{\"value\":\"\"}]},{\"textRuns\":[{\"value\":\"\"}]},{\"textRuns\":[{\"value\":\"\"}]}]}}]},\"vcObjects\":{\"title\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Review History'\"}}},\"alignment\":{\"expr\":{\"Literal\":{\"Value\":\"'center'\"}}},\"bold\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"background\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":6,\"Percent\":0}}}}},\"fontColor\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":1,\"Percent\":0}}}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"15D\"}}}}}],\"background\":[{\"properties\":{\"color\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":0,\"Percent\":0}}}}}}}],\"border\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 291.86,
+          "width": 364.22,
+          "x": 410.05,
+          "y": 186.93,
+          "z": 3000.00
+        },
+        {
+          "config": "{\"name\":\"24a54795f45e01a7f2d9\",\"layouts\":[{\"id\":0,\"position\":{\"x\":410.2929697314863,\"y\":19.211042061006047,\"z\":2000,\"width\":363.63758186904306,\"height\":153.68833648804838}}],\"singleVisual\":{\"visualType\":\"textbox\",\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"paragraphs\":[{\"textRuns\":[{\"value\":\"Approved by :\",\"textStyle\":{\"fontSize\":\"12pt\"}}]},{\"textRuns\":[{\"value\":\"\"}]},{\"textRuns\":[{\"value\":\"Position :\",\"textStyle\":{\"fontSize\":\"12pt\"}}]},{\"textRuns\":[{\"value\":\"\"}]},{\"textRuns\":[{\"value\":\"Date :\",\"textStyle\":{\"fontSize\":\"12pt\"}}]},{\"textRuns\":[{\"value\":\"\"}]}]}}]},\"vcObjects\":{\"title\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Approved info'\"}}},\"alignment\":{\"expr\":{\"Literal\":{\"Value\":\"'center'\"}}},\"bold\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"background\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#2BB8C8'\"}}}}},\"fontColor\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":1,\"Percent\":0}}}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"15D\"}}}}}],\"background\":[{\"properties\":{\"color\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":0,\"Percent\":0}}}}}}}],\"border\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 153.69,
+          "width": 363.64,
+          "x": 410.29,
+          "y": 19.21,
+          "z": 2000.00
+        },
+        {
+          "config": "{\"name\":\"c5fe70c04da1796b2c90\",\"layouts\":[{\"id\":0,\"position\":{\"x\":15.094390190790467,\"y\":19.211042061006047,\"z\":0,\"width\":362.2653645789712,\"height\":459.6927921740733}}],\"singleVisual\":{\"visualType\":\"textbox\",\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"paragraphs\":[{\"textRuns\":[{\"value\":\"Report Requested by :\",\"textStyle\":{\"fontSize\":\"12pt\"}}]},{\"textRuns\":[{\"value\":\"\"}]},{\"textRuns\":[{\"value\":\"Report Name :\",\"textStyle\":{\"fontSize\":\"16px\"}}]},{\"textRuns\":[{\"value\":\"\"}]},{\"textRuns\":[{\"value\":\"Department/Team :\",\"textStyle\":{\"fontSize\":\"12pt\"}}]},{\"textRuns\":[{\"value\":\"\"}]},{\"textRuns\":[{\"value\":\"Position :\",\"textStyle\":{\"fontSize\":\"16px\"}}]},{\"textRuns\":[{\"value\":\"\"}]},{\"textRuns\":[{\"value\":\"Jira Ticket :\",\"textStyle\":{\"fontSize\":\"16px\"}}]},{\"textRuns\":[{\"value\":\"\"}]},{\"textRuns\":[{\"value\":\"Report Description from Business:\",\"textStyle\":{\"fontSize\":\"16px\"}}]},{\"textRuns\":[{\"value\":\"\"}]},{\"textRuns\":[{\"value\":\"Frequency Requested : \",\"textStyle\":{\"fontSize\":\"12pt\"}}]},{\"textRuns\":[{\"value\":\"\"}]},{\"textRuns\":[{\"value\":\"Intended Report time Frame: 1/3/6/12 Months\",\"textStyle\":{\"fontSize\":\"12pt\"}}]},{\"textRuns\":[{\"value\":\"\"}]},{\"textRuns\":[{\"value\":\"If Ad-Hoc Please Specify : Y/N\",\"textStyle\":{\"fontSize\":\"12pt\"}}]},{\"textRuns\":[{\"value\":\"\"}]},{\"textRuns\":[{\"value\":\"Report Expiry Date: Date/NA/ Review every 3 months \",\"textStyle\":{\"fontSize\":\"12pt\"}}]},{\"textRuns\":[{\"value\":\"\"}]},{\"textRuns\":[{\"value\":\"\"}]}]}}]},\"vcObjects\":{\"title\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Report Request info'\"}}},\"alignment\":{\"expr\":{\"Literal\":{\"Value\":\"'center'\"}}},\"bold\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"background\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#89E568'\"}}}}},\"fontColor\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":1,\"Percent\":0}}}}},\"heading\":{\"expr\":{\"Literal\":{\"Value\":\"'Heading3'\"}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"15D\"}}}}}],\"background\":[{\"properties\":{\"color\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":0,\"Percent\":0}}}}}}}],\"border\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 459.69,
+          "width": 362.27,
+          "x": 15.09,
+          "y": 19.21,
+          "z": 0.00
+        }
+      ],
+      "width": 1280.00
+    },
+    {
+      "config": "{\"objects\":{\"background\":[{\"properties\":{\"color\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#F6EEE8'\"}}}}},\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"70D\"}}}}}]},\"visibility\":1}",
+      "displayName": "Project Summary",
+      "displayOption": 3,
+      "filters": "[{\"name\":\"Filter7a62f3e65975fa87b91a\",\"expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"MH4L issues\"}},\"Property\":\"project.name\"}},\"filter\":{\"Version\":2,\"From\":[{\"Name\":\"m\",\"Entity\":\"MH4L issues\",\"Type\":0}],\"Where\":[{\"Condition\":{\"In\":{\"Expressions\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"m\"}},\"Property\":\"project.name\"}}],\"Values\":[[{\"Literal\":{\"Value\":\"'MH4L Platform'\"}}]]}}}]},\"type\":\"Categorical\",\"howCreated\":5}]",
+      "height": 720.00,
+      "name": "ReportSection3ed49b184513809c1b78",
+      "ordinal": 1,
+      "visualContainers": [
+        {
+          "config": "{\"name\":\"0c0dbae208ac62b45671\",\"layouts\":[{\"id\":0,\"position\":{\"height\":187.83943329397874,\"width\":227.27272727272725,\"x\":19.09090909090909,\"y\":22.337662337662326,\"z\":2000,\"tabOrder\":0}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"MH4L issues.issuetype\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"m\",\"Entity\":\"MH4L issues\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"m\"}},\"Property\":\"issuetype\"},\"Name\":\"MH4L issues.issuetype\",\"NativeReferenceName\":\"issuetype\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"data\":[{\"properties\":{\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Basic'\"}}}}}],\"general\":[{\"properties\":{\"orientation\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}},\"selfFilterEnabled\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}],\"items\":[{\"properties\":{\"textSize\":{\"expr\":{\"Literal\":{\"Value\":\"10D\"}}}}}]}},\"parentGroupName\":\"75e404039ffbc7347225\"}",
+          "filters": "[]",
+          "height": 187.84,
+          "width": 227.27,
+          "x": 19.09,
+          "y": 22.34,
+          "z": 2000.00
+        },
+        {
+          "config": "{\"name\":\"121326a831a3a249414b\",\"layouts\":[{\"id\":0,\"position\":{\"height\":100.9090909090909,\"width\":933.6363636363634,\"x\":0,\"y\":0,\"z\":0,\"tabOrder\":1000}}],\"singleVisual\":{\"visualType\":\"shape\",\"drillFilterOtherVisuals\":true,\"objects\":{\"shape\":[{\"properties\":{\"tileShape\":{\"expr\":{\"Literal\":{\"Value\":\"'rectangle'\"}}}}}],\"rotation\":[{\"properties\":{\"shapeAngle\":{\"expr\":{\"Literal\":{\"Value\":\"0L\"}}}}}],\"fill\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}},{\"properties\":{\"fillColor\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":0,\"Percent\":0}}}}}},\"selector\":{\"id\":\"default\"}}],\"outline\":[{\"properties\":{\"weight\":{\"expr\":{\"Literal\":{\"Value\":\"10D\"}}},\"lineColor\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":3,\"Percent\":0}}}}}},\"selector\":{\"id\":\"default\"}}],\"shadow\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]}},\"parentGroupName\":\"a1aa2953509b7cb0c6a5\"}",
+          "filters": "[]",
+          "height": 100.91,
+          "width": 933.64,
+          "x": 0.00,
+          "y": 0.00,
+          "z": 0.00
+        },
+        {
+          "config": "{\"name\":\"16a413169d4cd1953bb3\",\"layouts\":[{\"id\":0,\"position\":{\"height\":344.5454545454545,\"width\":640,\"x\":0,\"y\":335.45454545454544,\"z\":6000,\"tabOrder\":1000}}],\"singleVisualGroup\":{\"displayName\":\"Assigned tickets\",\"groupMode\":0}}",
+          "height": 344.55,
+          "width": 640.00,
+          "x": 0.00,
+          "y": 335.45,
+          "z": 6000.00
+        },
+        {
+          "config": "{\"name\":\"20001a8c4d625a3adee7\",\"layouts\":[{\"id\":0,\"position\":{\"x\":0,\"y\":0,\"z\":0,\"width\":640,\"height\":344.5454545454545,\"tabOrder\":11000}}],\"singleVisual\":{\"visualType\":\"shape\",\"drillFilterOtherVisuals\":true,\"objects\":{\"shape\":[{\"properties\":{\"tileShape\":{\"expr\":{\"Literal\":{\"Value\":\"'rectangle'\"}}}}}],\"rotation\":[{\"properties\":{\"shapeAngle\":{\"expr\":{\"Literal\":{\"Value\":\"0L\"}}}}}],\"fill\":[{\"properties\":{\"fillColor\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":0,\"Percent\":0}}}}}},\"selector\":{\"id\":\"default\"}}],\"outline\":[{\"properties\":{\"lineColor\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":3,\"Percent\":0}}}}},\"weight\":{\"expr\":{\"Literal\":{\"Value\":\"10D\"}}}},\"selector\":{\"id\":\"default\"}}],\"shadow\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]}},\"parentGroupName\":\"16a413169d4cd1953bb3\"}",
+          "filters": "[]",
+          "height": 344.55,
+          "width": 640.00,
+          "x": 0.00,
+          "y": 0.00,
+          "z": 0.00
+        },
+        {
+          "config": "{\"name\":\"3018701e150ec7f8c4d2\",\"layouts\":[{\"id\":0,\"position\":{\"height\":187.83943329397874,\"width\":227.27272727272725,\"x\":246.36363636363635,\"y\":23.353010625737898,\"z\":3000,\"tabOrder\":3000}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"Status Codes.Family\",\"active\":true},{\"queryRef\":\"Status Codes.status.name\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"s\",\"Entity\":\"Status Codes\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"s\"}},\"Property\":\"status name\"},\"Name\":\"Status Codes.status.name\",\"NativeReferenceName\":\"status.name1\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"s\"}},\"Property\":\"Status Family\"},\"Name\":\"Status Codes.Family\",\"NativeReferenceName\":\"Family\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"data\":[{\"properties\":{\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Basic'\"}}}}}],\"general\":[{\"properties\":{\"orientation\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}},\"selfFilterEnabled\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}],\"items\":[{\"properties\":{\"textSize\":{\"expr\":{\"Literal\":{\"Value\":\"10D\"}}}}}]}},\"parentGroupName\":\"75e404039ffbc7347225\"}",
+          "filters": "[]",
+          "height": 187.84,
+          "width": 227.27,
+          "x": 246.36,
+          "y": 23.35,
+          "z": 3000.00
+        },
+        {
+          "config": "{\"name\":\"3046b7e9c618832301a2\",\"layouts\":[{\"id\":0,\"position\":{\"height\":234.54545454545453,\"width\":640,\"x\":0,\"y\":0,\"z\":0,\"tabOrder\":6000}}],\"singleVisual\":{\"visualType\":\"shape\",\"drillFilterOtherVisuals\":true,\"objects\":{\"shape\":[{\"properties\":{\"tileShape\":{\"expr\":{\"Literal\":{\"Value\":\"'rectangle'\"}}}}}],\"rotation\":[{\"properties\":{\"shapeAngle\":{\"expr\":{\"Literal\":{\"Value\":\"0L\"}}}}}],\"fill\":[{\"properties\":{\"fillColor\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":0,\"Percent\":0}}}}}},\"selector\":{\"id\":\"default\"}}],\"outline\":[{\"properties\":{\"lineColor\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":2,\"Percent\":0}}}}},\"weight\":{\"expr\":{\"Literal\":{\"Value\":\"10D\"}}}},\"selector\":{\"id\":\"default\"}}],\"shadow\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]}},\"parentGroupName\":\"75e404039ffbc7347225\"}",
+          "filters": "[]",
+          "height": 234.55,
+          "width": 640.00,
+          "x": 0.00,
+          "y": 0.00,
+          "z": 0.00
+        },
+        {
+          "config": "{\"name\":\"3742470e88bddb45e808\",\"layouts\":[{\"id\":0,\"position\":{\"height\":59.05050505050505,\"width\":575.3869095169622,\"x\":179.39819992544068,\"y\":20.929292929292927,\"z\":1000,\"tabOrder\":4000}}],\"singleVisual\":{\"visualType\":\"textbox\",\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"paragraphs\":[{\"textRuns\":[{\"value\":\"6.4 JIRA Tickets\",\"textStyle\":{\"fontWeight\":\"bold\",\"fontSize\":\"24pt\"}}],\"horizontalTextAlignment\":\"center\"}]}}]},\"vcObjects\":{\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"title\":[{\"properties\":{\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Title'\"}}}}}]}},\"parentGroupName\":\"a1aa2953509b7cb0c6a5\"}",
+          "filters": "[]",
+          "height": 59.05,
+          "width": 575.39,
+          "x": 179.40,
+          "y": 20.93,
+          "z": 1000.00
+        },
+        {
+          "config": "{\"name\":\"3b0b731e0b0fd885ccb7\",\"layouts\":[{\"id\":0,\"position\":{\"x\":640,\"y\":100.9090909090909,\"z\":1000,\"width\":426.3636363636363,\"height\":234.54545454545453,\"tabOrder\":0}}],\"singleVisualGroup\":{\"displayName\":\"Project Summary\",\"groupMode\":0}}",
+          "height": 234.55,
+          "width": 426.36,
+          "x": 640.00,
+          "y": 100.91,
+          "z": 1000.00
+        },
+        {
+          "config": "{\"name\":\"49c9c69a08707e59de64\",\"layouts\":[{\"id\":0,\"position\":{\"x\":0,\"y\":0,\"z\":0,\"width\":426.3636363636363,\"height\":234.54545454545453,\"tabOrder\":10000}}],\"singleVisual\":{\"visualType\":\"shape\",\"drillFilterOtherVisuals\":true,\"objects\":{\"shape\":[{\"properties\":{\"tileShape\":{\"expr\":{\"Literal\":{\"Value\":\"'rectangle'\"}}}}}],\"rotation\":[{\"properties\":{\"shapeAngle\":{\"expr\":{\"Literal\":{\"Value\":\"0L\"}}}}}],\"fill\":[{\"properties\":{\"fillColor\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":0,\"Percent\":0}}}}}},\"selector\":{\"id\":\"default\"}}],\"outline\":[{\"properties\":{\"lineColor\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":3,\"Percent\":0}}}}},\"weight\":{\"expr\":{\"Literal\":{\"Value\":\"10D\"}}}},\"selector\":{\"id\":\"default\"}}],\"shadow\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]}},\"parentGroupName\":\"3b0b731e0b0fd885ccb7\"}",
+          "filters": "[]",
+          "height": 234.55,
+          "width": 426.36,
+          "x": 0.00,
+          "y": 0.00,
+          "z": 0.00
+        },
+        {
+          "config": "{\"name\":\"6abcb5384d6727171e5e\",\"layouts\":[{\"id\":0,\"position\":{\"x\":20,\"y\":19.999999999999986,\"z\":1000,\"width\":388.18181818181813,\"height\":196.36363636363635,\"tabOrder\":9000}}],\"singleVisual\":{\"visualType\":\"pivotTable\",\"projections\":{\"Rows\":[{\"queryRef\":\"MH4L issues.project.name\",\"active\":true},{\"queryRef\":\"Status Codes.Family\",\"active\":true},{\"queryRef\":\"Status Codes.status.name\"}],\"Values\":[{\"queryRef\":\"Min(MH4L issues.issue key)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"m\",\"Entity\":\"MH4L issues\",\"Type\":0},{\"Name\":\"s\",\"Entity\":\"Status Codes\",\"Type\":0}],\"Select\":[{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"m\"}},\"Property\":\"issue key\"}},\"Function\":2},\"Name\":\"Min(MH4L issues.issue key)\",\"NativeReferenceName\":\"Count of issue key\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"m\"}},\"Property\":\"project.name\"},\"Name\":\"MH4L issues.project.name\",\"NativeReferenceName\":\"project.name\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"s\"}},\"Property\":\"status name\"},\"Name\":\"Status Codes.status.name\",\"NativeReferenceName\":\"status.name1\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"s\"}},\"Property\":\"Status Family\"},\"Name\":\"Status Codes.Family\",\"NativeReferenceName\":\"Family\"}]},\"expansionStates\":[{\"roles\":[\"Rows\"],\"levels\":[{\"queryRefs\":[\"MH4L issues.project.name\"],\"isCollapsed\":true,\"identityKeys\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"MH4L issues\"}},\"Property\":\"project.name\"}}],\"isPinned\":true},{\"queryRefs\":[\"Status Codes.Family\"],\"isCollapsed\":true,\"isPinned\":true},{\"queryRefs\":[\"Status Codes.status.name\"],\"isCollapsed\":true,\"isPinned\":true}],\"root\":{\"identityValues\":null,\"children\":[{\"identityValues\":[{\"Literal\":{\"Value\":\"'MH4L Platform'\"}}],\"isToggled\":true}]}}],\"drillFilterOtherVisuals\":true,\"objects\":{\"columnWidth\":[{\"properties\":{\"value\":{\"expr\":{\"Literal\":{\"Value\":\"247.28319106397302D\"}}}},\"selector\":{\"metadata\":\"MH4L issues.project.name\"}}]},\"vcObjects\":{\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}},\"parentGroupName\":\"3b0b731e0b0fd885ccb7\"}",
+          "filters": "[]",
+          "height": 196.36,
+          "width": 388.18,
+          "x": 20.00,
+          "y": 20.00,
+          "z": 1000.00
+        },
+        {
+          "config": "{\"name\":\"75e404039ffbc7347225\",\"layouts\":[{\"id\":0,\"position\":{\"x\":0,\"y\":100.9090909090909,\"z\":5000,\"width\":640,\"height\":234.54545454545453,\"tabOrder\":2000}}],\"singleVisualGroup\":{\"displayName\":\"Slicers\",\"groupMode\":0}}",
+          "height": 234.55,
+          "width": 640.00,
+          "x": 0.00,
+          "y": 100.91,
+          "z": 5000.00
+        },
+        {
+          "config": "{\"name\":\"7f515f12bdd524460abf\",\"layouts\":[{\"id\":0,\"position\":{\"x\":23,\"y\":254,\"z\":3000,\"width\":251,\"height\":71,\"tabOrder\":12000}}],\"singleVisual\":{\"visualType\":\"card\",\"projections\":{\"Values\":[{\"queryRef\":\"Min(MH4L issues.issue ID)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"m\",\"Entity\":\"MH4L issues\",\"Type\":0}],\"Select\":[{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"m\"}},\"Property\":\"issue ID\"}},\"Function\":2},\"Name\":\"Min(MH4L issues.issue ID)\",\"NativeReferenceName\":\"Cancelled Issues\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"m\"}},\"Property\":\"issue ID\"}},\"Function\":2}}}]},\"columnProperties\":{\"Min(MH4L issues.issue ID)\":{\"displayName\":\"Cancelled Issues\"}},\"drillFilterOtherVisuals\":true,\"filterSortOrder\":3,\"hasDefaultSort\":true,\"objects\":{\"labels\":[{\"properties\":{\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"20D\"}}}}}]},\"vcObjects\":{\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}},\"parentGroupName\":\"e535ac8b00e3ef2076bb\"}",
+          "filters": "[{\"name\":\"Filterbdb72ba21c6bcb3ade29\",\"expression\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"MH4L issues\"}},\"Property\":\"issue ID\"}},\"Function\":2}},\"type\":\"Advanced\",\"howCreated\":0,\"isHiddenInViewMode\":false,\"ordinal\":0},{\"name\":\"Filter508246543c53eb59ee18\",\"expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"Status Codes\"}},\"Property\":\"Status Family\"}},\"filter\":{\"Version\":2,\"From\":[{\"Name\":\"s\",\"Entity\":\"Status Codes\",\"Type\":0}],\"Where\":[{\"Condition\":{\"In\":{\"Expressions\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"s\"}},\"Property\":\"Status Family\"}}],\"Values\":[[{\"Literal\":{\"Value\":\"'Cancelled'\"}}]]}}}]},\"type\":\"Categorical\",\"howCreated\":1,\"objects\":{},\"ordinal\":1}]",
+          "height": 71.00,
+          "width": 251.00,
+          "x": 23.00,
+          "y": 254.00,
+          "z": 3000.00
+        },
+        {
+          "config": "{\"name\":\"88a79cf34ab38efe5f4c\",\"layouts\":[{\"id\":0,\"position\":{\"x\":23,\"y\":177,\"z\":500,\"width\":250,\"height\":77,\"tabOrder\":16000}}],\"singleVisual\":{\"visualType\":\"card\",\"projections\":{\"Values\":[{\"queryRef\":\"Min(MH4L issues.issue ID)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"m\",\"Entity\":\"MH4L issues\",\"Type\":0}],\"Select\":[{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"m\"}},\"Property\":\"issue ID\"}},\"Function\":2},\"Name\":\"Min(MH4L issues.issue ID)\",\"NativeReferenceName\":\"WIP & Pending Issues\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"m\"}},\"Property\":\"issue ID\"}},\"Function\":2}}}]},\"columnProperties\":{\"Min(MH4L issues.issue ID)\":{\"displayName\":\"WIP & Pending Issues\"}},\"drillFilterOtherVisuals\":true,\"filterSortOrder\":3,\"hasDefaultSort\":true,\"objects\":{\"labels\":[{\"properties\":{\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"20D\"}}}}}]},\"vcObjects\":{\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}},\"parentGroupName\":\"e535ac8b00e3ef2076bb\"}",
+          "filters": "[{\"name\":\"Filterbdb72ba21c6bcb3ade29\",\"expression\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"MH4L issues\"}},\"Property\":\"issue ID\"}},\"Function\":2}},\"type\":\"Advanced\",\"howCreated\":0,\"isHiddenInViewMode\":false,\"ordinal\":0},{\"name\":\"Filter508246543c53eb59ee18\",\"expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"Status Codes\"}},\"Property\":\"Status Family\"}},\"filter\":{\"Version\":2,\"From\":[{\"Name\":\"s\",\"Entity\":\"Status Codes\",\"Type\":0}],\"Where\":[{\"Condition\":{\"In\":{\"Expressions\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"s\"}},\"Property\":\"Status Family\"}}],\"Values\":[[{\"Literal\":{\"Value\":\"'Backlog'\"}}],[{\"Literal\":{\"Value\":\"'To Do'\"}}],[{\"Literal\":{\"Value\":\"'WIP'\"}}],[{\"Literal\":{\"Value\":\"'New'\"}}]]}}}]},\"type\":\"Categorical\",\"howCreated\":1,\"objects\":{},\"ordinal\":1}]",
+          "height": 77.00,
+          "width": 250.00,
+          "x": 23.00,
+          "y": 177.00,
+          "z": 500.00
+        },
+        {
+          "config": "{\"name\":\"898a279c973bdb3a4c7e\",\"layouts\":[{\"id\":0,\"position\":{\"height\":345,\"width\":295,\"x\":0,\"y\":0,\"z\":0,\"tabOrder\":13000}}],\"singleVisual\":{\"visualType\":\"shape\",\"drillFilterOtherVisuals\":true,\"objects\":{\"shape\":[{\"properties\":{\"tileShape\":{\"expr\":{\"Literal\":{\"Value\":\"'rectangle'\"}}}}}],\"rotation\":[{\"properties\":{\"shapeAngle\":{\"expr\":{\"Literal\":{\"Value\":\"0L\"}}}}}],\"fill\":[{\"properties\":{\"fillColor\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":0,\"Percent\":0}}}}}},\"selector\":{\"id\":\"default\"}}],\"outline\":[{\"properties\":{\"lineColor\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":3,\"Percent\":0}}}}},\"weight\":{\"expr\":{\"Literal\":{\"Value\":\"10D\"}}}},\"selector\":{\"id\":\"default\"}}],\"shadow\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]}},\"parentGroupName\":\"e535ac8b00e3ef2076bb\"}",
+          "filters": "[]",
+          "height": 345.00,
+          "width": 295.00,
+          "x": 0.00,
+          "y": 0.00,
+          "z": 0.00
+        },
+        {
+          "config": "{\"name\":\"a1aa2953509b7cb0c6a5\",\"layouts\":[{\"id\":0,\"position\":{\"x\":132.72727272727272,\"y\":0,\"z\":0,\"width\":933.6363636363635,\"height\":100.9090909090909,\"tabOrder\":3000}}],\"singleVisualGroup\":{\"displayName\":\"Title\",\"groupMode\":0}}",
+          "height": 100.91,
+          "width": 933.64,
+          "x": 132.73,
+          "y": 0.00,
+          "z": 0.00
+        },
+        {
+          "config": "{\"name\":\"ac07b622933b00801681\",\"layouts\":[{\"id\":0,\"position\":{\"x\":23,\"y\":24,\"z\":1000,\"width\":251,\"height\":78,\"tabOrder\":14000}}],\"singleVisual\":{\"visualType\":\"card\",\"projections\":{\"Values\":[{\"queryRef\":\"Min(MH4L issues.issue ID)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"m\",\"Entity\":\"MH4L issues\",\"Type\":0}],\"Select\":[{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"m\"}},\"Property\":\"issue ID\"}},\"Function\":2},\"Name\":\"Min(MH4L issues.issue ID)\",\"NativeReferenceName\":\"Blocked Issues\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"m\"}},\"Property\":\"issue ID\"}},\"Function\":2}}}]},\"columnProperties\":{\"Min(MH4L issues.issue ID)\":{\"displayName\":\"Blocked Issues\"}},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"labels\":[{\"properties\":{\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"20D\"}}}}}]},\"vcObjects\":{\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}},\"parentGroupName\":\"e535ac8b00e3ef2076bb\"}",
+          "filters": "[{\"name\":\"Filter6d20756d6263ae113799\",\"expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"Status Codes\"}},\"Property\":\"Status Family\"}},\"filter\":{\"Version\":2,\"From\":[{\"Name\":\"s\",\"Entity\":\"Status Codes\",\"Type\":0}],\"Where\":[{\"Condition\":{\"In\":{\"Expressions\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"s\"}},\"Property\":\"Status Family\"}}],\"Values\":[[{\"Literal\":{\"Value\":\"'Blocked'\"}}]]}}}]},\"type\":\"Categorical\",\"howCreated\":1,\"objects\":{}}]",
+          "height": 78.00,
+          "width": 251.00,
+          "x": 23.00,
+          "y": 24.00,
+          "z": 1000.00
+        },
+        {
+          "config": "{\"name\":\"b00d92e4952ea5acace3\",\"layouts\":[{\"id\":0,\"position\":{\"height\":187.83943329397874,\"width\":141.8181818181818,\"x\":477.27272727272725,\"y\":23.353010625737898,\"z\":1000,\"tabOrder\":8000}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"MH4L issues.assignee.active\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"m\",\"Entity\":\"MH4L issues\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"m\"}},\"Property\":\"assignee.active\"},\"Name\":\"MH4L issues.assignee.active\",\"NativeReferenceName\":\"assignee.active\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"data\":[{\"properties\":{\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Basic'\"}}}}}],\"items\":[{\"properties\":{\"textSize\":{\"expr\":{\"Literal\":{\"Value\":\"10D\"}}}}}],\"general\":[{\"properties\":{}}]}},\"parentGroupName\":\"75e404039ffbc7347225\"}",
+          "filters": "[]",
+          "height": 187.84,
+          "width": 141.82,
+          "x": 477.27,
+          "y": 23.35,
+          "z": 1000.00
+        },
+        {
+          "config": "{\"name\":\"bc63fd286f3db489157b\",\"layouts\":[{\"id\":0,\"position\":{\"height\":63.53535353535353,\"width\":135.0955956755605,\"x\":14.220589018480053,\"y\":20.181818181818183,\"z\":2000,\"tabOrder\":7000}}],\"singleVisual\":{\"visualType\":\"image\",\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"imageUrl\":{\"expr\":{\"ResourcePackageItem\":{\"PackageName\":\"RegisteredResources\",\"PackageType\":1,\"ItemName\":\"MH4L_logo+Yellow_Thumb6502785802817708.png\"}}}}}]},\"vcObjects\":{\"title\":[{\"properties\":{\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Blue logo'\"}}}}}]}},\"parentGroupName\":\"a1aa2953509b7cb0c6a5\"}",
+          "filters": "[]",
+          "height": 63.54,
+          "width": 135.10,
+          "x": 14.22,
+          "y": 20.18,
+          "z": 2000.00
+        },
+        {
+          "config": "{\"name\":\"c3e104feb89c4ab6afd8\",\"layouts\":[{\"id\":0,\"position\":{\"x\":19.09090909090909,\"y\":36.36363636363636,\"z\":2000,\"width\":101.81818181818181,\"height\":30.909090909090907,\"tabOrder\":4000}}],\"singleVisual\":{\"visualType\":\"actionButton\",\"drillFilterOtherVisuals\":true,\"objects\":{\"icon\":[{\"properties\":{\"shapeType\":{\"expr\":{\"Literal\":{\"Value\":\"'back'\"}}}},\"selector\":{\"id\":\"default\"}}],\"text\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}},{\"properties\":{\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Return'\"}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"14D\"}}},\"horizontalAlignment\":{\"expr\":{\"Literal\":{\"Value\":\"'right'\"}}},\"rightMargin\":{\"expr\":{\"Literal\":{\"Value\":\"0L\"}}},\"bold\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}},\"selector\":{\"id\":\"default\"}}]},\"vcObjects\":{\"visualLink\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"type\":{\"expr\":{\"Literal\":{\"Value\":\"'PageNavigation'\"}}},\"navigationSection\":{\"expr\":{\"Literal\":{\"Value\":\"'ReportSection'\"}}}}}],\"title\":[{\"properties\":{\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Back button'\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 30.91,
+          "width": 101.82,
+          "x": 19.09,
+          "y": 36.36,
+          "z": 2000.00
+        },
+        {
+          "config": "{\"name\":\"d0dd7c35b9fa4559422f\",\"layouts\":[{\"id\":0,\"position\":{\"x\":23,\"y\":102,\"z\":2000,\"width\":250,\"height\":75,\"tabOrder\":15000}}],\"singleVisual\":{\"visualType\":\"card\",\"projections\":{\"Values\":[{\"queryRef\":\"Min(MH4L issues.issue ID)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"m\",\"Entity\":\"MH4L issues\",\"Type\":0}],\"Select\":[{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"m\"}},\"Property\":\"issue ID\"}},\"Function\":2},\"Name\":\"Min(MH4L issues.issue ID)\",\"NativeReferenceName\":\"Issues Awaiting \"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"m\"}},\"Property\":\"issue ID\"}},\"Function\":2}}}]},\"columnProperties\":{\"Min(MH4L issues.issue ID)\":{\"displayName\":\"Issues Awaiting \"}},\"drillFilterOtherVisuals\":true,\"filterSortOrder\":3,\"hasDefaultSort\":true,\"objects\":{\"labels\":[{\"properties\":{\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"20D\"}}}}}]},\"vcObjects\":{\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}},\"parentGroupName\":\"e535ac8b00e3ef2076bb\"}",
+          "filters": "[{\"name\":\"Filter87d31f127d35fbccd22b\",\"expression\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"MH4L issues\"}},\"Property\":\"issue ID\"}},\"Function\":2}},\"type\":\"Advanced\",\"howCreated\":0,\"isHiddenInViewMode\":false,\"ordinal\":0},{\"name\":\"Filter2341ea4e005e2e76a1fc\",\"expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"Status Codes\"}},\"Property\":\"Status Family\"}},\"filter\":{\"Version\":2,\"From\":[{\"Name\":\"s\",\"Entity\":\"Status Codes\",\"Type\":0}],\"Where\":[{\"Condition\":{\"In\":{\"Expressions\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"s\"}},\"Property\":\"Status Family\"}}],\"Values\":[[{\"Literal\":{\"Value\":\"'Waiting'\"}}]]}}}]},\"type\":\"Categorical\",\"howCreated\":1,\"objects\":{},\"ordinal\":1}]",
+          "height": 75.00,
+          "width": 250.00,
+          "x": 23.00,
+          "y": 102.00,
+          "z": 2000.00
+        },
+        {
+          "config": "{\"name\":\"e535ac8b00e3ef2076bb\",\"layouts\":[{\"id\":0,\"position\":{\"x\":640,\"y\":335,\"z\":3000,\"width\":295,\"height\":345,\"tabOrder\":5000}}],\"singleVisualGroup\":{\"displayName\":\"Cards\",\"groupMode\":0}}",
+          "height": 345.00,
+          "width": 295.00,
+          "x": 640.00,
+          "y": 335.00,
+          "z": 3000.00
+        },
+        {
+          "config": "{\"name\":\"e75c7a277e11988aea58\",\"layouts\":[{\"id\":0,\"position\":{\"x\":19.09090909090909,\"y\":23.22314049586778,\"z\":1000,\"width\":600,\"height\":300.9090909090909,\"tabOrder\":2000}}],\"singleVisual\":{\"visualType\":\"clusteredBarChart\",\"projections\":{\"Y\":[{\"queryRef\":\"CountNonNull(MH4L issues.id)\"}],\"Category\":[{\"queryRef\":\"MH4L issues.assignee.displayName\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"m\",\"Entity\":\"MH4L issues\",\"Type\":0}],\"Select\":[{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"m\"}},\"Property\":\"id\"}},\"Function\":5},\"Name\":\"CountNonNull(MH4L issues.id)\",\"NativeReferenceName\":\"Count of id\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"m\"}},\"Property\":\"assignee.displayName\"},\"Name\":\"MH4L issues.assignee.displayName\",\"NativeReferenceName\":\"assignee.displayName\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"m\"}},\"Property\":\"id\"}},\"Function\":5}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"categoryAxis\":[{\"properties\":{\"maxMarginFactor\":{\"expr\":{\"Literal\":{\"Value\":\"35L\"}}},\"concatenateLabels\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]},\"vcObjects\":{\"title\":[{\"properties\":{\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Tickets Assigned'\"}}},\"alignment\":{\"expr\":{\"Literal\":{\"Value\":\"'center'\"}}}}}],\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}},\"parentGroupName\":\"16a413169d4cd1953bb3\"}",
+          "filters": "[]",
+          "height": 300.91,
+          "width": 600.00,
+          "x": 19.09,
+          "y": 23.22,
+          "z": 1000.00
+        }
+      ],
+      "width": 1070.00
+    },
+    {
+      "config": "{\"objects\":{\"background\":[{\"properties\":{\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"70D\"}}},\"color\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#F6EEE8'\"}}}}}}}]},\"visibility\":1}",
+      "displayName": "For PBI Developer",
+      "displayOption": 1,
+      "filters": "[]",
+      "height": 720.00,
+      "name": "ReportSection4eb31db9a2bb72148fcc",
+      "ordinal": 4,
+      "visualContainers": [
+        {
+          "config": "{\"name\":\"2562eee12c3377a33271\",\"layouts\":[{\"id\":0,\"position\":{\"x\":34.44444444444444,\"y\":217.77777777777777,\"z\":1000,\"width\":1233.3333333333333,\"height\":23.333333333333332}}],\"singleVisual\":{\"visualType\":\"textbox\",\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"paragraphs\":[{\"textRuns\":[{\"value\":\"\"}]}]}}]},\"vcObjects\":{\"title\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Guidance for PBI Development'\"}}},\"alignment\":{\"expr\":{\"Literal\":{\"Value\":\"'center'\"}}},\"fontColor\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":1,\"Percent\":0}}}}},\"background\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#2BB8C8'\"}}}}}}}]}}}",
+          "filters": "[]",
+          "height": 23.33,
+          "width": 1233.33,
+          "x": 34.44,
+          "y": 217.78,
+          "z": 1000.00
+        },
+        {
+          "config": "{\"name\":\"508672d72bca7a0f4744\",\"layouts\":[{\"id\":0,\"position\":{\"x\":34.44444444444444,\"y\":241.11111111111111,\"z\":2000,\"width\":425.55555555555554,\"height\":237.77777777777777}}],\"singleVisual\":{\"visualType\":\"textbox\",\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"paragraphs\":[{\"textRuns\":[{\"value\":\"Colour Code\\t\\tClosest Main Colour\"}]},{\"textRuns\":[{\"value\":\"#CD3092\",\"textStyle\":{\"fontSize\":\"10.5pt\",\"color\":\"#000000\"}},{\"value\":\"\\t\\t\\tPink\"}]},{\"textRuns\":[{\"value\":\"#F68B1F\",\"textStyle\":{\"fontSize\":\"10.5pt\",\"color\":\"#000000\"}},{\"value\":\"\\t\",\"textStyle\":{\"fontSize\":\"10.5pt\"}},{\"value\":\"\\t\\t\\tOrange\"}]},{\"textRuns\":[{\"value\":\"#FFE400\",\"textStyle\":{\"fontSize\":\"10.5pt\",\"color\":\"#000000\"}},{\"value\":\"\\t\\t\\t\\tYellow\"}]},{\"textRuns\":[{\"value\":\"#89E568\",\"textStyle\":{\"fontSize\":\"10.5pt\",\"color\":\"#000000\"}},{\"value\":\"\\t\\t\\t\\tGreen\"}]},{\"textRuns\":[{\"value\":\"#2BB8C8\",\"textStyle\":{\"fontSize\":\"10.5pt\",\"color\":\"#000000\"}},{\"value\":\"\\t\\t\\t\\tBlue\"}]},{\"textRuns\":[{\"value\":\"#6F6F6F\",\"textStyle\":{\"fontSize\":\"10.5pt\",\"color\":\"#000000\"}},{\"value\":\"\\t\\t\\t\\tGrey \"}]},{\"textRuns\":[{\"value\":\"#5B217C\",\"textStyle\":{\"fontSize\":\"10.5pt\",\"color\":\"#000000\"}},{\"value\":\"\\t\\t\\t\\tPurple\"}]},{\"textRuns\":[{\"value\":\"#F6EEE8 \",\"textStyle\":{\"fontSize\":\"10.5pt\",\"color\":\"#000000\"}},{\"value\":\"\\t\\t\\t\\tBeige\\t\"},{\"value\":\"- Used for Canvas Background with 70% Transparency \",\"textStyle\":{\"fontSize\":\"10.5pt\",\"color\":\"#000000\"}}]},{\"textRuns\":[{\"value\":\"\"}]}]}}]},\"vcObjects\":{\"title\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'MH4L Colour Codes to be Used '\"}}},\"background\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#FFE400'\"}}}}},\"alignment\":{\"expr\":{\"Literal\":{\"Value\":\"'center'\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 237.78,
+          "width": 425.56,
+          "x": 34.44,
+          "y": 241.11,
+          "z": 2000.00
+        },
+        {
+          "config": "{\"name\":\"afe4a24aae209a50511f\",\"layouts\":[{\"id\":0,\"position\":{\"x\":34.30543225179652,\"y\":24.69991122129349,\"z\":0,\"width\":1233.6233437746027,\"height\":174.2715958391263}}],\"singleVisual\":{\"visualType\":\"textbox\",\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"paragraphs\":[{\"textRuns\":[{\"value\":\"\"}]},{\"textRuns\":[{\"value\":\"As per the PBI Standardization and Governance Initiative for MH4L Program it is required to utilize Power BI Template 0.1 or any further versions as recommended by the Dev Team for all PBI Report development from 15/02/2023.\",\"textStyle\":{\"fontSize\":\"10.5pt\"}}],\"listType\":\"bullet\"},{\"textRuns\":[{\"value\":\"Developer must complete the 'Report information' Page info prior to \",\"textStyle\":{\"fontSize\":\"10.5pt\"}},{\"value\":\"Final Prod Report Publication\",\"textStyle\":{\"fontWeight\":\"bold\",\"fontSize\":\"10.5pt\"}}],\"listType\":\"bullet\"},{\"textRuns\":[{\"value\":\"All PBI newly created Reports from 15/02/23 should follow an on going review process to manage and govern workspaces and PBI portal  (Ie; published report could outdate at some point in future, and workspace could overwhelmed with dormant reports.)\",\"textStyle\":{\"fontSize\":\"10.5pt\"}}],\"listType\":\"bullet\"},{\"textRuns\":[{\"value\":\"\"}]},{\"textRuns\":[{\"value\":\"\"}]}]}}]},\"vcObjects\":{\"title\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Notes for BI Developer'\"}}},\"alignment\":{\"expr\":{\"Literal\":{\"Value\":\"'center'\"}}},\"fontColor\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":1,\"Percent\":0}}}}},\"background\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#89E568'\"}}}}}}}]}}}",
+          "filters": "[]",
+          "height": 174.27,
+          "width": 1233.62,
+          "x": 34.31,
+          "y": 24.70,
+          "z": 0.00
+        },
+        {
+          "config": "{\"name\":\"e071f243b85a42b7f943\",\"layouts\":[{\"id\":0,\"position\":{\"x\":470,\"y\":241.11111111111111,\"z\":3000,\"width\":713.3333333333334,\"height\":237.77777777777777}}],\"singleVisual\":{\"visualType\":\"textbox\",\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"paragraphs\":[{\"textRuns\":[{\"value\":\"Power BI new Report requests will come through Jira as of 15/02/2023 and currently in the process of reviewing environment and other aspects.\"}],\"listType\":\"ordered\"},{\"textRuns\":[{\"value\":\"After gathering requirement from the user it is important to update Jira ticket along with any requirement notes\"}],\"listType\":\"ordered\"},{\"textRuns\":[{\"value\":\"PBI reports will be standardize to identify uniquely by report name and number, The Number will originate from Workspace ID and next Report Number (Ie: Workspace 1 is allocated Social Marketing Team. Then Reportname_1.1would be the Report Publication Number) Assumptions made as sometimes different teams would require same kind of repot name as per their over view and allocation of report name would duplicate in two workspaces.\"}],\"listType\":\"ordered\"},{\"textRuns\":[{\"value\":\" \"}],\"listType\":\"ordered\"},{\"textRuns\":[{\"value\":\"PBI report Number will allocated by \"}],\"listType\":\"ordered\"},{\"textRuns\":[{\"value\":\"\"}]}]}}]},\"vcObjects\":{\"title\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'PBI Dev Lifecycle'\"}}},\"background\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#CD3092'\"}}}}},\"alignment\":{\"expr\":{\"Literal\":{\"Value\":\"'center'\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 237.78,
+          "width": 713.33,
+          "x": 470.00,
+          "y": 241.11,
+          "z": 3000.00
+        }
+      ],
+      "width": 1280.00
+    },
+    {
+      "config": "{\"objects\":{\"background\":[{\"properties\":{\"color\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#F6EEE8'\"}}}}},\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"70D\"}}}}}]},\"visibility\":1}",
+      "displayName": "Project Detail",
+      "displayOption": 3,
+      "filters": "[{\"name\":\"Filter18607db0ed8afb43fdbf\",\"expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"MH4L issues\"}},\"Property\":\"project.name\"}},\"type\":\"Categorical\",\"howCreated\":5}]",
+      "height": 720.00,
+      "name": "ReportSection5951b40ccb1975905075",
+      "ordinal": 2,
+      "visualContainers": [
+        {
+          "config": "{\"name\":\"20979d52ecd78f6635d9\",\"layouts\":[{\"id\":0,\"position\":{\"height\":64.69911447223838,\"width\":170.74399531341533,\"x\":17.973052138254154,\"y\":20.55148342059337,\"z\":2000,\"tabOrder\":0}}],\"singleVisual\":{\"visualType\":\"image\",\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"imageUrl\":{\"expr\":{\"ResourcePackageItem\":{\"PackageName\":\"RegisteredResources\",\"PackageType\":1,\"ItemName\":\"MH4L_logo+Yellow_Thumb6502785802817708.png\"}}}}}]},\"vcObjects\":{\"title\":[{\"properties\":{\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Blue logo'\"}}}}}]}},\"parentGroupName\":\"911028b990373efe4289\"}",
+          "filters": "[]",
+          "height": 64.70,
+          "width": 170.74,
+          "x": 17.97,
+          "y": 20.55,
+          "z": 2000.00
+        },
+        {
+          "config": "{\"name\":\"786f9bab4fe02d0c5c89\",\"layouts\":[{\"id\":0,\"position\":{\"height\":616.6666666666667,\"width\":1180,\"x\":-1.7763568394002505e-15,\"y\":103.33333333333334,\"z\":1000,\"tabOrder\":1000}}],\"singleVisualGroup\":{\"displayName\":\"table\",\"groupMode\":0}}",
+          "height": 616.67,
+          "width": 1180.00,
+          "x": 0.00,
+          "y": 103.33,
+          "z": 1000.00
+        },
+        {
+          "config": "{\"name\":\"90060561516bd343f6b7\",\"layouts\":[{\"id\":0,\"position\":{\"x\":18.333333333333343,\"y\":61.66666666666666,\"z\":1000,\"width\":1140,\"height\":533.3333333333334,\"tabOrder\":0}}],\"singleVisual\":{\"visualType\":\"tableEx\",\"projections\":{\"Values\":[{\"queryRef\":\"MH4L issues.project.key\"},{\"queryRef\":\"MH4L issues.issue key\"},{\"queryRef\":\"MH4L issues.assignee\"},{\"queryRef\":\"MH4L issues.priority\"},{\"queryRef\":\"Status Codes.Family\"},{\"queryRef\":\"Status Codes.status.name\"},{\"queryRef\":\"MH4L issues.summary\"},{\"queryRef\":\"MH4L issues.created\"},{\"queryRef\":\"MH4L issues.Days since Created\"},{\"queryRef\":\"MH4L issues.Days since Modified\"},{\"queryRef\":\"MH4L issues.aggregatetimeoriginalestimate\"},{\"queryRef\":\"MH4L issues.aggregatetimespent\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"m\",\"Entity\":\"MH4L issues\",\"Type\":0},{\"Name\":\"s\",\"Entity\":\"Status Codes\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"m\"}},\"Property\":\"project.key\"},\"Name\":\"MH4L issues.project.key\",\"NativeReferenceName\":\"project.key\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"m\"}},\"Property\":\"assignee.displayName\"},\"Name\":\"MH4L issues.assignee\",\"NativeReferenceName\":\"assignee\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"m\"}},\"Property\":\"priority\"},\"Name\":\"MH4L issues.priority\",\"NativeReferenceName\":\"priority\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"m\"}},\"Property\":\"summary\"},\"Name\":\"MH4L issues.summary\",\"NativeReferenceName\":\"summary\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"m\"}},\"Property\":\"created\"},\"Name\":\"MH4L issues.created\",\"NativeReferenceName\":\"created\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"m\"}},\"Property\":\"Days since Created\"},\"Name\":\"MH4L issues.Days since Created\",\"NativeReferenceName\":\"Days since Created\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"m\"}},\"Property\":\"Days since Modified\"},\"Name\":\"MH4L issues.Days since Modified\",\"NativeReferenceName\":\"Days since Modified\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"m\"}},\"Property\":\"issue key\"},\"Name\":\"MH4L issues.issue key\",\"NativeReferenceName\":\"issue key\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"m\"}},\"Property\":\"aggregatetimeoriginalestimate\"},\"Name\":\"MH4L issues.aggregatetimeoriginalestimate\",\"NativeReferenceName\":\"aggregatetimeoriginalestimate\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"m\"}},\"Property\":\"aggregatetimespent\"},\"Name\":\"MH4L issues.aggregatetimespent\",\"NativeReferenceName\":\"aggregatetimespent\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"s\"}},\"Property\":\"status name\"},\"Name\":\"Status Codes.status.name\",\"NativeReferenceName\":\"status.name1\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"s\"}},\"Property\":\"Status Family\"},\"Name\":\"Status Codes.Family\",\"NativeReferenceName\":\"Family\"}],\"OrderBy\":[{\"Direction\":1,\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"m\"}},\"Property\":\"summary\"}}}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"columnWidth\":[{\"properties\":{\"value\":{\"expr\":{\"Literal\":{\"Value\":\"218.39744820677524D\"}}}},\"selector\":{\"metadata\":\"MH4L issues.summary\"}},{\"properties\":{\"value\":{\"expr\":{\"Literal\":{\"Value\":\"104.99681790986958D\"}}}},\"selector\":{\"metadata\":\"MH4L issues.assignee\"}},{\"properties\":{\"value\":{\"expr\":{\"Literal\":{\"Value\":\"54.62864721485411D\"}}}},\"selector\":{\"metadata\":\"MH4L issues.project.key\"}},{\"properties\":{\"value\":{\"expr\":{\"Literal\":{\"Value\":\"76.16444066224693D\"}}}},\"selector\":{\"metadata\":\"MH4L issues.Days since Created\"}},{\"properties\":{\"value\":{\"expr\":{\"Literal\":{\"Value\":\"72.97878884020545D\"}}}},\"selector\":{\"metadata\":\"MH4L issues.Days since Modified\"}},{\"properties\":{\"value\":{\"expr\":{\"Literal\":{\"Value\":\"86.39786659183527D\"}}}},\"selector\":{\"metadata\":\"MH4L issues.created\"}},{\"properties\":{\"value\":{\"expr\":{\"Literal\":{\"Value\":\"103.45638691038145D\"}}}},\"selector\":{\"metadata\":\"MH4L issues.aggregatetimeoriginalestimate\"}},{\"properties\":{\"value\":{\"expr\":{\"Literal\":{\"Value\":\"91D\"}}}},\"selector\":{\"metadata\":\"Status Codes.Family\"}},{\"properties\":{\"value\":{\"expr\":{\"Literal\":{\"Value\":\"106D\"}}}},\"selector\":{\"metadata\":\"Status Codes.status.name\"}},{\"properties\":{\"value\":{\"expr\":{\"Literal\":{\"Value\":\"81D\"}}}},\"selector\":{\"metadata\":\"MH4L issues.aggregatetimespent\"}}]},\"vcObjects\":{\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}},\"parentGroupName\":\"786f9bab4fe02d0c5c89\"}",
+          "filters": "[]",
+          "height": 533.33,
+          "width": 1140.00,
+          "x": 18.33,
+          "y": 61.67,
+          "z": 1000.00
+        },
+        {
+          "config": "{\"name\":\"911028b990373efe4289\",\"layouts\":[{\"id\":0,\"position\":{\"x\":0.5235602094240885,\"y\":0,\"z\":0,\"width\":1180,\"height\":102.75741710296684,\"tabOrder\":0}}],\"singleVisualGroup\":{\"displayName\":\"Title\",\"groupMode\":0}}",
+          "height": 102.76,
+          "width": 1180.00,
+          "x": 0.52,
+          "y": 0.00,
+          "z": 0.00
+        },
+        {
+          "config": "{\"name\":\"9b8e3793785d0edff925\",\"layouts\":[{\"id\":0,\"position\":{\"x\":360.00000000000006,\"y\":20.000000000000014,\"z\":3000,\"width\":466.6666666666667,\"height\":41.66666666666667,\"tabOrder\":2000}}],\"singleVisual\":{\"visualType\":\"textbox\",\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"paragraphs\":[{\"textRuns\":[{\"value\":\"Project Drill through\",\"textStyle\":{\"fontWeight\":\"bold\",\"fontSize\":\"16pt\"}}],\"horizontalTextAlignment\":\"center\"}]}}]},\"vcObjects\":{\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"title\":[{\"properties\":{\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Section header'\"}}}}}]}},\"parentGroupName\":\"786f9bab4fe02d0c5c89\"}",
+          "filters": "[]",
+          "height": 41.67,
+          "width": 466.67,
+          "x": 360.00,
+          "y": 20.00,
+          "z": 3000.00
+        },
+        {
+          "config": "{\"name\":\"a5ec78daed766590ce92\",\"layouts\":[{\"id\":0,\"position\":{\"height\":60.13211815655097,\"width\":727.2173403632104,\"x\":226.7369654364386,\"y\":21.312649473207937,\"z\":1000,\"tabOrder\":1000}}],\"singleVisual\":{\"visualType\":\"textbox\",\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"paragraphs\":[{\"textRuns\":[{\"value\":\"6.4 JIRA Tickets\",\"textStyle\":{\"fontWeight\":\"bold\",\"fontSize\":\"24pt\"}}],\"horizontalTextAlignment\":\"center\"}]}}]},\"vcObjects\":{\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"title\":[{\"properties\":{\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Title'\"}}}}}]}},\"parentGroupName\":\"911028b990373efe4289\"}",
+          "filters": "[]",
+          "height": 60.13,
+          "width": 727.22,
+          "x": 226.74,
+          "y": 21.31,
+          "z": 1000.00
+        },
+        {
+          "config": "{\"name\":\"c32d1282cdf3044be7b2\",\"layouts\":[{\"id\":0,\"position\":{\"x\":21.666666666666686,\"y\":25.000000000000057,\"z\":2000,\"width\":101.66666666666667,\"height\":31.666666666666668,\"tabOrder\":1000}}],\"singleVisual\":{\"visualType\":\"actionButton\",\"drillFilterOtherVisuals\":true,\"objects\":{\"icon\":[{\"properties\":{\"shapeType\":{\"expr\":{\"Literal\":{\"Value\":\"'back'\"}}}},\"selector\":{\"id\":\"default\"}}],\"text\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}},{\"properties\":{\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Return'\"}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"14D\"}}},\"horizontalAlignment\":{\"expr\":{\"Literal\":{\"Value\":\"'right'\"}}},\"rightMargin\":{\"expr\":{\"Literal\":{\"Value\":\"0L\"}}},\"bold\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}},\"selector\":{\"id\":\"default\"}}]},\"vcObjects\":{\"visualLink\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"type\":{\"expr\":{\"Literal\":{\"Value\":\"'PageNavigation'\"}}},\"navigationSection\":{\"expr\":{\"Literal\":{\"Value\":\"'ReportSection'\"}}}}}],\"title\":[{\"properties\":{\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Back button'\"}}}}}]}},\"parentGroupName\":\"786f9bab4fe02d0c5c89\"}",
+          "filters": "[]",
+          "height": 31.67,
+          "width": 101.67,
+          "x": 21.67,
+          "y": 25.00,
+          "z": 2000.00
+        },
+        {
+          "config": "{\"name\":\"d67f26ad043562d38458\",\"layouts\":[{\"id\":0,\"position\":{\"x\":0,\"y\":0,\"z\":0,\"width\":1180,\"height\":616.6666666666667,\"tabOrder\":3000}}],\"singleVisual\":{\"visualType\":\"shape\",\"drillFilterOtherVisuals\":true,\"objects\":{\"shape\":[{\"properties\":{\"tileShape\":{\"expr\":{\"Literal\":{\"Value\":\"'rectangle'\"}}}}}],\"rotation\":[{\"properties\":{\"shapeAngle\":{\"expr\":{\"Literal\":{\"Value\":\"0L\"}}}}}],\"fill\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}},{\"properties\":{\"fillColor\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":0,\"Percent\":0}}}}}},\"selector\":{\"id\":\"default\"}}],\"outline\":[{\"properties\":{\"weight\":{\"expr\":{\"Literal\":{\"Value\":\"10D\"}}},\"lineColor\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":3,\"Percent\":0}}}}}},\"selector\":{\"id\":\"default\"}}],\"shadow\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]}},\"parentGroupName\":\"786f9bab4fe02d0c5c89\"}",
+          "filters": "[]",
+          "height": 616.67,
+          "width": 1180.00,
+          "x": 0.00,
+          "y": 0.00,
+          "z": 0.00
+        },
+        {
+          "config": "{\"name\":\"f2d5da5db9808f570999\",\"layouts\":[{\"id\":0,\"position\":{\"height\":102.75741710296684,\"width\":1180,\"x\":0,\"y\":0,\"z\":0,\"tabOrder\":2000}}],\"singleVisual\":{\"visualType\":\"shape\",\"drillFilterOtherVisuals\":true,\"objects\":{\"shape\":[{\"properties\":{\"tileShape\":{\"expr\":{\"Literal\":{\"Value\":\"'rectangle'\"}}}}}],\"rotation\":[{\"properties\":{\"shapeAngle\":{\"expr\":{\"Literal\":{\"Value\":\"0L\"}}}}}],\"fill\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}},{\"properties\":{\"fillColor\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":0,\"Percent\":0}}}}}},\"selector\":{\"id\":\"default\"}}],\"outline\":[{\"properties\":{\"weight\":{\"expr\":{\"Literal\":{\"Value\":\"10D\"}}},\"lineColor\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":3,\"Percent\":0}}}}}},\"selector\":{\"id\":\"default\"}}],\"shadow\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]}},\"parentGroupName\":\"911028b990373efe4289\"}",
+          "filters": "[]",
+          "height": 102.76,
+          "width": 1180.00,
+          "x": 0.00,
+          "y": 0.00,
+          "z": 0.00
+        }
+      ],
+      "width": 1180.00
+    }
+  ],
+  "theme": "MH4L_Brand_Colours044819686356456945.json"
+}
