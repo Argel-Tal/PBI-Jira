@@ -10,21 +10,21 @@
       "nodes": [
         {
           "location": {
-            "x": 370,
-            "y": 4
+            "x": 415.25080462844187,
+            "y": 451.48467745656239
           },
-          "nodeIndex": "MH4L issues",
+          "nodeIndex": "YourOrg issues",
           "nodeLineageTag": "4adae639-dbf3-4b0d-8016-e6bce3b421c3",
           "size": {
             "height": 300,
             "width": 234
           },
-          "zIndex": 0
+          "zIndex": 7
         },
         {
           "location": {
-            "x": 794,
-            "y": 233
+            "x": 0,
+            "y": 736
           },
           "nodeIndex": "Environments Lookup",
           "nodeLineageTag": "8e1336ec-5282-4676-a053-971ab75fb8ea",
@@ -32,12 +32,12 @@
             "height": 152,
             "width": 234
           },
-          "zIndex": 0
+          "zIndex": 1
         },
         {
           "location": {
-            "x": 786,
-            "y": 0
+            "x": 0,
+            "y": 501
           },
           "nodeIndex": "Status Codes",
           "nodeLineageTag": "4d93aed3-0bb0-4100-aace-a437ba1ed31f",
@@ -45,12 +45,12 @@
             "height": 200,
             "width": 234
           },
-          "zIndex": 0
+          "zIndex": 2
         },
         {
           "location": {
-            "x": 0,
-            "y": 0
+            "x": 860.25080462844187,
+            "y": 451.48467745656239
           },
           "nodeIndex": "DateDimension",
           "nodeLineageTag": "47b9e66b-7026-4e3f-8bbf-27bb11fd5c56",
@@ -58,11 +58,50 @@
             "height": 300,
             "width": 234
           },
-          "zIndex": 0
+          "zIndex": 3
+        },
+        {
+          "location": {
+            "x": 0,
+            "y": 307.5
+          },
+          "nodeIndex": "Issue Types",
+          "nodeLineageTag": "b32d8243-c422-444e-865c-d2c807635bb4",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 4
+        },
+        {
+          "location": {
+            "x": 0,
+            "y": 0
+          },
+          "nodeIndex": "Report last refresh",
+          "nodeLineageTag": "bf9b8781-8e93-477f-a782-9485f598984b",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 5
+        },
+        {
+          "location": {
+            "x": 0,
+            "y": 121.25
+          },
+          "nodeIndex": "MeasuresTable",
+          "nodeLineageTag": "fd0df1c5-53ce-4997-9be9-4f6abbd43477",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 6
         }
       ],
       "name": "All tables",
-      "zoomValue": 100,
+      "zoomValue": 89.192590520569468,
       "pinKeyFieldsToTop": false,
       "showExtraHeaderInfo": false,
       "hideKeyFieldsWhenCollapsed": false,
