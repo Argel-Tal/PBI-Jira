@@ -41,14 +41,14 @@
         "disabled": false,
         "items": [
           {
-            "name": "YourOrg_Brand_Colours044819686356456945.json",
-            "path": "YourOrg_Brand_Colours044819686356456945.json",
-            "type": 201
-          },
-          {
             "name": "YourLogo.png",
             "path": "YourLogo.png",
             "type": 100
+          },
+          {
+            "name": "YourOrg_Brand_Colours044819686356456945.json",
+            "path": "YourOrg_Brand_Colours044819686356456945.json",
+            "type": 201
           }
         ],
         "name": "RegisteredResources",
@@ -205,7 +205,7 @@
           "z": 1000.00
         },
         {
-          "config": "{\"name\":\"e8d73789395a4e5688de\",\"layouts\":[{\"id\":0,\"position\":{\"x\":20.273037542662117,\"y\":17.75666990819701,\"z\":1000,\"width\":388.259385665529,\"height\":110.580204778157,\"tabOrder\":1000}}],\"singleVisual\":{\"visualType\":\"textbox\",\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"paragraphs\":[{\"textRuns\":[{\"value\":\"Right-click and then select Drill through to view projects in detail\",\"textStyle\":{\"fontWeight\":\"bold\"}}]},{\"textRuns\":[{\"value\":\"\"}]},{\"textRuns\":[{\"value\":\"This report connects to \"},{\"value\":\"https://diabetesaustralia.atlassian.net/\",\"textStyle\":{\"fontStyle\":\"italic\"}},{\"value\":\" via the JIRA API to \"},{\"value\":\"fetch ticket information \",\"textStyle\":{\"fontSize\":\"13.3333px\"}}]}]}}]},\"vcObjects\":{\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}},\"parentGroupName\":\"a24c39abd0ecf9f00bf9\"}",
+          "config": "{\"name\":\"e8d73789395a4e5688de\",\"layouts\":[{\"id\":0,\"position\":{\"x\":20.273037542662117,\"y\":17.75666990819701,\"z\":1000,\"width\":388.259385665529,\"height\":110.580204778157,\"tabOrder\":1000}}],\"singleVisual\":{\"visualType\":\"textbox\",\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"paragraphs\":[{\"textRuns\":[{\"value\":\"Right-click and then select Drill through to view projects in detail\",\"textStyle\":{\"fontWeight\":\"bold\"}}]},{\"textRuns\":[{\"value\":\"\"}]},{\"textRuns\":[{\"value\":\"This report connects to \"},{\"value\":\"INSERT_JIRA_DOMAIN\",\"textStyle\":{\"fontStyle\":\"italic\"}},{\"value\":\" via the JIRA API to \"},{\"value\":\"fetch ticket information \",\"textStyle\":{\"fontSize\":\"13.3333px\"}}]}]}}]},\"vcObjects\":{\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}},\"parentGroupName\":\"a24c39abd0ecf9f00bf9\"}",
           "filters": "[]",
           "height": 110.58,
           "width": 388.26,

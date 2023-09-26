@@ -539,6 +539,7 @@
     {
       "name": "02.1 Staging",
       "id": "7f588cab-7e40-4edf-9e3c-32ab14e7191d",
+      "order": 2,
       "description": "",
       "parentId": "b32c7fbb-7d07-4d1b-ae64-d421ad226e10"
     }
