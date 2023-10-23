@@ -4,10 +4,23 @@
     {
       "ordinal": 0,
       "scrollPosition": {
-        "x": 602.3935362420674,
+        "x": 0,
         "y": 0
       },
       "nodes": [
+        {
+          "location": {
+            "x": 408.20413889224739,
+            "y": 452.89401060380129
+          },
+          "nodeIndex": "YourOrg issues",
+          "nodeLineageTag": "4adae639-dbf3-4b0d-8016-e6bce3b421c3",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 11
+        },
         {
           "location": {
             "x": 0,
@@ -150,19 +163,6 @@
             "width": 234
           },
           "zIndex": 5
-        },
-        {
-          "location": {
-            "x": 408.20413889224739,
-            "y": 452.89401060380129
-          },
-          "nodeIndex": "YourOrg issues",
-          "nodeLineageTag": "4adae639-dbf3-4b0d-8016-e6bce3b421c3",
-          "size": {
-            "height": 300,
-            "width": 234
-          },
-          "zIndex": 11
         }
       ],
       "name": "All tables",
