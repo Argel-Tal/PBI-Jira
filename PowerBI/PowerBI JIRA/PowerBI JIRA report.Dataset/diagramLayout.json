@@ -1,0 +1,178 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 602.3935362420674,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 0,
+            "y": 736
+          },
+          "nodeIndex": "Environments Lookup",
+          "nodeLineageTag": "8e1336ec-5282-4676-a053-971ab75fb8ea",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 6
+        },
+        {
+          "location": {
+            "x": 0,
+            "y": 501
+          },
+          "nodeIndex": "Status Codes",
+          "nodeLineageTag": "4d93aed3-0bb0-4100-aace-a437ba1ed31f",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 7
+        },
+        {
+          "location": {
+            "x": 929.308128843148,
+            "y": 454.30334375104019
+          },
+          "nodeIndex": "DateDimension",
+          "nodeLineageTag": "47b9e66b-7026-4e3f-8bbf-27bb11fd5c56",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 8
+        },
+        {
+          "location": {
+            "x": 0,
+            "y": 307.5
+          },
+          "nodeIndex": "Issue Types",
+          "nodeLineageTag": "b32d8243-c422-444e-865c-d2c807635bb4",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 12
+        },
+        {
+          "location": {
+            "x": 0,
+            "y": 0
+          },
+          "nodeIndex": "Report last refresh",
+          "nodeLineageTag": "bf9b8781-8e93-477f-a782-9485f598984b",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 9
+        },
+        {
+          "location": {
+            "x": 0,
+            "y": 121.25
+          },
+          "nodeIndex": "MeasuresTable",
+          "nodeLineageTag": "fd0df1c5-53ce-4997-9be9-4f6abbd43477",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 10
+        },
+        {
+          "location": {
+            "x": 653.80286938930612,
+            "y": 0
+          },
+          "nodeIndex": "Devs",
+          "nodeLineageTag": "a942d02d-b409-471a-b5cd-c5c5d8a5ce67",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 1
+        },
+        {
+          "location": {
+            "x": 0,
+            "y": 934.46925219615855
+          },
+          "nodeIndex": "Fixes",
+          "nodeLineageTag": "ea8878f1-77ef-4706-b487-d73627e64de3",
+          "size": {
+            "height": 248,
+            "width": 234
+          },
+          "zIndex": 2
+        },
+        {
+          "location": {
+            "x": 356.47231698462406,
+            "y": 0
+          },
+          "nodeIndex": "Linked Issues",
+          "nodeLineageTag": "f47a492b-6658-47bf-b4b9-41d95de0075a",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 3
+        },
+        {
+          "location": {
+            "x": 0,
+            "y": 1226.2838866684879
+          },
+          "nodeIndex": "Priorities",
+          "nodeLineageTag": "1e069bc1-10d3-4ecc-8d60-778ef46322f6",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 4
+        },
+        {
+          "location": {
+            "x": 710.93897434656878,
+            "y": 1009.8592145120354
+          },
+          "nodeIndex": "Projects",
+          "nodeLineageTag": "eda4aec9-5929-40c5-9a98-e5c3cff37b6b",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 5
+        },
+        {
+          "location": {
+            "x": 408.20413889224739,
+            "y": 452.89401060380129
+          },
+          "nodeIndex": "YourOrg issues",
+          "nodeLineageTag": "4adae639-dbf3-4b0d-8016-e6bce3b421c3",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 11
+        }
+      ],
+      "name": "All tables",
+      "zoomValue": 70.955543900968792,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "All tables",
+  "defaultDiagram": "All tables"
+}
