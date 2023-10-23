@@ -49,7 +49,7 @@
             "name": "YourOrg_Brand_Colours044819686356456945.json",
             "path": "YourOrg_Brand_Colours044819686356456945.json",
             "type": 201
-          }
+                    }
         ],
         "name": "RegisteredResources",
         "type": 1
@@ -144,12 +144,12 @@
           "z": 1000.00
         },
         {
-          "config": "{\"name\":\"5c16b7dca4d39a02c33e\",\"layouts\":[{\"id\":0,\"position\":{\"height\":63.43572241183161,\"width\":128.0950352993396,\"x\":13.483687926246274,\"y\":20.150170648464165,\"z\":2000,\"tabOrder\":1000}},{\"id\":1,\"position\":{\"x\":22,\"y\":931,\"z\":11000,\"width\":92,\"height\":51,\"tabOrder\":11000}}],\"singleVisual\":{\"visualType\":\"image\",\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"imageUrl\":{\"expr\":{\"ResourcePackageItem\":{\"PackageName\":\"RegisteredResources\",\"PackageType\":1,\"ItemName\":\"YourLogo.png\"}}}}}]},\"vcObjects\":{\"title\":[{\"properties\":{\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Blue logo'\"}}}}}]}},\"parentGroupName\":\"26e8bdbfb7a8f7d81898\"}",
+          "config": "{\"name\":\"5c16b7dca4d39a02c33e\",\"layouts\":[{\"id\":0,\"position\":{\"x\":20,\"y\":20,\"z\":2000,\"width\":121.37931034482759,\"height\":60,\"tabOrder\":1000}},{\"id\":1,\"position\":{\"x\":22,\"y\":931,\"z\":11000,\"width\":92,\"height\":51,\"tabOrder\":11000}}],\"singleVisual\":{\"visualType\":\"image\",\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"imageUrl\":{\"expr\":{\"ResourcePackageItem\":{\"PackageName\":\"RegisteredResources\",\"PackageType\":1,\"ItemName\":\"YourLogo.png\"}}}}}]},\"vcObjects\":{\"title\":[{\"properties\":{\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Blue logo'\"}}}}}]}},\"parentGroupName\":\"26e8bdbfb7a8f7d81898\"}",
           "filters": "[]",
-          "height": 63.44,
-          "width": 128.10,
-          "x": 13.48,
-          "y": 20.15,
+          "height": 60.00,
+          "width": 121.38,
+          "x": 20.00,
+          "y": 20.00,
           "z": 2000.00
         },
         {
@@ -162,12 +162,12 @@
           "z": 0.00
         },
         {
-          "config": "{\"name\":\"9eecab4c4675f62cbdf6\",\"layouts\":[{\"id\":0,\"position\":{\"x\":681.4285714285714,\"y\":27.142857142857146,\"z\":500,\"width\":188.57142857142858,\"height\":47.142857142857146,\"tabOrder\":2000}},{\"id\":1,\"position\":{\"x\":114,\"y\":933,\"z\":3000,\"width\":192,\"height\":51,\"tabOrder\":3000}}],\"singleVisual\":{\"visualType\":\"multiRowCard\",\"projections\":{\"Values\":[{\"queryRef\":\"Report last refresh.Report last refreshed\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"r\",\"Entity\":\"Report last refresh\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"r\"}},\"Property\":\"Report last refreshed\"},\"Name\":\"Report last refresh.Report last refreshed\",\"NativeReferenceName\":\"Report last refreshed\"}],\"OrderBy\":[{\"Direction\":1,\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"r\"}},\"Property\":\"Report last refreshed\"}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"categoryLabels\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]},\"vcObjects\":{\"title\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Last Refreshed'\"}}},\"alignment\":{\"expr\":{\"Literal\":{\"Value\":\"'right'\"}}}}}],\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}},\"parentGroupName\":\"26e8bdbfb7a8f7d81898\"}",
+          "config": "{\"name\":\"9eecab4c4675f62cbdf6\",\"layouts\":[{\"id\":0,\"position\":{\"x\":701.3793103448276,\"y\":26.896551724137932,\"z\":500,\"width\":163.44827586206898,\"height\":53.10344827586207,\"tabOrder\":2000}},{\"id\":1,\"position\":{\"x\":114,\"y\":933,\"z\":3000,\"width\":192,\"height\":51,\"tabOrder\":3000}}],\"singleVisual\":{\"visualType\":\"multiRowCard\",\"projections\":{\"Values\":[{\"queryRef\":\"Report last refresh.Report last refreshed\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"r\",\"Entity\":\"Report last refresh\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"r\"}},\"Property\":\"Report last refreshed\"},\"Name\":\"Report last refresh.Report last refreshed\",\"NativeReferenceName\":\"Report last refreshed\"}],\"OrderBy\":[{\"Direction\":1,\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"r\"}},\"Property\":\"Report last refreshed\"}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"categoryLabels\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"card\":[{\"properties\":{\"barShow\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"cardTitle\":[{\"properties\":{\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"12D\"}}}}}]},\"vcObjects\":{\"title\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Last Refreshed'\"}}},\"alignment\":{\"expr\":{\"Literal\":{\"Value\":\"'right'\"}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"12D\"}}}}}],\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}},\"parentGroupName\":\"26e8bdbfb7a8f7d81898\"}",
           "filters": "[]",
-          "height": 47.14,
-          "width": 188.57,
-          "x": 681.43,
-          "y": 27.14,
+          "height": 53.10,
+          "width": 163.45,
+          "x": 701.38,
+          "y": 26.90,
           "z": 500.00
         },
         {
@@ -205,7 +205,7 @@
           "z": 1000.00
         },
         {
-          "config": "{\"name\":\"e8d73789395a4e5688de\",\"layouts\":[{\"id\":0,\"position\":{\"x\":20.273037542662117,\"y\":17.75666990819701,\"z\":1000,\"width\":388.259385665529,\"height\":110.580204778157,\"tabOrder\":1000}}],\"singleVisual\":{\"visualType\":\"textbox\",\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"paragraphs\":[{\"textRuns\":[{\"value\":\"Right-click and then select Drill through to view projects in detail\",\"textStyle\":{\"fontWeight\":\"bold\"}}]},{\"textRuns\":[{\"value\":\"\"}]},{\"textRuns\":[{\"value\":\"This report connects to \"},{\"value\":\"INSERT_JIRA_DOMAIN\",\"textStyle\":{\"fontStyle\":\"italic\"}},{\"value\":\" via the JIRA API to \"},{\"value\":\"fetch ticket information \",\"textStyle\":{\"fontSize\":\"13.3333px\"}}]}]}}]},\"vcObjects\":{\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}},\"parentGroupName\":\"a24c39abd0ecf9f00bf9\"}",
+          "config": "{\"name\":\"e8d73789395a4e5688de\",\"layouts\":[{\"id\":0,\"position\":{\"x\":20.273037542662117,\"y\":17.75666990819701,\"z\":1000,\"width\":388.259385665529,\"height\":110.580204778157,\"tabOrder\":1000}}],\"singleVisual\":{\"visualType\":\"textbox\",\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"paragraphs\":[{\"textRuns\":[{\"value\":\"Right-click and then select Drill through to view projects in detail\",\"textStyle\":{\"fontWeight\":\"bold\"}}]},{\"textRuns\":[{\"value\":\"\"}]},{\"textRuns\":[{\"value\":\"This report connects to \"},{\"value\":\"INSERT_JIRA_DOMAIN/\",\"textStyle\":{\"fontStyle\":\"italic\"}},{\"value\":\" via the JIRA API to \"},{\"value\":\"fetch ticket information \",\"textStyle\":{\"fontSize\":\"13.3333px\"}}]}]}}]},\"vcObjects\":{\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}},\"parentGroupName\":\"a24c39abd0ecf9f00bf9\"}",
           "filters": "[]",
           "height": 110.58,
           "width": 388.26,
@@ -356,12 +356,12 @@
           "z": 2000.00
         },
         {
-          "config": "{\"name\":\"836a37d86693345b1043\",\"layouts\":[{\"id\":0,\"position\":{\"height\":47.142857142857146,\"width\":181.91432396251676,\"x\":868.0321285140564,\"y\":27.142857142857146,\"z\":1000,\"tabOrder\":1000}}],\"singleVisual\":{\"visualType\":\"multiRowCard\",\"projections\":{\"Values\":[{\"queryRef\":\"Report last refresh.Report last refreshed\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"r\",\"Entity\":\"Report last refresh\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"r\"}},\"Property\":\"Report last refreshed\"},\"Name\":\"Report last refresh.Report last refreshed\",\"NativeReferenceName\":\"Report last refreshed\"}],\"OrderBy\":[{\"Direction\":1,\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"r\"}},\"Property\":\"Report last refreshed\"}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"categoryLabels\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]},\"vcObjects\":{\"title\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Last Refreshed'\"}}},\"alignment\":{\"expr\":{\"Literal\":{\"Value\":\"'right'\"}}}}}],\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}},\"parentGroupName\":\"4b962a7c917773bb8472\"}",
+          "config": "{\"name\":\"836a37d86693345b1043\",\"layouts\":[{\"id\":0,\"position\":{\"x\":882,\"y\":27,\"z\":1000,\"width\":168,\"height\":53,\"tabOrder\":1000}}],\"singleVisual\":{\"visualType\":\"multiRowCard\",\"projections\":{\"Values\":[{\"queryRef\":\"Report last refresh.Report last refreshed\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"r\",\"Entity\":\"Report last refresh\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"r\"}},\"Property\":\"Report last refreshed\"},\"Name\":\"Report last refresh.Report last refreshed\",\"NativeReferenceName\":\"Report last refreshed\"}],\"OrderBy\":[{\"Direction\":1,\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"r\"}},\"Property\":\"Report last refreshed\"}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"categoryLabels\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"card\":[{\"properties\":{\"barShow\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]},\"vcObjects\":{\"title\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Last Refreshed'\"}}},\"alignment\":{\"expr\":{\"Literal\":{\"Value\":\"'right'\"}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"12D\"}}}}}],\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}},\"parentGroupName\":\"4b962a7c917773bb8472\"}",
           "filters": "[]",
-          "height": 47.14,
-          "width": 181.91,
-          "x": 868.03,
-          "y": 27.14,
+          "height": 53.00,
+          "width": 168.00,
+          "x": 882.00,
+          "y": 27.00,
           "z": 1000.00
         },
         {
@@ -509,54 +509,6 @@
       "width": 1070.00
     },
     {
-      "config": "{\"objects\":{\"background\":[{\"properties\":{\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"70D\"}}},\"color\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#F6EEE8'\"}}}}}}}]},\"visibility\":1}",
-      "displayName": "For PBI Developer",
-      "displayOption": 1,
-      "filters": "[]",
-      "height": 720.00,
-      "name": "ReportSection4eb31db9a2bb72148fcc",
-      "ordinal": 4,
-      "visualContainers": [
-        {
-          "config": "{\"name\":\"2562eee12c3377a33271\",\"layouts\":[{\"id\":0,\"position\":{\"x\":34.44444444444444,\"y\":217.77777777777777,\"z\":1000,\"width\":1233.3333333333333,\"height\":23.333333333333332}}],\"singleVisual\":{\"visualType\":\"textbox\",\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"paragraphs\":[{\"textRuns\":[{\"value\":\"\"}]}]}}]},\"vcObjects\":{\"title\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Guidance for PBI Development'\"}}},\"alignment\":{\"expr\":{\"Literal\":{\"Value\":\"'center'\"}}},\"fontColor\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":1,\"Percent\":0}}}}},\"background\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#2BB8C8'\"}}}}}}}]}}}",
-          "filters": "[]",
-          "height": 23.33,
-          "width": 1233.33,
-          "x": 34.44,
-          "y": 217.78,
-          "z": 1000.00
-        },
-        {
-          "config": "{\"name\":\"508672d72bca7a0f4744\",\"layouts\":[{\"id\":0,\"position\":{\"x\":34.44444444444444,\"y\":241.11111111111111,\"z\":2000,\"width\":425.55555555555554,\"height\":237.77777777777777}}],\"singleVisual\":{\"visualType\":\"textbox\",\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"paragraphs\":[{\"textRuns\":[{\"value\":\"Colour Code\\t\\tClosest Main Colour\"}]},{\"textRuns\":[{\"value\":\"#CD3092\",\"textStyle\":{\"fontSize\":\"10.5pt\",\"color\":\"#000000\"}},{\"value\":\"\\t\\t\\tPink\"}]},{\"textRuns\":[{\"value\":\"#F68B1F\",\"textStyle\":{\"fontSize\":\"10.5pt\",\"color\":\"#000000\"}},{\"value\":\"\\t\",\"textStyle\":{\"fontSize\":\"10.5pt\"}},{\"value\":\"\\t\\t\\tOrange\"}]},{\"textRuns\":[{\"value\":\"#FFE400\",\"textStyle\":{\"fontSize\":\"10.5pt\",\"color\":\"#000000\"}},{\"value\":\"\\t\\t\\t\\tYellow\"}]},{\"textRuns\":[{\"value\":\"#89E568\",\"textStyle\":{\"fontSize\":\"10.5pt\",\"color\":\"#000000\"}},{\"value\":\"\\t\\t\\t\\tGreen\"}]},{\"textRuns\":[{\"value\":\"#2BB8C8\",\"textStyle\":{\"fontSize\":\"10.5pt\",\"color\":\"#000000\"}},{\"value\":\"\\t\\t\\t\\tBlue\"}]},{\"textRuns\":[{\"value\":\"#6F6F6F\",\"textStyle\":{\"fontSize\":\"10.5pt\",\"color\":\"#000000\"}},{\"value\":\"\\t\\t\\t\\tGrey \"}]},{\"textRuns\":[{\"value\":\"#5B217C\",\"textStyle\":{\"fontSize\":\"10.5pt\",\"color\":\"#000000\"}},{\"value\":\"\\t\\t\\t\\tPurple\"}]},{\"textRuns\":[{\"value\":\"#F6EEE8 \",\"textStyle\":{\"fontSize\":\"10.5pt\",\"color\":\"#000000\"}},{\"value\":\"\\t\\t\\t\\tBeige\\t\"},{\"value\":\"- Used for Canvas Background with 70% Transparency \",\"textStyle\":{\"fontSize\":\"10.5pt\",\"color\":\"#000000\"}}]},{\"textRuns\":[{\"value\":\"\"}]}]}}]},\"vcObjects\":{\"title\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Your Colour Codes to be Used '\"}}},\"background\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#FFE400'\"}}}}},\"alignment\":{\"expr\":{\"Literal\":{\"Value\":\"'center'\"}}}}}]}}}",
-          "filters": "[]",
-          "height": 237.78,
-          "width": 425.56,
-          "x": 34.44,
-          "y": 241.11,
-          "z": 2000.00
-        },
-        {
-          "config": "{\"name\":\"afe4a24aae209a50511f\",\"layouts\":[{\"id\":0,\"position\":{\"x\":34.30543225179652,\"y\":24.69991122129349,\"z\":0,\"width\":1233.6233437746027,\"height\":174.2715958391263}}],\"singleVisual\":{\"visualType\":\"textbox\",\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"paragraphs\":[{\"textRuns\":[{\"value\":\"\"}]},{\"textRuns\":[{\"value\":\"SOME TEXT.\",\"textStyle\":{\"fontSize\":\"10.5pt\"}}],\"listType\":\"bullet\"},{\"textRuns\":[{\"value\":\"Developer must complete the 'Report information' Page info prior to \",\"textStyle\":{\"fontSize\":\"10.5pt\"}},{\"value\":\"Final Prod Report Publication\",\"textStyle\":{\"fontWeight\":\"bold\",\"fontSize\":\"10.5pt\"}}],\"listType\":\"bullet\"},{\"textRuns\":[{\"value\":\"All PBI newly created Reports from 15/02/23 should follow an on going review process to manage and govern workspaces and PBI portal  (Ie; published report could outdate at some point in future, and workspace could overwhelmed with dormant reports.)\",\"textStyle\":{\"fontSize\":\"10.5pt\"}}],\"listType\":\"bullet\"},{\"textRuns\":[{\"value\":\"\"}]},{\"textRuns\":[{\"value\":\"\"}]}]}}]},\"vcObjects\":{\"title\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Notes for BI Developer'\"}}},\"alignment\":{\"expr\":{\"Literal\":{\"Value\":\"'center'\"}}},\"fontColor\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":1,\"Percent\":0}}}}},\"background\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#89E568'\"}}}}}}}]}}}",
-          "filters": "[]",
-          "height": 174.27,
-          "width": 1233.62,
-          "x": 34.31,
-          "y": 24.70,
-          "z": 0.00
-        },
-        {
-          "config": "{\"name\":\"e071f243b85a42b7f943\",\"layouts\":[{\"id\":0,\"position\":{\"x\":470,\"y\":241.11111111111111,\"z\":3000,\"width\":713.3333333333334,\"height\":237.77777777777777}}],\"singleVisual\":{\"visualType\":\"textbox\",\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"paragraphs\":[{\"textRuns\":[{\"value\":\"Power BI new Report requests will come through Jira as of 15/02/2023 and currently in the process of reviewing environment and other aspects.\"}],\"listType\":\"ordered\"},{\"textRuns\":[{\"value\":\"After gathering requirement from the user it is important to update Jira ticket along with any requirement notes\"}],\"listType\":\"ordered\"},{\"textRuns\":[{\"value\":\"PBI reports will be standardize to identify uniquely by report name and number, The Number will originate from Workspace ID and next Report Number (Ie: Workspace 1 is allocated Social Marketing Team. Then Reportname_1.1would be the Report Publication Number) Assumptions made as sometimes different teams would require same kind of repot name as per their over view and allocation of report name would duplicate in two workspaces.\"}],\"listType\":\"ordered\"},{\"textRuns\":[{\"value\":\" \"}],\"listType\":\"ordered\"},{\"textRuns\":[{\"value\":\"PBI report Number will allocated by \"}],\"listType\":\"ordered\"},{\"textRuns\":[{\"value\":\"\"}]}]}}]},\"vcObjects\":{\"title\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'PBI Dev Lifecycle'\"}}},\"background\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#CD3092'\"}}}}},\"alignment\":{\"expr\":{\"Literal\":{\"Value\":\"'center'\"}}}}}]}}}",
-          "filters": "[]",
-          "height": 237.78,
-          "width": 713.33,
-          "x": 470.00,
-          "y": 241.11,
-          "z": 3000.00
-        }
-      ],
-      "width": 1280.00
-    },
-    {
       "config": "{\"objects\":{\"background\":[{\"properties\":{\"color\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#F6EEE8'\"}}}}},\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"70D\"}}}}}]},\"visibility\":1}",
       "displayName": "Project Detail",
       "displayOption": 3,
@@ -592,12 +544,12 @@
           "z": 0.00
         },
         {
-          "config": "{\"name\":\"8d86544297c78c1e4fe8\",\"layouts\":[{\"id\":0,\"position\":{\"height\":47.055666909620996,\"width\":215.71875,\"x\":943.4732142857143,\"y\":27.092656705539362,\"z\":1000,\"tabOrder\":2000}}],\"singleVisual\":{\"visualType\":\"multiRowCard\",\"projections\":{\"Values\":[{\"queryRef\":\"Report last refresh.Report last refreshed\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"r\",\"Entity\":\"Report last refresh\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"r\"}},\"Property\":\"Report last refreshed\"},\"Name\":\"Report last refresh.Report last refreshed\",\"NativeReferenceName\":\"Report last refreshed\"}],\"OrderBy\":[{\"Direction\":1,\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"r\"}},\"Property\":\"Report last refreshed\"}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"categoryLabels\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]},\"vcObjects\":{\"title\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Last Refreshed'\"}}},\"alignment\":{\"expr\":{\"Literal\":{\"Value\":\"'left'\"}}}}}],\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}},\"parentGroupName\":\"f97266f1d458e235591b\"}",
+          "config": "{\"name\":\"8d86544297c78c1e4fe8\",\"layouts\":[{\"id\":0,\"position\":{\"x\":993,\"y\":27,\"z\":1000,\"width\":166,\"height\":53,\"tabOrder\":2000}}],\"singleVisual\":{\"visualType\":\"multiRowCard\",\"projections\":{\"Values\":[{\"queryRef\":\"Report last refresh.Report last refreshed\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"r\",\"Entity\":\"Report last refresh\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"r\"}},\"Property\":\"Report last refreshed\"},\"Name\":\"Report last refresh.Report last refreshed\",\"NativeReferenceName\":\"Report last refreshed\"}],\"OrderBy\":[{\"Direction\":1,\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"r\"}},\"Property\":\"Report last refreshed\"}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"categoryLabels\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"card\":[{\"properties\":{\"barShow\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]},\"vcObjects\":{\"title\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Last Refreshed'\"}}},\"alignment\":{\"expr\":{\"Literal\":{\"Value\":\"'right'\"}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"12D\"}}}}}],\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}},\"parentGroupName\":\"f97266f1d458e235591b\"}",
           "filters": "[]",
-          "height": 47.06,
-          "width": 215.72,
-          "x": 943.47,
-          "y": 27.09,
+          "height": 53.00,
+          "width": 166.00,
+          "x": 993.00,
+          "y": 27.00,
           "z": 1000.00
         },
         {
@@ -753,12 +705,12 @@
           "z": 500.00
         },
         {
-          "config": "{\"name\":\"68b80311d85c20423e21\",\"layouts\":[{\"id\":0,\"position\":{\"x\":852.8571428571429,\"y\":27.142857142857146,\"z\":1000,\"width\":195,\"height\":47.142857142857146,\"tabOrder\":7000}},{\"id\":1,\"position\":{\"x\":128,\"y\":784,\"z\":9,\"width\":175,\"height\":52}}],\"singleVisual\":{\"visualType\":\"multiRowCard\",\"projections\":{\"Values\":[{\"queryRef\":\"Report last refresh.Report last refreshed\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"r\",\"Entity\":\"Report last refresh\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"r\"}},\"Property\":\"Report last refreshed\"},\"Name\":\"Report last refresh.Report last refreshed\",\"NativeReferenceName\":\"Report last refreshed\"}],\"OrderBy\":[{\"Direction\":1,\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"r\"}},\"Property\":\"Report last refreshed\"}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"categoryLabels\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]},\"vcObjects\":{\"title\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Last Refreshed'\"}}},\"alignment\":{\"expr\":{\"Literal\":{\"Value\":\"'right'\"}}}}}],\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}},\"parentGroupName\":\"8d6ba826d97c48ab5bb1\"}",
+          "config": "{\"name\":\"68b80311d85c20423e21\",\"layouts\":[{\"id\":0,\"position\":{\"x\":882.2660098522167,\"y\":27.48768472906404,\"z\":1000,\"width\":165.8128078817734,\"height\":53.20197044334975,\"tabOrder\":7000}},{\"id\":1,\"position\":{\"x\":128,\"y\":784,\"z\":9,\"width\":175,\"height\":52}}],\"singleVisual\":{\"visualType\":\"multiRowCard\",\"projections\":{\"Values\":[{\"queryRef\":\"Report last refresh.Report last refreshed\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"r\",\"Entity\":\"Report last refresh\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"r\"}},\"Property\":\"Report last refreshed\"},\"Name\":\"Report last refresh.Report last refreshed\",\"NativeReferenceName\":\"Report last refreshed\"}],\"OrderBy\":[{\"Direction\":1,\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"r\"}},\"Property\":\"Report last refreshed\"}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"categoryLabels\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"card\":[{\"properties\":{\"barShow\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]},\"vcObjects\":{\"title\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Last Refreshed'\"}}},\"alignment\":{\"expr\":{\"Literal\":{\"Value\":\"'right'\"}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"12D\"}}}}}],\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}},\"parentGroupName\":\"8d6ba826d97c48ab5bb1\"}",
           "filters": "[]",
-          "height": 47.14,
-          "width": 195.00,
-          "x": 852.86,
-          "y": 27.14,
+          "height": 53.20,
+          "width": 165.81,
+          "x": 882.27,
+          "y": 27.49,
           "z": 1000.00
         },
         {
