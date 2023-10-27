@@ -12,7 +12,7 @@
       },
       {
         "name": "PBIDesktopVersion",
-        "value": "2.121.903.0 (23.09)"
+        "value": "2.122.746.0 (23.10)"
       },
       {
         "name": "PBI_ProTooling",
@@ -535,6 +535,10 @@
           {
             "name": "PBI_ResultType",
             "value": "Table"
+          },
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
           }
         ],
         "columns": [
@@ -603,21 +607,6 @@
             "summarizeBy": "none"
           },
           {
-            "name": "CountWork",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "dataType": "string",
-            "expression": "IF(Pivotted[Parent Activity] <> \"Lunch\", \"Work\", \"Lunch\")",
-            "isDataTypeInferred": true,
-            "lineageTag": "b72810f9-86b7-4103-a396-10b7a5a64884",
-            "summarizeBy": "none",
-            "type": "calculated"
-          },
-          {
             "name": "TimeEnd",
             "annotations": [
               {
@@ -670,7 +659,13 @@
                 "value": "Automatic"
               }
             ],
+            "changedProperties": [
+              {
+                "property": "IsHidden"
+              }
+            ],
             "dataType": "string",
+            "isHidden": true,
             "lineageTag": "d42cd86b-9bef-4c7f-8c34-f18cd20cae7a",
             "sourceColumn": "Parent Activity",
             "summarizeBy": "none"
@@ -683,7 +678,13 @@
                 "value": "Automatic"
               }
             ],
+            "changedProperties": [
+              {
+                "property": "IsHidden"
+              }
+            ],
             "dataType": "string",
+            "isHidden": true,
             "lineageTag": "831f19e4-f26e-4cb5-9331-4dfdb2a24aba",
             "sourceColumn": "Child 1 Activity",
             "summarizeBy": "none"
@@ -696,7 +697,13 @@
                 "value": "Automatic"
               }
             ],
+            "changedProperties": [
+              {
+                "property": "IsHidden"
+              }
+            ],
             "dataType": "string",
+            "isHidden": true,
             "lineageTag": "9d0635db-3a1e-44d5-936a-8d4eea6b3176",
             "sourceColumn": "Child 2 Activity",
             "summarizeBy": "none"
@@ -718,6 +725,19 @@
             "lineageTag": "f39e39c3-679f-44ea-845e-3e5679e9ba90",
             "sortByColumn": "Day Sort",
             "sourceColumn": "Day",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "IsWork",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "a08ad55d-dd63-4b9d-9442-bf0f260e4fde",
+            "sourceColumn": "IsWork",
             "summarizeBy": "none"
           }
         ],
@@ -763,7 +783,11 @@
         "measures": [
           {
             "name": "TimeSpent",
-            "expression": "COUNT(Pivotted[Time])/4",
+            "expression": [
+              "CALCULATE(",
+              "    COUNT(Pivotted[Time])/4",
+              ")"
+            ],
             "formatString": "0.00",
             "lineageTag": "72362d49-589e-4229-8757-02193ce239c1"
           },
@@ -775,7 +799,11 @@
                 "value": "{\"isGeneralNumber\":true}"
               }
             ],
-            "expression": "[TimeSpent] - DISTINCTCOUNT(Pivotted[Week Start - Sort]) *33.75",
+            "expression": [
+              "CALCULATE(",
+              "    [TimeSpent] - DISTINCTCOUNT(Pivotted[Week Start - Sort]) *33.75",
+              ")"
+            ],
             "lineageTag": "4519addd-bea4-4ece-a857-17d4c97eacf4"
           }
         ],
@@ -805,9 +833,10 @@
                 "    #\"Split Column by Delimiter\" = Table.SplitColumn(#\"Lowercased - unpivoted\", \"Parent Activity\", Splitter.SplitTextByDelimiter(\"-\", QuoteStyle.Csv), {\"Parent Activity\", \"Child 1 Activity\", \"Child 2 Activity\"}),",
                 "    #\"Changed - splits to text\" = Table.TransformColumnTypes(#\"Split Column by Delimiter\",{{\"Parent Activity\", type text}, {\"Child 1 Activity\", type text}, {\"Child 2 Activity\", type text}}),",
                 "    #\"Trimmed - splits\" = Table.TransformColumns(#\"Changed - splits to text\",{{\"Parent Activity\", Text.Trim, type text}, {\"Child 1 Activity\", Text.Trim, type text}, {\"Child 2 Activity\", Text.Trim, type text}}),",
-                "    #\"Cleaned - splits\" = Table.TransformColumns(#\"Trimmed - splits\",{{\"Parent Activity\", Text.Clean, type text}, {\"Child 1 Activity\", Text.Clean, type text}, {\"Child 2 Activity\", Text.Clean, type text}})",
+                "    #\"Cleaned - splits\" = Table.TransformColumns(#\"Trimmed - splits\",{{\"Parent Activity\", Text.Clean, type text}, {\"Child 1 Activity\", Text.Clean, type text}, {\"Child 2 Activity\", Text.Clean, type text}}),",
+                "    #\"Added iswork\" = Table.AddColumn(#\"Cleaned - splits\", \"IsWork\", each if [Parent Activity] <> \"lunch\" then \"Work\" else \"Lunch\")",
                 "in",
-                "    #\"Cleaned - splits\""
+                "    #\"Added iswork\""
               ],
               "type": "m"
             }
