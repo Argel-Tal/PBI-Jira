@@ -12,11 +12,11 @@ These could be a requirement story, a bug, a task, a question, a subtask, a deci
 
 ## Pages
 #### Landing
-<img src="./DashboardLanding.png" width="800">
+<img src="./ReadMeImages/DashboardLanding.png" width="800">
 This page provides high level totals, and the ability to view counts of open tickets, by category, within each project
 
 #### Board Drillthrough - Summary
-<img src="./Drillthrough.png" width="800">
+<img src="./ReadMeImages/Drillthrough.png" width="800">
 This page provides a high level picture of the specified JIRA project; 
 - who's assigned what
 - how long things stay open/take to close
@@ -24,7 +24,7 @@ This page provides a high level picture of the specified JIRA project;
 (There is also a drillthrough page to which shows specifics of each issue, in a big table)
 
 #### Linked Issues
-<img src="./LinkedIssues.png" width="800">
+<img src="./ReadMeImages/LinkedIssues.png" width="800">
 
 This page shows where there's a connection between tickets, and presents details and a hierarchy tree for parent & child issues. 
 The objectives of this page are:
