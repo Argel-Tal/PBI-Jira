@@ -1,5 +1,0 @@
-{
-  "objectId": "",
-  "type": 4,
-  "explorationState": "{\"version\":\"1.8\",\"activeSection\":\"\",\"sections\":{\"ReportSection\":{\"visualContainers\":{\"0061ec4281f83265a8e6\":{\"singleVisual\":{\"visualType\":\"pivotTable\",\"mobileObjects\":{\"values\":[{\"properties\":{\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"8D\"}}}}}],\"columnHeaders\":[{\"properties\":{\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"8D\"}}}}}],\"rowHeaders\":[{\"properties\":{\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"9D\"}}}}}]}}}}}}}"
-}

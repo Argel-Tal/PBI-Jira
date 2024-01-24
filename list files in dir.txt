@@ -1,2 +1,0 @@
-cd C:\Users\UserXXX\SomePath\EndFolder
-tree /a /f > filelist.txt
