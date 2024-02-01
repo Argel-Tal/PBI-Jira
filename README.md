@@ -57,5 +57,5 @@ The objectives of this page are:
 - Waiting Tickets	number of items set as "waiting" (scheduled for development in the future) or awaiting business input
 - Active Tickets	number of tickets that don't fall into one of the other categories. 
 
-This should capture all the stuff that is currently open and being worked on
+This should capture all the stuff that is currently open and being worked on.
 
