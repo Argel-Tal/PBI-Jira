@@ -49,19 +49,6 @@
         },
         {
           "location": {
-            "x": 929.308128843148,
-            "y": 454.30334375104019
-          },
-          "nodeIndex": "DateDimension",
-          "nodeLineageTag": "47b9e66b-7026-4e3f-8bbf-27bb11fd5c56",
-          "size": {
-            "height": 300,
-            "width": 234
-          },
-          "zIndex": 8
-        },
-        {
-          "location": {
             "x": 0,
             "y": 307.5
           },
@@ -163,6 +150,18 @@
             "width": 234
           },
           "zIndex": 5
+        },
+        {
+          "location": {
+            "x": 929.308128843148,
+            "y": 454.30334375104019
+          },
+          "nodeIndex": "DateDimensionBI",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
         }
       ],
       "name": "All tables",

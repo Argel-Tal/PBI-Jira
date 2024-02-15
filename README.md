@@ -6,9 +6,9 @@ Supplement JIRA's internal tools for searching and visualizing, as the suite of 
 
 This pulls via JIRA's API, and pulls down all boards linked to YOUR_JIRA_DOMAIN (running as my JIRA account, via my JIRA API token, this should be changed to use a Service Account). As each board has it's own workflows and statuses, there is a significant amount of status/encoding mapping happening to produce a set of standardized statuses. 
 
-#### What is a JIRA issue?
-JIRA calls all items "issues". 
-These could be a requirement story, a bug, a task, a question, a subtask, a decision record, or any number of custom issue types. They don't necessarily represent "problems" that need to be solved. 
+### What is a JIRA issue?
+__JIRA calls all items "issues".__
+These could be a requirement story, a bug, a task, a question, a subtask, a decision record, or any number of <a href="https://diabetesaustralia.atlassian.net/secure/ShowConstantsHelp.jspa?decorator=popup#IssueTypes">custom issue types</a>. They don't necessarily represent "problems" that need to be solved. 
 
 ## Pages
 #### Landing
