@@ -4,7 +4,7 @@
     "annotations": [
       {
         "name": "PBI_QueryOrder",
-        "value": "[\"YourOrg issues\",\"FetchPage\",\"FetchPages\",\"GenerateByPage\",\"URL\",\"Status Ranks\",\"Issue Families\",\"Issue Types\",\"Priorities\",\"Environments Lookup\",\"Status Codes\",\"DateDimensionBI\",\"Report last refresh\",\"MeasuresTable\",\"Projects\",\"Fixes\",\"Devs\",\"Linked Issues\",\"Duplicate Check\",\"Uncoded Statuses\",\"JIRA API return\",\"JIRA Lookup tables\"]"
+        "value": "[\"FetchPage\",\"FetchPages\",\"GenerateByPage\",\"URL\",\"Issue Families\",\"Status Families\",\"Status mappings\",\"Issue Types\",\"Priorities\",\"Environments Lookup\",\"Status Codes\",\"Report last refresh\",\"MeasuresTable\",\"DateDimensionBI\",\"Projects\",\"Fixes\",\"Devs\",\"Duplicate Check\",\"Uncoded Statuses\",\"JIRA API return\",\"JIRA Lookup tables\",\"JQLQuery\",\"IssueQuery\",\"FieldTypeQuery\",\"Epics\",\"Issues\",\"Linked Issues\",\"Issues Load\"]"
       },
       {
         "name": "__PBI_TimeIntelligenceEnabled",
@@ -12,7 +12,7 @@
       },
       {
         "name": "PBIDesktopVersion",
-        "value": "2.124.2028.0 (23.12)"
+        "value": "2.126.1261.0 (24.02)"
       },
       {
         "name": "PBI_ProTooling",
@@ -49,16 +49,20 @@
           {
             "name": "PBI_ResultType",
             "value": "Function"
+          },
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
           }
         ],
         "expression": [
           "let",
-          "    FetchPage = (url as text, pageSize as number, skipRows as number) as table =>",
+          "    FetchPage = (url as text, pageSize as number, skipRows as number, APIquery as text, JQLquerystring as text) as table =>",
           "    let",
           "        //Here is where you run the code that will return a single page",
           "        contents = Web.Contents(",
           "            URL",
-          "            , [RelativePath = \"/rest/api/2/search\"",
+          "            , [RelativePath = APIquery & JQLquerystring",
           "            , Query = [maxResults= Text.From(pageSize), startAt = Text.From(skipRows)]",
           "            ]",
           "        )",
@@ -80,11 +84,15 @@
           {
             "name": "PBI_ResultType",
             "value": "Function"
+          },
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
           }
         ],
         "expression": [
           "let",
-          "    FetchPages = (url as text, pageSize as number) => ",
+          "    FetchPages = (url as text, pageSize as number, APIquery as text, JQLQueryString as text) => ",
           "let ",
           "    Source = GenerateByPage(",
           "    (previous) =>",
@@ -92,7 +100,7 @@
           "        skipRows = if previous = null then 0 else Value.Metadata(previous)[skipRows],",
           "        totalItems = if previous = null then 0 else Value.Metadata(previous)[total],",
           "        table = if previous = null or Table.RowCount(previous) = pageSize then ",
-          "                    FetchPage(url, pageSize, skipRows) ",
+          "                    FetchPage(url, pageSize, skipRows, JQLQueryString, APIquery) ",
           "\t\telse null",
           "    in table,",
           "    ",
@@ -156,7 +164,7 @@
         "queryGroup": "00 Params"
       },
       {
-        "name": "Status Ranks",
+        "name": "Status mappings",
         "annotations": [
           {
             "name": "PBI_NavigationStepName",
@@ -167,13 +175,16 @@
             "value": "Table"
           }
         ],
-        "description": "Sort order and a hierarchy added manually, feeds into a merge",
+        "description": "needs to be manually updated to keep synced with new statuses. Tells us what macro category the status falls into",
         "expression": [
           "let",
-          "    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText(\"lVZNc5swEP0rGp9z6HfGRxzS1DNtzWBSHzI5qLCxVcsSlcAe99d3hTCFFEnmAGh230or6b1dnp5mkdAnUFDMbmaxFICf+S2+svTxfvZ8g/4TZRUTWxKVpZJHytHZ2Ra1ZgK0Rtt7fD5HX9c2atMCXqQidEpgh4ghZ5pJMTHq/gdGllyeDyAqxLSJ4OiDOyID3YKC8CRdxVPwKWhZqxymbWOdPUzchomYkNZjlE1cwESEF+jfu67LUirf5Aua77k09n+jtwNEDEfgsjRJkjD6sroUpB+YAT14skhAFNbumre1ax+Ey3wPBVmcyaragTJQa8LRpwH0jooceOOwQzuez/uy63s8KI6SdUoXvdrtvQisFfYVwBR+QV4FUurQG1btCkVPIgTnTATnrChDB4kE5WfNzEVslgm+Pw7ZglpO4cjghOZucPsfxvCYMEESJbfKCnFsuqT+yZneeQ5YHkoOleforHHcp+iLEUcmSSzx+26w9gM1LLIV5HfNFBgmuxLdSLU3+yn9+1kOZOEAdYJnZm8GSCtbhkenvIDasjC+auCcvzfXZN9vBp6VIF8kL3zipdrD8Y4Do9cLoEgA0VSGHsiVBadCuI8gUcDZgQmqziEKm37BPWJMmd6Tb5jFlnp4t85leSV31liKjKibkv2KHo7dtm2ADG823N4uTB9nPDaY62bpmlAYe2lar8Q+IdDPr367y2tdyUNT+Sd0+rsdFVuY9nM1/Bm5qo2nQItzk2a4hy/F0WCQYG5G2/nwItNaOG+09xMU0E9LaNM2wuUiqqudVOzPeGV9/gs=\", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [status.name = _t, Family = _t, #\"Status Rank\" = _t, #\"Is terminal\" = _t]),",
-          "    #\"Changed Type\" = Table.TransformColumnTypes(Source,{{\"status.name\", type text}, {\"Family\", type text}, {\"Status Rank\", Int64.Type}})",
+          "    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText(\"lVJNc8IgEP0rTM5O22l/QTS2k+k0On7Ug9MDwqpUwmaAWP33BRIbol56Avbtvn37lvU6GVJ2kLhLBsmkApV8DdZJhgrcOxz+3aUskGQYYnOGlVA+lnNQVmwFo1agugJTKfE+wEuhhLG6A1f51AHDWkjuckiutqjLAJMP5CClr+wSP4WpqRSmyaCKk5fsbuKktgZrzYCH4AyOAn5cfKk4aNI++3O2N/LoVGzwFJG9Ae40rfaC9QTOz8ZCaWL7ZmBQHtum+WLmrVIWXLUFTjJq9hukmsclIywrCRaifrkiU+1agmnIiyC9aBWnVaXR9xgkY8VRGyjdMuJyT+hjnc0jqpjzKBTN4BuYbTXejN/wUGGblc1BhmTixiYZHEFi9deuKy7QEmOpvtBGOzfGjXHp5j7GIYi43Hx0WbwXk1XhvdhTtQOyOFcQ76hLcLZ48SQrUvL88BQN3Sz2WmGDpcyKI/RMl+g0kXm9CXQLvAX7/+bVja87RQ3v+OS+MrP/VPH1Cw==\", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Family = _t, status.name = _t]),",
+          "    #\"Sorted Rows\" = Table.Sort(Source,{{\"Family\", Order.Ascending}}),",
+          "    #\"Removed Duplicates\" = Table.Distinct(#\"Sorted Rows\"),",
+          "    #\"Merged Queries\" = Table.NestedJoin(#\"Removed Duplicates\", {\"Family\"}, #\"Status Families\", {\"Family\"}, \"Status Families\", JoinKind.LeftOuter),",
+          "    #\"Expanded Status Families\" = Table.ExpandTableColumn(#\"Merged Queries\", \"Status Families\", {\"Status Rank\", \"Is terminal\"}, {\"Status Rank\", \"Is terminal\"})",
           "in",
-          "    #\"Changed Type\""
+          "    #\"Expanded Status Families\""
         ],
         "kind": "m",
         "lineageTag": "3c8ddbd3-d303-4452-867b-ba344665d548",
@@ -194,7 +205,7 @@
         "description": "All the expandable fields, stashed here for easy reference later",
         "expression": [
           "let",
-          "    Source = FetchPages(\"\", 100),",
+          "    Source = #\"JIRA API return\",",
           "    #\"Expanded records\" = Table.ExpandRecordColumn(Source, \"Column1\", {\"expand\", \"id\", \"self\", \"key\", \"fields\"}, {\"expand\", \"issue ID\", \"issue address\", \"issue key\", \"fields\"}),",
           "    #\"Expanded fields\" = Table.ExpandRecordColumn(#\"Expanded records\", \"fields\", {\"parent\", \"fixVersions\", \"resolution\", \"lastViewed\", \"priority\", \"labels\", \"timeestimate\", \"aggregatetimeoriginalestimate\", \"versions\", \"issuelinks\", \"assignee\", \"status\", \"components\", \"aggregatetimeestimate\", \"creator\", \"subtasks\", \"reporter\", \"aggregateprogress\", \"progress\", \"votes\", \"issuetype\", \"timespent\", \"project\", \"aggregatetimespent\", \"resolutiondate\", \"workratio\", \"watches\", \"created\", \"updated\", \"timeoriginalestimate\", \"description\", \"summary\", \"environment\", \"duedate\"}, {\"parent\", \"fixVersions\", \"resolution\", \"lastViewed\", \"priority\", \"labels\", \"timeestimate\", \"aggregatetimeoriginalestimate\", \"versions\", \"issuelinks\", \"assignee\", \"status\", \"components\", \"aggregatetimeestimate\", \"creator\", \"subtasks\", \"reporter\", \"aggregateprogress\", \"progress\", \"votes\", \"issuetype\", \"timespent\", \"project\", \"aggregatetimespent\", \"resolutiondate\", \"workratio\", \"watches\", \"created\", \"updated\", \"timeoriginalestimate\", \"description\", \"summary\", \"environment\", \"duedate\"}),",
           "    // Resolution: Worse version of status",
@@ -245,17 +256,17 @@
         "name": "Duplicate Check",
         "annotations": [
           {
-            "name": "PBI_NavigationStepName",
-            "value": "Navigation"
-          },
-          {
             "name": "PBI_ResultType",
             "value": "Table"
+          },
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
           }
         ],
         "expression": [
           "let",
-          "    Source = #\"YourOrg issues\",",
+          "    Source = #\"Issues Load\",",
           "    #\"Removed Other Columns\" = Table.SelectColumns(Source,{\"issue ID\"}),",
           "    #\"Grouped Rows\" = Table.Group(#\"Removed Other Columns\", {\"issue ID\"}, {{\"Instance count\", each Table.RowCount(_), Int64.Type}}),",
           "    #\"Added is duped\" = Table.AddColumn(#\"Grouped Rows\", \"No Dups\", each [Instance count] = 1),",
@@ -314,13 +325,152 @@
         "description": "Raw output of the JIRA API call",
         "expression": [
           "let",
-          "    Source = FetchPages(\"\", 100)",
+          "    Source = FetchPages(\"\", 100, JQLQuery, IssueQuery)",
           "in",
           "    Source"
         ],
         "kind": "m",
         "lineageTag": "114ca295-ab4e-4dcc-af83-3a4ad41b1cbd",
         "queryGroup": "02 API query\\02.2 Query Return"
+      },
+      {
+        "name": "Status Families",
+        "annotations": [
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
+          },
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "description": "Sort order and a hierarchy added manually, feeds into a merge",
+        "expression": [
+          "let",
+          "    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText(\"i45Wck7MS07NyUlNUdJRsrQEEiFBoa5KsTrRSi75eakgQXNkwaDUsszUcqCIBRC7OfoEQ4SdcvKTs8FmmKOIh3sGAPlmqGKJmSWZeelAMVMUccdyiISCU2lxZl5qcTFQ1gTVlsTk7Jx8kE5DFHE/sIsMUMSCk/MLILYYoYh7hgQB+bqoBjgWFBTll4Hdr4uqPNTP288/3A8kYYyQiAUA\", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Family = _t, #\"Status Rank\" = _t, #\"Is terminal\" = _t]),",
+          "    #\"Changed Type\" = Table.TransformColumnTypes(Source,{{\"Family\", type text}, {\"Status Rank\", Int64.Type}, {\"Is terminal\", type logical}})",
+          "in",
+          "    #\"Changed Type\""
+        ],
+        "kind": "m",
+        "lineageTag": "ec86872f-6af8-4cbc-ab93-0e7542e6089d",
+        "queryGroup": "03 Supporting Tables\\03.1 Staging\\0.3.1.1 Manual mappings"
+      },
+      {
+        "name": "JQLQuery",
+        "annotations": [
+          {
+            "name": "PBI_ResultType",
+            "value": "Text"
+          }
+        ],
+        "description": "Query param passed to JIRA API",
+        "expression": "\"?jql=project=WIP\" meta [IsParameterQuery=true, List={\"?jql=project=RJ\"}, DefaultValue=\"?jql=project=RJ\", Type=\"Text\", IsParameterQueryRequired=true]",
+        "kind": "m",
+        "lineageTag": "827c749f-019c-4644-887b-3da3de48a8e9",
+        "queryGroup": "00 Params"
+      },
+      {
+        "name": "IssueQuery",
+        "annotations": [
+          {
+            "name": "PBI_ResultType",
+            "value": "Text"
+          }
+        ],
+        "expression": "\"/rest/api/2/search\" meta [IsParameterQuery=true, List={\"/rest/api/2/search\"}, DefaultValue=\"/rest/api/2/search\", Type=\"Text\", IsParameterQueryRequired=true]",
+        "kind": "m",
+        "lineageTag": "31c9a47d-1471-4d10-9269-de5987f697ba",
+        "queryGroup": "00 Params"
+      },
+      {
+        "name": "FieldTypeQuery",
+        "annotations": [
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
+          },
+          {
+            "name": "PBI_ResultType",
+            "value": "Text"
+          }
+        ],
+        "expression": "\"/rest/api/3/fieldconfiguration\" meta [IsParameterQuery=true, List={\"/rest/api/3/fieldconfiguration\"}, DefaultValue=\"/rest/api/3/fieldconfiguration\", Type=\"Text\", IsParameterQueryRequired=true]",
+        "kind": "m",
+        "lineageTag": "3bfa649f-b7c0-4b9b-a822-747053f97961",
+        "queryGroup": "00 Params"
+      },
+      {
+        "name": "Issues Load",
+        "annotations": [
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
+          },
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "expression": [
+          "let",
+          "    Source = #\"JIRA API return\",",
+          "    #\"Expanded records\" = Table.ExpandRecordColumn(Source, \"Column1\", {\"expand\", \"id\", \"self\", \"key\", \"fields\"}, {\"expand\", \"issue ID\", \"issue address\", \"issue key\", \"fields\"}),",
+          "    #\"Expanded fields\" = Table.ExpandRecordColumn(#\"Expanded records\", \"fields\", {\"parent\", \"fixVersions\", \"resolution\", \"lastViewed\", \"priority\", \"labels\", \"timeestimate\", \"aggregatetimeoriginalestimate\", \"versions\", \"issuelinks\", \"assignee\", \"status\", \"components\", \"aggregatetimeestimate\", \"creator\", \"subtasks\", \"reporter\", \"aggregateprogress\", \"progress\", \"votes\", \"issuetype\", \"timespent\", \"project\", \"aggregatetimespent\", \"resolutiondate\", \"workratio\", \"watches\", \"created\", \"updated\", \"timeoriginalestimate\", \"description\", \"summary\", \"environment\", \"duedate\"}, {\"parent\", \"fixVersions\", \"resolution\", \"lastViewed\", \"priority\", \"labels\", \"timeestimate\", \"aggregatetimeoriginalestimate\", \"versions\", \"issuelinks\", \"assignee\", \"status\", \"components\", \"aggregatetimeestimate\", \"creator\", \"subtasks\", \"reporter\", \"aggregateprogress\", \"progress\", \"votes\", \"issuetype\", \"timespent\", \"project\", \"aggregatetimespent\", \"resolutiondate\", \"workratio\", \"watches\", \"created\", \"updated\", \"timeoriginalestimate\", \"description\", \"summary\", \"environment\", \"duedate\"}),",
+          "    // Resolution: Worse version of status",
+          "    // Description: wayyyy to much text, dont need that in report's memory",
+          "    // Expand: fields the API can get",
+          "    // Watches: don't need to know/report it",
+          "    // Versions: would bloat report",
+          "    // Linked Issues: would bloat report",
+          "    // Subtask: already have parent task if relevant, would bloat",
+          "    // Votes: not using votes here",
+          "    #\"Removed unneccesary fields\" = Table.RemoveColumns(#\"Expanded fields\",{\"expand\", \"watches\", \"versions\", \"issuelinks\", \"subtasks\", \"votes\", \"resolution\", \"description\", \"labels\", \"components\"}),",
+          "    #\"Filtered issue not null or blank\" = Table.SelectRows(#\"Removed unneccesary fields\", each [issue ID] <> null and [issue ID] <> \"\"),",
+          "    #\"Expanded issuetype\" = Table.ExpandRecordColumn(#\"Filtered issue not null or blank\", \"issuetype\", {\"id\", \"subtask\"}, {\"issuetype.id\", \"issuetype.isSubTask\"}),",
+          "    #\"Expanded project\" = Table.ExpandRecordColumn(#\"Expanded issuetype\", \"project\", {\"id\"}, {\"project.id\"}),",
+          "    // Inner join so we exclude non-desired projects, i.e. Service Management",
+          "    #\"Inner Join w/ Projects table\" = Table.NestedJoin(#\"Expanded project\", {\"project.id\"}, Projects, {\"id\"}, \"Projects\", JoinKind.Inner),",
+          "    #\"Expanded priority\" = Table.ExpandRecordColumn(#\"Inner Join w/ Projects table\", \"priority\", {\"id\"}, {\"priority.id\"}),",
+          "    #\"Expanded assignee\" = Table.ExpandRecordColumn(#\"Expanded priority\", \"assignee\", {\"accountId\"}, {\"assignee.accountId\"}),",
+          "    #\"Expanded status\" = Table.ExpandRecordColumn(#\"Expanded assignee\", \"status\", {\"id\"}, {\"status.id\"}),",
+          "    #\"Expanded reporter\" = Table.ExpandRecordColumn(#\"Expanded status\", \"reporter\", {\"name\", \"emailAddress\", \"displayName\", \"active\"}, {\"reporter.name\", \"reporter.emailAddress\", \"reporter.displayName\", \"reporter.active\"}),",
+          "    #\"Expanded aggregateprogress\" = Table.ExpandRecordColumn(#\"Expanded reporter\", \"aggregateprogress\", {\"progress\", \"total\"}, {\"aggregateprogress.progress\", \"aggregateprogress.total\"}),",
+          "    #\"Expanded progress\" = Table.ExpandRecordColumn(#\"Expanded aggregateprogress\", \"progress\", {\"progress\", \"total\"}, {\"progress.progress\", \"progress.total\"}),",
+          "    #\"Expanded parent\" = Table.ExpandRecordColumn(#\"Expanded progress\", \"parent\", {\"id\", \"key\"}, {\"parent.id\", \"parent.key\"}),",
+          "    #\"Expanded creator\" = Table.ExpandRecordColumn(#\"Expanded parent\", \"creator\", {\"accountId\", \"displayName\"}, {\"creator.accountId\", \"creator.displayName\"}),",
+          "    #\"Changed Type duedate\" = Table.TransformColumnTypes(#\"Expanded creator\",{{\"duedate\", type date}}),",
+          "    // Clean up for matching into lookup table",
+          "    #\"Uppercased environment\" = Table.TransformColumns(Table.TransformColumnTypes(#\"Changed Type duedate\", {{\"environment\", type text}}, \"en-AU\"),{}),",
+          "    #\"Replaced Environement blank -> null\" = Table.ReplaceValue(#\"Uppercased environment\",\"\",null,Replacer.ReplaceValue,{\"environment\"}),",
+          "    #\"Merged w status\" = Table.NestedJoin(#\"Replaced Environement blank -> null\", {\"status.id\"}, #\"Status Codes\", {\"id\"}, \"Status Codes\", JoinKind.LeftOuter),",
+          "    #\"Expanded status is terminal\" = Table.ExpandTableColumn(#\"Merged w status\", \"Status Codes\", {\"Is terminal\"}, {\"Status Codes.Is terminal\"}),",
+          "    // Needed to add a way to infill resolved data for a few issue types which don't automatically create a resolution date in JIRA. Checks against the status codes table's `is terminal` col",
+          "    // Using last modified instead where resolution = NULL",
+          "    #\"Added Improved Resolution Date\" = Table.AddColumn(#\"Expanded status is terminal\", \"Resolution Date Improved\", each if (",
+          "\t    [resolutiondate]  = null ",
+          "\t    and [Status Codes.Is terminal] = true",
+          "    ) then [updated] // if nothing found, just give the null",
+          "    else [resolutiondate]),",
+          "    #\"removed status is terminal\" = Table.RemoveColumns(#\"Added Improved Resolution Date\",{\"Status Codes.Is terminal\"}),",
+          "    // LDS was overseas, Andrew @ SKEDA is in Canberra tz, Davide @ SKEDA is in Sydney TZ",
+          "    #\"Changed Type time to timezoned\" = Table.TransformColumnTypes(#\"removed status is terminal\",{{\"lastViewed\", type datetimezone}, {\"updated\", type datetimezone}, {\"created\", type datetimezone}, {\"resolutiondate\", type datetimezone}, {\"Resolution Date Improved\", type datetimezone}}),",
+          "    #\"Added days since mod\" = Table.AddColumn(#\"Changed Type time to timezoned\", \"Days since Modified\", each Duration.Days(DateTime.Date(DateTime.LocalNow()) - DateTime.Date([updated]))),",
+          "    #\"Added days since created\" = Table.AddColumn(#\"Added days since mod\", \"Days since Created\", each Duration.Days(DateTime.Date(DateTime.LocalNow()) - DateTime.Date([created]))),",
+          "    #\"Removed resolution date, replaced by improved version\" = Table.RemoveColumns(#\"Added days since created\",{\"resolutiondate\"}),",
+          "    #\"Added Days taken to resolve\" = Table.AddColumn(#\"Removed resolution date, replaced by improved version\", \"Days to Resolve\", each Duration.Days(DateTime.Date([Resolution Date Improved]) - DateTime.Date([created])), Int64.Type),",
+          "    #\"Duplicated created to date only\" = Table.DuplicateColumn(#\"Added Days taken to resolve\", \"created\", \"created - Date\"),",
+          "    #\"Duplicated updated to date only\" = Table.DuplicateColumn(#\"Duplicated created to date only\", \"updated\", \"updated - Date\"),",
+          "    #\"Duplicated resolution to date only\" = Table.DuplicateColumn(#\"Duplicated updated to date only\", \"Resolution Date Improved\", \"Resolution Date Improved - Date\"),",
+          "    #\"Changed duped datetimes to dates\" = Table.TransformColumnTypes(#\"Duplicated resolution to date only\",{{\"created - Date\", type date}, {\"updated - Date\", type date}, {\"Resolution Date Improved - Date\", type date}}),",
+          "    #\"Added Custom\" = Table.AddColumn(#\"Changed duped datetimes to dates\", \"Overdue\", each [#\"Resolution Date Improved - Date\"] = null and [duedate] < DateTime.Date(DateTime.LocalNow()), type logical)",
+          "in",
+          "    #\"Added Custom\""
+        ],
+        "kind": "m",
+        "lineageTag": "eed5f4e1-9834-4b28-a0ab-083edd54c23a",
+        "queryGroup": "03 Supporting Tables\\03.1 Staging"
       }
     ],
     "queryGroups": [
@@ -452,35 +602,35 @@
       {
         "name": "0450073e-123d-491d-8c46-ff42e75eea1d",
         "fromColumn": "environment",
-        "fromTable": "YourOrg issues",
+        "fromTable": "Issues",
         "toColumn": "environment",
         "toTable": "Environments Lookup"
       },
       {
         "name": "9363bb38-2951-4ceb-ab8d-aa2f8f398bbb",
         "fromColumn": "status.id",
-        "fromTable": "YourOrg issues",
+        "fromTable": "Issues",
         "toColumn": "id",
         "toTable": "Status Codes"
       },
       {
         "name": "632473e9-5fc9-445a-bf95-5b70749d2a7b",
         "fromColumn": "priority.id",
-        "fromTable": "YourOrg issues",
+        "fromTable": "Issues",
         "toColumn": "id",
         "toTable": "Priorities"
       },
       {
         "name": "fe8dec41-957e-fecf-03e2-97b4e0041ecd",
         "fromColumn": "assignee.accountId",
-        "fromTable": "YourOrg issues",
+        "fromTable": "Issues",
         "toColumn": "accountId",
         "toTable": "Devs"
       },
       {
         "name": "89486a14-8ad0-41d4-9c8f-14bf001c3b8c",
         "fromColumn": "project.id",
-        "fromTable": "YourOrg issues",
+        "fromTable": "Issues",
         "toColumn": "id",
         "toTable": "Projects"
       },
@@ -489,45 +639,1270 @@
         "crossFilteringBehavior": "bothDirections",
         "fromCardinality": "one",
         "fromColumn": "issue key",
-        "fromTable": "YourOrg issues",
+        "fromTable": "Issues",
         "toColumn": "Child key",
         "toTable": "Linked Issues"
       },
       {
         "name": "da9c952b-0ee3-4d44-b14a-14a00f5c9358",
         "fromColumn": "issuetype.id",
-        "fromTable": "YourOrg issues",
+        "fromTable": "Issues",
         "toColumn": "id",
         "toTable": "Issue Types"
       },
       {
-        "name": "98e566c5-5274-4de7-8d66-97d243391fbe",
+        "name": "f3dbd605-25c0-4a05-b10c-d1a99c1fb89c",
         "fromColumn": "created - Date",
-        "fromTable": "YourOrg issues",
+        "fromTable": "Issues",
         "toColumn": "Date",
         "toTable": "DateDimensionBI"
       },
       {
-        "name": "471c001d-dc50-4d7e-9329-89b36b80cf5b",
-        "fromColumn": "updated - Date",
-        "fromTable": "YourOrg issues",
-        "isActive": false,
-        "toColumn": "Date",
-        "toTable": "DateDimensionBI"
-      },
-      {
-        "name": "9e31f541-549f-4920-be2d-cf9925fb9280",
-        "fromColumn": "Resolution Date Improved - Date",
-        "fromTable": "YourOrg issues",
-        "isActive": false,
-        "toColumn": "Date",
-        "toTable": "DateDimensionBI"
+        "name": "9d186b7e-290e-ef3f-137e-914c831a1849",
+        "fromColumn": "parent.id",
+        "fromTable": "Issues",
+        "toColumn": "issue ID",
+        "toTable": "Epics"
       }
     ],
     "sourceQueryCulture": "en-AU",
     "tables": [
       {
-        "name": "YourOrg issues",
+        "name": "Status Codes",
+        "annotations": [
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          },
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Family",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "changedProperties": [
+              {
+                "property": "SortByColumn"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "d9f1f8c4-46a8-4885-b947-2f3802d22ba7",
+            "sortByColumn": "Status Rank",
+            "sourceColumn": "Family",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Status Rank",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "7c521ef3-e96c-4e0b-9e60-6393c332f78a",
+            "sourceColumn": "Status Rank",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "description",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "b5cb0977-f86d-4a14-a55f-4042c2fe9b19",
+            "sourceColumn": "description",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "id",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "190dad8f-5e4e-4023-809c-a06bc9462312",
+            "sourceColumn": "id",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Status",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "changedProperties": [
+              {
+                "property": "SortByColumn"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "3a54cb6e-10ae-44fa-ac80-d514deafe39d",
+            "sortByColumn": "Status Rank",
+            "sourceColumn": "Status",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Is terminal",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "boolean",
+            "formatString": "\"TRUE\";\"TRUE\";\"FALSE\"",
+            "lineageTag": "68730141-b389-49ff-9286-b3cbedfbaf7b",
+            "sourceColumn": "Is terminal",
+            "summarizeBy": "none"
+          }
+        ],
+        "description": "All the statuses in JIRA",
+        "lineageTag": "4d93aed3-0bb0-4100-aace-a437ba1ed31f",
+        "partitions": [
+          {
+            "name": "Status Codes",
+            "mode": "import",
+            "queryGroup": "03 Supporting Tables\\03.1 Staging\\03.2 Lookup tables",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = #\"JIRA Lookup tables\",",
+                "    #\"Removed Other Columns\" = Table.SelectColumns(Source,{\"status\"}),",
+                "    #\"Expanded status\" = Table.ExpandRecordColumn(#\"Removed Other Columns\", \"status\", {\"description\", \"id\", \"name\"}, {\"description\", \"id\", \"name\"}),",
+                "    #\"Removed Duplicates\" = Table.Distinct(#\"Expanded status\"),",
+                "    #\"Merged w/ status mappings\" = Table.NestedJoin(#\"Removed Duplicates\", {\"name\"}, #\"Status mappings\", {\"status.name\"}, \"Status Ranks\", JoinKind.LeftOuter),",
+                "    #\"Expanded Status Ranks\" = Table.ExpandTableColumn(#\"Merged w/ status mappings\", \"Status Ranks\", {\"Family\", \"Is terminal\", \"Status Rank\"}, {\"Family\", \"Is terminal\", \"Status Rank\"}),",
+                "    #\"Sorted Rows\" = Table.Sort(#\"Expanded Status Ranks\",{{\"id\", Order.Ascending}}),",
+                "    #\"Renamed Columns\" = Table.RenameColumns(#\"Sorted Rows\",{{\"name\", \"Status\"}}),",
+                "    #\"Changed types\" = Table.TransformColumnTypes(#\"Renamed Columns\",{{\"id\", type text}, {\"Is terminal\", type logical}})",
+                "in",
+                "    #\"Changed types\""
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Environments Lookup",
+        "annotations": [
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "environment",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "changedProperties": [
+              {
+                "property": "SortByColumn"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "d0dde667-42c2-4ff4-bb34-26c3ce2ec44a",
+            "sortByColumn": "Sort Order",
+            "sourceColumn": "environment",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Env Cleaned",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "d6ad891d-b7a8-4afb-869d-25319a8e4104",
+            "sourceColumn": "Env Cleaned",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Sort Order",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "15ea3bde-1b2b-45d3-92af-7dff84ff4da8",
+            "sourceColumn": "Sort Order",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "8e1336ec-5282-4676-a053-971ab75fb8ea",
+        "partitions": [
+          {
+            "name": "Environments Lookup",
+            "mode": "import",
+            "queryGroup": "03 Supporting Tables\\03.1 Staging\\0.3.1.1 Manual mappings",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText(\"dY9BSwNBDIX/SpiThdldqp4EkYUV8WSxVZBtkbCTdhbHzTqTsfTfm67Vk15eQvK+l5m2NYvHh8bYn3JhNrY1ze2zhad6ZWG5urOAg4PTvg5B9XJyLSK73EnPwx88wJmjzyIQxqEfduX7wRMG8VuOod9SyXFXYp4pombV+QRmFO31sur59yQpDR07Ai8ypquqUlPhu38Sq5s9x7cxYEevR+q6Wdb39QuI7xMkzzk4wCxcjDzmgEK6IVibvUcBtRw4RzhGwJQxXV4b+MiUTj/9fd3mCw==\", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [environment = _t, #\"Env Cleaned\" = _t, #\"Sort Order\" = _t]),",
+                "    #\"Changed Type\" = Table.TransformColumnTypes(Source,{{\"environment\", type text}, {\"Env Cleaned\", type text}}),",
+                "    #\"Replaced Value\" = Table.ReplaceValue(#\"Changed Type\",\"null\",null,Replacer.ReplaceValue,{\"environment\", \"Env Cleaned\"}),",
+                "    #\"Uppercased Text\" = Table.TransformColumns(#\"Replaced Value\",{{\"environment\", Text.Upper, type text}})",
+                "in",
+                "    #\"Uppercased Text\""
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Report last refresh",
+        "annotations": [
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Report last refreshed",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "dateTime",
+            "formatString": "General Date",
+            "lineageTag": "4436e61c-452f-43bf-bfce-8181544214e2",
+            "sourceColumn": "Report last refreshed",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "bf9b8781-8e93-477f-a782-9485f598984b",
+        "partitions": [
+          {
+            "name": "Report last refresh",
+            "mode": "import",
+            "queryGroup": "01 Utilities",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = DateTime.LocalNow(),",
+                "    #\"Converted to Table\" = #table(1, {{Source}}),",
+                "    #\"Changed Type\" = Table.TransformColumnTypes(#\"Converted to Table\",{{\"Column1\", type datetime}}),",
+                "    #\"Renamed Columns\" = Table.RenameColumns(#\"Changed Type\",{{\"Column1\", \"Report last refreshed\"}})",
+                "in",
+                "    #\"Renamed Columns\""
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "MeasuresTable",
+        "annotations": [
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "lineageTag": "fd0df1c5-53ce-4997-9be9-4f6abbd43477",
+        "measures": [
+          {
+            "name": "Blocked Tickets",
+            "expression": [
+              "CALCULATE(",
+              "    [Tickets]",
+              "    , 'Status Codes'[Family] = \"Blocked\"",
+              ")"
+            ],
+            "formatString": "0",
+            "lineageTag": "bb3b243f-5fb3-465d-844a-a721767f55c1"
+          },
+          {
+            "name": "Cancelled Tickets",
+            "expression": [
+              "CALCULATE(",
+              "    [Tickets]",
+              "    , 'Status Codes'[Family] = \"Cancelled\"",
+              ")"
+            ],
+            "formatString": "0",
+            "lineageTag": "3c0c9e24-6c1a-47d2-b7df-b2b4a9a0cb4a"
+          },
+          {
+            "name": "Waiting Tickets",
+            "expression": [
+              "CALCULATE(",
+              "    [Tickets]",
+              "    , (",
+              "        'Status Codes'[Family] = \"Waiting\" ",
+              "        || 'Status Codes'[Family] = \"Awaiting Business\"",
+              "        || 'Status Codes'[Family] = \"Review\"",
+              "    )",
+              ")"
+            ],
+            "formatString": "0",
+            "lineageTag": "d64f2918-cf4c-4553-b2ac-a7f15b16d911"
+          },
+          {
+            "name": "Active Tickets",
+            "expression": [
+              "CALCULATE(",
+              "    [Tickets]",
+              "    , NOT(",
+              "\t    'Status Codes'[Family] = \"Blocked\"",
+              "\t    || 'Status Codes'[Family] = \"Cancelled\"",
+              "\t    || 'Status Codes'[Family] = \"Done\" ",
+              "\t    ||  'Status Codes'[Family] = \"Cloned\"",
+              "\t    ||'Status Codes'[Family] = \"Waiting\" ",
+              "        || 'Status Codes'[Family] = \"Awaiting Business\"",
+              "    ) // end not - can't just subtrack the other statuses bc it goes wobbly when filtering by status",
+              ") // end calculate"
+            ],
+            "formatString": "0",
+            "lineageTag": "42830f16-d860-407d-be4a-33e7d0d1dacd"
+          },
+          {
+            "name": "Resolved Tickets",
+            "expression": [
+              "CALCULATE(",
+              "    [Tickets]",
+              "    , 'Status Codes'[Family] = \"Done\" ||  'Status Codes'[Family] = \"Cloned\"",
+              ") // end calc"
+            ],
+            "formatString": "0",
+            "lineageTag": "1dad6b8e-4075-40bd-b8ea-bdb7b38de540"
+          },
+          {
+            "name": "Tickets",
+            "expression": [
+              "CALCULATE(",
+              "    DISTINCTCOUNT('Issues'[issue ID])",
+              "    , USERELATIONSHIP('Issues'[created - Date], DateDimensionBI[Date])",
+              ")"
+            ],
+            "formatString": "0",
+            "lineageTag": "c5203401-2dfd-4c57-a618-3fd1a7f3b273"
+          },
+          {
+            "name": "Epic",
+            "expression": "CALCULATE(FIRSTNONBLANK(Epics[Epic], 1))",
+            "lineageTag": "bc72a9a6-e4b2-49b0-826d-3da988b7801d"
+          },
+          {
+            "name": "Open tickets",
+            "expression": "[Active Tickets] + [Blocked Tickets] + [Waiting Tickets] + 0",
+            "formatString": "0",
+            "lineageTag": "a005d871-5152-4f48-b6c8-14436cfc1fae"
+          },
+          {
+            "name": "Project",
+            "expression": "CALCULATE(FIRSTNONBLANK(Projects[Project], 1))",
+            "lineageTag": "eb735fdb-dd0e-4f33-b9ef-5b6e0ad08968"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "MeasuresTable",
+            "mode": "import",
+            "queryGroup": "01 Utilities",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText(\"i44FAA==\", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Column1 = _t]),",
+                "    #\"Changed Type\" = Table.TransformColumnTypes(Source,{{\"Column1\", type text}}),",
+                "    #\"Removed Columns\" = Table.RemoveColumns(#\"Changed Type\",{\"Column1\"})",
+                "in",
+                "    #\"Removed Columns\""
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Priorities",
+        "annotations": [
+          {
+            "name": "PBI_ResultType",
+            "value": "Exception"
+          }
+        ],
+        "columns": [
+          {
+            "name": "self",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataCategory": "WebUrl",
+            "dataType": "string",
+            "lineageTag": "e58efa64-7aed-45ab-af30-1b1cd4188926",
+            "sourceColumn": "self",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Priority",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "changedProperties": [
+              {
+                "property": "SortByColumn"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "934aa2c7-d03e-4b6d-bdd3-d8d264dc5764",
+            "sortByColumn": "id",
+            "sourceColumn": "Priority",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "id",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "ce8e9cd7-85df-499a-8507-dc31f1b1e580",
+            "sourceColumn": "id",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "1e069bc1-10d3-4ecc-8d60-778ef46322f6",
+        "partitions": [
+          {
+            "name": "Priorities",
+            "mode": "import",
+            "queryGroup": "03 Supporting Tables\\03.1 Staging\\03.2 Lookup tables",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = #\"JIRA Lookup tables\",",
+                "    #\"Removed Other Columns\" = Table.SelectColumns(Source,{\"priority\"}),",
+                "    #\"Expanded priority\" = Table.ExpandRecordColumn(#\"Removed Other Columns\", \"priority\", {\"self\", \"name\", \"id\"}, {\"self\", \"name\", \"id\"}),",
+                "    #\"Removed Duplicates\" = Table.Distinct(#\"Expanded priority\"),",
+                "    #\"Filtered Rows\" = Table.SelectRows(#\"Removed Duplicates\", each [self] <> null and [self] <> \"\"),",
+                "    #\"Renamed Columns\" = Table.RenameColumns(#\"Filtered Rows\",{{\"name\", \"Priority\"}}),",
+                "    #\"Changed Type\" = Table.TransformColumnTypes(#\"Renamed Columns\",{{\"id\", type text}})",
+                "in",
+                "    #\"Changed Type\""
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Fixes",
+        "annotations": [
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "self",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataCategory": "WebUrl",
+            "dataType": "string",
+            "lineageTag": "a0b05bcb-0e64-4dea-bc07-ada2da36a67c",
+            "sourceColumn": "self",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "id",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "c38deffb-cc89-49c3-9b50-7296065b1677",
+            "sourceColumn": "id",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "description",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "71d17bf2-4a40-4408-9ff6-66dd21d7b887",
+            "sourceColumn": "description",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Fix",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "78641c9c-3161-42e3-83a1-ba9a76d35c02",
+            "sourceColumn": "Fix",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "archived",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "5cea3313-7e0d-4d3b-ae26-2e5260618b91",
+            "sourceColumn": "archived",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "released",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "5cad35e7-1c6b-4dc8-9b0f-92bb05b43b7c",
+            "sourceColumn": "released",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "releaseDate",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "UnderlyingDateTimeDataType",
+                "value": "Date"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isDateTimeCustom\":true}"
+              }
+            ],
+            "dataType": "dateTime",
+            "formatString": "yyyy/mm/dd",
+            "lineageTag": "bfca6da0-ce72-4881-a790-71d6d61e55f0",
+            "sourceColumn": "releaseDate",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "ea8878f1-77ef-4706-b487-d73627e64de3",
+        "partitions": [
+          {
+            "name": "Fixes",
+            "mode": "import",
+            "queryGroup": "03 Supporting Tables\\03.1 Staging\\03.2 Lookup tables",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = #\"JIRA Lookup tables\",",
+                "    #\"Removed Other Columns\" = Table.SelectColumns(Source,{\"fixVersions\"}),",
+                "    #\"Expanded fixVersions\" = Table.ExpandListColumn(#\"Removed Other Columns\", \"fixVersions\"),",
+                "    #\"Expanded fixVersions1\" = Table.ExpandRecordColumn(#\"Expanded fixVersions\", \"fixVersions\", {\"self\", \"id\", \"description\", \"name\", \"archived\", \"released\", \"releaseDate\"}, {\"self\", \"id\", \"description\", \"name\", \"archived\", \"released\", \"releaseDate\"}),",
+                "    #\"Removed Duplicates\" = Table.Distinct(#\"Expanded fixVersions1\"),",
+                "    #\"Removed Blank Rows\" = Table.SelectRows(#\"Removed Duplicates\", each not List.IsEmpty(List.RemoveMatchingItems(Record.FieldValues(_), {\"\", null}))),",
+                "    #\"Changed Type\" = Table.TransformColumnTypes(#\"Removed Blank Rows\",{{\"releaseDate\", type date}}),",
+                "    #\"Renamed Columns\" = Table.RenameColumns(#\"Changed Type\",{{\"name\", \"Fix\"}}),",
+                "    #\"Changed Type1\" = Table.TransformColumnTypes(#\"Renamed Columns\",{{\"id\", type text}})",
+                "in",
+                "    #\"Changed Type1\""
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Devs",
+        "annotations": [
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          },
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
+          }
+        ],
+        "columns": [
+          {
+            "name": "self",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataCategory": "WebUrl",
+            "dataType": "string",
+            "lineageTag": "869cfc83-2278-4e03-85ea-41ae5e5141f7",
+            "sourceColumn": "self",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "accountId",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "031918be-69ac-4f27-b07d-9a20e519c203",
+            "sourceColumn": "accountId",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "emailAddress",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "941507bb-0e17-4d60-92c8-7eb99aac2046",
+            "sourceColumn": "emailAddress",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "avatarUrls.48x48",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataCategory": "ImageUrl",
+            "dataType": "string",
+            "lineageTag": "538c0a02-4dd4-4cfd-83bb-fd63878ffe8d",
+            "sourceColumn": "avatarUrls.48x48",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "avatarUrls.24x24",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataCategory": "ImageUrl",
+            "dataType": "string",
+            "lineageTag": "ef420db2-0aa0-4ba0-ab76-9d0ad724f394",
+            "sourceColumn": "avatarUrls.24x24",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "avatarUrls.16x16",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataCategory": "ImageUrl",
+            "dataType": "string",
+            "lineageTag": "87e78b98-5eb6-4212-8981-67b88e332ebd",
+            "sourceColumn": "avatarUrls.16x16",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "avatarUrls.32x32",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataCategory": "ImageUrl",
+            "dataType": "string",
+            "lineageTag": "93ac0aa3-d287-405a-b2ca-e281ae2c713c",
+            "sourceColumn": "avatarUrls.32x32",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Name",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "43d1d4d8-9acd-41e5-b0f8-61c242f6ebc8",
+            "sourceColumn": "Name",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "active",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "boolean",
+            "formatString": "\"TRUE\";\"TRUE\";\"FALSE\"",
+            "lineageTag": "f51484b1-dba9-40f7-b5bf-94b562801e53",
+            "sourceColumn": "active",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "timeZone",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "a195dc48-7cb7-404e-870c-ad8e907e9fff",
+            "sourceColumn": "timeZone",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "accountType",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "91a6e296-162c-419d-83d3-a062ff96fa86",
+            "sourceColumn": "accountType",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "a942d02d-b409-471a-b5cd-c5c5d8a5ce67",
+        "partitions": [
+          {
+            "name": "Devs",
+            "mode": "import",
+            "queryGroup": "03 Supporting Tables\\03.1 Staging\\03.2 Lookup tables",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = #\"JIRA Lookup tables\",",
+                "    #\"Removed Other Columns\" = Table.SelectColumns(Source,{\"assignee\"}),",
+                "    #\"Expanded assignee\" = Table.ExpandRecordColumn(#\"Removed Other Columns\", \"assignee\", {\"self\", \"accountId\", \"emailAddress\", \"avatarUrls\", \"displayName\", \"active\", \"timeZone\", \"accountType\"}, {\"self\", \"accountId\", \"emailAddress\", \"avatarUrls\", \"displayName\", \"active\", \"timeZone\", \"accountType\"}),",
+                "    #\"Expanded assignee.avatarUrls\" = Table.ExpandRecordColumn(#\"Expanded assignee\", \"avatarUrls\", {\"48x48\", \"24x24\", \"16x16\", \"32x32\"}, {\"avatarUrls.48x48\", \"avatarUrls.24x24\", \"avatarUrls.16x16\", \"avatarUrls.32x32\"}),",
+                "    #\"Removed Duplicates\" = Table.Distinct(#\"Expanded assignee.avatarUrls\"),",
+                "    #\"Removed Blank Rows\" = Table.SelectRows(#\"Removed Duplicates\", each not List.IsEmpty(List.RemoveMatchingItems(Record.FieldValues(_), {\"\", null}))),",
+                "    #\"Changed Type\" = Table.TransformColumnTypes(#\"Removed Blank Rows\",{{\"active\", type logical}}),",
+                "    #\"Renamed Columns\" = Table.RenameColumns(#\"Changed Type\",{{\"displayName\", \"Name\"}})",
+                "in",
+                "    #\"Renamed Columns\""
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Linked Issues",
+        "annotations": [
+          {
+            "name": "PBI_ResultType",
+            "value": "Exception"
+          },
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Child key",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "8a29917f-f4ac-4119-874c-d651005905c9",
+            "sourceColumn": "Child key",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Parent Key",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "ad1346a3-97fb-4831-8bb0-6f4a82f161e0",
+            "sourceColumn": "Parent Key",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "f47a492b-6658-47bf-b4b9-41d95de0075a",
+        "partitions": [
+          {
+            "name": "Linked Issues",
+            "mode": "import",
+            "queryGroup": "04 Finalised Tables",
+            "source": {
+              "expression": [
+                "let",
+                "    // Load from \"Issues\", so Epics aren't included",
+                "    Source = #\"Issues\",",
+                "    // Want to remove items which have only the Epic as their parent",
+                "    #\"join w/ Epics, on Parent ID\" = Table.NestedJoin(Source, {\"parent.key\"}, Epics, {\"issue key\"}, \"Epics\", JoinKind.LeftOuter),",
+                "    #\"Expanded Epics\" = Table.ExpandTableColumn(#\"join w/ Epics, on Parent ID\", \"Epics\", {\"issue key\"}, {\"Epic issue key\"}),",
+                "    // Remove parent ID if Parent ID is an epic - dont want to show epics on the chart, but need to retain them for filtering by epic",
+                "    #\"Added New parent ID - exclude when is epic\" = Table.AddColumn(#\"Expanded Epics\", \"Parent Key\", each if [parent.key] = [Epic issue key] then null else [parent.key]),",
+                "    #\"Removed Other Columns\" = Table.SelectColumns(#\"Added New parent ID - exclude when is epic\",{\"issue key\", \"Parent Key\"}),",
+                "    #\"removed rows with no parents\" = Table.SelectRows(#\"Removed Other Columns\", each ([Parent Key] <> null)),",
+                "    #\"Renamed Columns\" = Table.RenameColumns(#\"removed rows with no parents\",{{\"issue key\", \"Child key\"}})",
+                "in",
+                "    #\"Renamed Columns\""
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Projects",
+        "annotations": [
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "self",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataCategory": "WebUrl",
+            "dataType": "string",
+            "lineageTag": "642774ac-2035-4624-b076-54df223db572",
+            "sourceColumn": "self",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "id",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "a86b9cf2-6dbc-44ca-a3cc-84e53cc241ee",
+            "sourceColumn": "id",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "key",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "ea0eefd1-26da-4f39-9010-8454ba6040ef",
+            "sourceColumn": "key",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Project",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "117dd649-6ad9-4ee9-82c5-0e5217da2c31",
+            "sourceColumn": "Project",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "projectTypeKey",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "ffeeb2b3-293b-47ba-b8b6-8e1b525f5828",
+            "sourceColumn": "projectTypeKey",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "simplified",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "84013e2b-9dec-44ee-9c57-1262a9cbadd1",
+            "sourceColumn": "simplified",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "avatarUrls.48x48",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataCategory": "ImageUrl",
+            "dataType": "string",
+            "lineageTag": "9d44f819-281e-4d84-ae23-d537fef3ecba",
+            "sourceColumn": "avatarUrls.48x48",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "avatarUrls.24x24",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataCategory": "ImageUrl",
+            "dataType": "string",
+            "lineageTag": "29261b7d-32a3-4ac5-a828-5fa7b1edca70",
+            "sourceColumn": "avatarUrls.24x24",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "avatarUrls.16x16",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataCategory": "ImageUrl",
+            "dataType": "string",
+            "lineageTag": "f8d2c17d-0e59-4290-a411-e6534876a5cb",
+            "sourceColumn": "avatarUrls.16x16",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "avatarUrls.32x32",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataCategory": "ImageUrl",
+            "dataType": "string",
+            "lineageTag": "a8dc409a-b158-4269-ab85-8d3b9dea6247",
+            "sourceColumn": "avatarUrls.32x32",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "projectCategory.self",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataCategory": "WebUrl",
+            "dataType": "string",
+            "lineageTag": "2f782610-b656-4269-9929-479664410c3d",
+            "sourceColumn": "projectCategory.self",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "projectCategory.id",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "6a6f4ee1-a7dc-4f03-b1ac-d57bac9589c9",
+            "sourceColumn": "projectCategory.id",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "projectCategory.description",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "7fbb6841-2ea5-46ee-b6fa-22804cfe90c2",
+            "sourceColumn": "projectCategory.description",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "projectCategory.name",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "0fd65fcf-6b85-463d-9bcd-fa75e57c635e",
+            "sourceColumn": "projectCategory.name",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "eda4aec9-5929-40c5-9a98-e5c3cff37b6b",
+        "partitions": [
+          {
+            "name": "Projects",
+            "mode": "import",
+            "queryGroup": "03 Supporting Tables\\03.1 Staging\\03.2 Lookup tables",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = #\"JIRA Lookup tables\",",
+                "    #\"Removed Other Columns\" = Table.SelectColumns(Source,{\"project\"}),",
+                "    #\"Expanded project\" = Table.ExpandRecordColumn(#\"Removed Other Columns\", \"project\", {\"self\", \"id\", \"key\", \"name\", \"projectTypeKey\", \"simplified\", \"avatarUrls\", \"projectCategory\"}, {\"self\", \"id\", \"key\", \"project\", \"projectTypeKey\", \"simplified\", \"avatarUrls\", \"projectCategory\"}),",
+                "    #\"Removed Duplicates\" = Table.Distinct(#\"Expanded project\"),",
+                "    #\"Expanded avatarUrls\" = Table.ExpandRecordColumn(#\"Removed Duplicates\", \"avatarUrls\", {\"48x48\", \"24x24\", \"16x16\", \"32x32\"}, {\"avatarUrls.48x48\", \"avatarUrls.24x24\", \"avatarUrls.16x16\", \"avatarUrls.32x32\"}),",
+                "    #\"Expanded projectCategory\" = Table.ExpandRecordColumn(#\"Expanded avatarUrls\", \"projectCategory\", {\"self\", \"id\", \"description\", \"name\"}, {\"projectCategory.self\", \"projectCategory.id\", \"projectCategory.description\", \"projectCategory.name\"}),",
+                "    #\"Renamed Columns\" = Table.RenameColumns(#\"Expanded projectCategory\",{{\"project\", \"Project\"}}),",
+                "    // Filtered out Service Mangement board, because all the other boards contain subtickets cloned off SM tickets. Also, completing items in sub-boards doesn't feedback to SM, so they stay open",
+                "    // ",
+                "    // Filtered out a board, as it's not relevant to this org group",
+                "    #\"Filtered out non-group boards\" = Table.SelectRows(#\"Renamed Columns\", each ([Project] <> \"Operations-Reporting\" and [Project] <> \"Service Management\"))",
+                "in",
+                "    #\"Filtered out non-group boards\""
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Issue Types",
+        "annotations": [
+          {
+            "name": "PBI_ResultType",
+            "value": "Exception"
+          },
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
+          }
+        ],
+        "columns": [
+          {
+            "name": "self",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "f1ad0b14-a386-4647-ba28-9dc93e0df967",
+            "sourceColumn": "self",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "id",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "94bfee61-ae1b-4526-ad97-30b1ef306d6c",
+            "sourceColumn": "id",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "iconUrl",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "5288ee03-3b9c-46d5-b77e-8e215c123fc6",
+            "sourceColumn": "iconUrl",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Issue Type",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "c77fe2f1-3fb9-4e60-9a39-c95ec89d8a64",
+            "sourceColumn": "Issue Type",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "is subtask",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "boolean",
+            "formatString": "\"TRUE\";\"TRUE\";\"FALSE\"",
+            "lineageTag": "b2f965a7-86d0-4095-8914-67cdbaa41211",
+            "sourceColumn": "is subtask",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "avatarId",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "ea624b11-5990-4242-a159-cca7b1cce45d",
+            "sourceColumn": "avatarId",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "hierarchyLevel",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "ab2792c6-89ac-49e4-ab20-ef0cfadedb58",
+            "sourceColumn": "hierarchyLevel",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Issue type description",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "f2890d10-57db-4e1b-99e4-1d54647e41bd",
+            "sourceColumn": "Issue type description",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Issue type family",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "3bd42cd7-966f-4e9a-93b9-50c995ca2c75",
+            "sourceColumn": "Issue type family",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "c92ff046-27c6-44c0-ac99-56ce866f6282",
+        "partitions": [
+          {
+            "name": "Issue Types",
+            "mode": "import",
+            "queryGroup": "03 Supporting Tables\\03.1 Staging\\03.2 Lookup tables",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = #\"JIRA Lookup tables\",",
+                "    #\"Removed Other Columns\" = Table.SelectColumns(Source,{\"issuetype\"}),",
+                "    #\"Expanded issuetype\" = Table.ExpandRecordColumn(#\"Removed Other Columns\", \"issuetype\", {\"self\", \"id\", \"description\", \"iconUrl\", \"name\", \"subtask\", \"avatarId\", \"hierarchyLevel\"}, {\"self\", \"id\", \"description\", \"iconUrl\", \"name\", \"is subtask\", \"avatarId\", \"hierarchyLevel\"}),",
+                "    #\"Changed Type\" = Table.TransformColumnTypes(#\"Expanded issuetype\",{{\"is subtask\", type logical}, {\"hierarchyLevel\", Int64.Type}}),",
+                "    #\"Removed Duplicates\" = Table.Distinct(#\"Changed Type\", {\"name\"}),",
+                "    #\"Merged Queries\" = Table.NestedJoin(#\"Removed Duplicates\", {\"name\"}, #\"Issue Families\", {\"Issue type\"}, \"Issue Families\", JoinKind.LeftOuter),",
+                "    #\"Expanded Issue Families\" = Table.ExpandTableColumn(#\"Merged Queries\", \"Issue Families\", {\"Issue type description\", \"Issue type family\"}, {\"Issue type description\", \"Issue type family\"}),",
+                "    #\"Removed Columns\" = Table.RemoveColumns(#\"Expanded Issue Families\",{\"description\"}),",
+                "    #\"Renamed Columns\" = Table.RenameColumns(#\"Removed Columns\",{{\"name\", \"Issue Type\"}})",
+                "in",
+                "    #\"Renamed Columns\""
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Issues",
         "annotations": [
           {
             "name": "PBI_ResultType",
@@ -1155,164 +2530,9 @@
             "lineageTag": "20196cb4-e69a-478a-bb99-ab3c6a0d9155",
             "sourceColumn": "fixVersions",
             "summarizeBy": "none"
-          }
-        ],
-        "lineageTag": "4adae639-dbf3-4b0d-8016-e6bce3b421c3",
-        "partitions": [
-          {
-            "name": "YourOrg issues",
-            "mode": "import",
-            "queryGroup": "04 Finalised Tables",
-            "source": {
-              "expression": [
-                "let",
-                "    Source = #\"JIRA API return\",",
-                "    #\"Expanded records\" = Table.ExpandRecordColumn(Source, \"Column1\", {\"expand\", \"id\", \"self\", \"key\", \"fields\"}, {\"expand\", \"issue ID\", \"issue address\", \"issue key\", \"fields\"}),",
-                "    #\"Expanded fields\" = Table.ExpandRecordColumn(#\"Expanded records\", \"fields\", {\"parent\", \"fixVersions\", \"resolution\", \"lastViewed\", \"priority\", \"labels\", \"timeestimate\", \"aggregatetimeoriginalestimate\", \"versions\", \"issuelinks\", \"assignee\", \"status\", \"components\", \"aggregatetimeestimate\", \"creator\", \"subtasks\", \"reporter\", \"aggregateprogress\", \"progress\", \"votes\", \"issuetype\", \"timespent\", \"project\", \"aggregatetimespent\", \"resolutiondate\", \"workratio\", \"watches\", \"created\", \"updated\", \"timeoriginalestimate\", \"description\", \"summary\", \"environment\", \"duedate\"}, {\"parent\", \"fixVersions\", \"resolution\", \"lastViewed\", \"priority\", \"labels\", \"timeestimate\", \"aggregatetimeoriginalestimate\", \"versions\", \"issuelinks\", \"assignee\", \"status\", \"components\", \"aggregatetimeestimate\", \"creator\", \"subtasks\", \"reporter\", \"aggregateprogress\", \"progress\", \"votes\", \"issuetype\", \"timespent\", \"project\", \"aggregatetimespent\", \"resolutiondate\", \"workratio\", \"watches\", \"created\", \"updated\", \"timeoriginalestimate\", \"description\", \"summary\", \"environment\", \"duedate\"}),",
-                "    // Resolution: Worse version of status",
-                "    // Description: wayyyy to much text, dont need that in report's memory",
-                "    // Expand: fields the API can get",
-                "    // Watches: don't need to know/report it",
-                "    // Versions: would bloat report",
-                "    // Linked Issues: would bloat report",
-                "    // Subtask: already have parent task if relevant, would bloat",
-                "    // Votes: not using votes here",
-                "    #\"Removed unneccesary fields\" = Table.RemoveColumns(#\"Expanded fields\",{\"expand\", \"watches\", \"versions\", \"issuelinks\", \"subtasks\", \"votes\", \"resolution\", \"description\", \"labels\", \"components\"}),",
-                "    #\"Filtered issue not null or blank\" = Table.SelectRows(#\"Removed unneccesary fields\", each [issue ID] <> null and [issue ID] <> \"\"),",
-                "    #\"Expanded issuetype\" = Table.ExpandRecordColumn(#\"Filtered issue not null or blank\", \"issuetype\", {\"id\", \"subtask\"}, {\"issuetype.id\", \"issuetype.isSubTask\"}),",
-                "    #\"Expanded project\" = Table.ExpandRecordColumn(#\"Expanded issuetype\", \"project\", {\"id\"}, {\"project.id\"}),",
-                "    // Inner join so we exclude non-desired projects, i.e. Service Management",
-                "    #\"Inner Join w/ Projects table\" = Table.NestedJoin(#\"Expanded project\", {\"project.id\"}, Projects, {\"id\"}, \"Projects\", JoinKind.Inner),",
-                "    #\"Expanded priority\" = Table.ExpandRecordColumn(#\"Inner Join w/ Projects table\", \"priority\", {\"id\"}, {\"priority.id\"}),",
-                "    #\"Expanded assignee\" = Table.ExpandRecordColumn(#\"Expanded priority\", \"assignee\", {\"accountId\"}, {\"assignee.accountId\"}),",
-                "    #\"Expanded status\" = Table.ExpandRecordColumn(#\"Expanded assignee\", \"status\", {\"id\"}, {\"status.id\"}),",
-                "    #\"Expanded reporter\" = Table.ExpandRecordColumn(#\"Expanded status\", \"reporter\", {\"name\", \"emailAddress\", \"displayName\", \"active\"}, {\"reporter.name\", \"reporter.emailAddress\", \"reporter.displayName\", \"reporter.active\"}),",
-                "    #\"Expanded aggregateprogress\" = Table.ExpandRecordColumn(#\"Expanded reporter\", \"aggregateprogress\", {\"progress\", \"total\"}, {\"aggregateprogress.progress\", \"aggregateprogress.total\"}),",
-                "    #\"Expanded progress\" = Table.ExpandRecordColumn(#\"Expanded aggregateprogress\", \"progress\", {\"progress\", \"total\"}, {\"progress.progress\", \"progress.total\"}),",
-                "    #\"Expanded parent\" = Table.ExpandRecordColumn(#\"Expanded progress\", \"parent\", {\"id\", \"key\"}, {\"parent.id\", \"parent.key\"}),",
-                "    #\"Expanded creator\" = Table.ExpandRecordColumn(#\"Expanded parent\", \"creator\", {\"accountId\", \"displayName\"}, {\"creator.accountId\", \"creator.displayName\"}),",
-                "    #\"Changed Type duedate\" = Table.TransformColumnTypes(#\"Expanded creator\",{{\"duedate\", type date}}),",
-                "    // Clean up for matching into lookup table",
-                "    #\"Uppercased environment\" = Table.TransformColumns(Table.TransformColumnTypes(#\"Changed Type duedate\", {{\"environment\", type text}}, \"en-AU\"),{}),",
-                "    #\"Replaced Environement blank -> null\" = Table.ReplaceValue(#\"Uppercased environment\",\"\",null,Replacer.ReplaceValue,{\"environment\"}),",
-                "    #\"Merged w status\" = Table.NestedJoin(#\"Replaced Environement blank -> null\", {\"status.id\"}, #\"Status Codes\", {\"id\"}, \"Status Codes\", JoinKind.LeftOuter),",
-                "    #\"Expanded status is terminal\" = Table.ExpandTableColumn(#\"Merged w status\", \"Status Codes\", {\"Is terminal\"}, {\"Status Codes.Is terminal\"}),",
-                "    // Needed to add a way to infill resolved data for a few issue types which don't automatically create a resolution date in JIRA. Checks against the status codes table's `is terminal` col",
-                "    // Using last modified instead where resolution = NULL",
-                "    #\"Added Improved Resolution Date\" = Table.AddColumn(#\"Expanded status is terminal\", \"Resolution Date Improved\", each if (",
-                "\t    [resolutiondate]  = null ",
-                "\t    and [Status Codes.Is terminal] = true",
-                "    ) then [updated] // if nothing found, just give the null",
-                "    else [resolutiondate]),",
-                "    #\"removed status is terminal\" = Table.RemoveColumns(#\"Added Improved Resolution Date\",{\"Status Codes.Is terminal\"}),",
-                "    // LDS was overseas, Andrew @ SKEDA is in Canberra tz, Davide @ SKEDA is in Sydney TZ",
-                "    #\"Changed Type time to timezoned\" = Table.TransformColumnTypes(#\"removed status is terminal\",{{\"lastViewed\", type datetimezone}, {\"updated\", type datetimezone}, {\"created\", type datetimezone}, {\"resolutiondate\", type datetimezone}, {\"Resolution Date Improved\", type datetimezone}}),",
-                "    #\"Added days since mod\" = Table.AddColumn(#\"Changed Type time to timezoned\", \"Days since Modified\", each Duration.Days(DateTime.Date(DateTime.LocalNow()) - DateTime.Date([updated]))),",
-                "    #\"Added days since created\" = Table.AddColumn(#\"Added days since mod\", \"Days since Created\", each Duration.Days(DateTime.Date(DateTime.LocalNow()) - DateTime.Date([created]))),",
-                "    #\"Removed resolution date, replaced by improved version\" = Table.RemoveColumns(#\"Added days since created\",{\"resolutiondate\"}),",
-                "    #\"Added Days taken to resolve\" = Table.AddColumn(#\"Removed resolution date, replaced by improved version\", \"Days to Resolve\", each Duration.Days(DateTime.Date([Resolution Date Improved]) - DateTime.Date([created]))),",
-                "    #\"Changed resolved days to num\" = Table.TransformColumnTypes(#\"Added Days taken to resolve\",{{\"Days to Resolve\", Int64.Type}}),",
-                "    #\"Duplicated created to date only\" = Table.DuplicateColumn(#\"Changed resolved days to num\", \"created\", \"created - Date\"),",
-                "    #\"Duplicated updated to date only\" = Table.DuplicateColumn(#\"Duplicated created to date only\", \"updated\", \"updated - Date\"),",
-                "    #\"Duplicated resolution to date only\" = Table.DuplicateColumn(#\"Duplicated updated to date only\", \"Resolution Date Improved\", \"Resolution Date Improved - Date\"),",
-                "    #\"Changed duped datetimes to dates\" = Table.TransformColumnTypes(#\"Duplicated resolution to date only\",{{\"created - Date\", type date}, {\"updated - Date\", type date}, {\"Resolution Date Improved - Date\", type date}})",
-                "in",
-                "    #\"Changed duped datetimes to dates\""
-              ],
-              "type": "m"
-            }
-          }
-        ]
-      },
-      {
-        "name": "Status Codes",
-        "annotations": [
-          {
-            "name": "PBI_ResultType",
-            "value": "Table"
-          }
-        ],
-        "columns": [
-          {
-            "name": "Family",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "changedProperties": [
-              {
-                "property": "SortByColumn"
-              }
-            ],
-            "dataType": "string",
-            "lineageTag": "d9f1f8c4-46a8-4885-b947-2f3802d22ba7",
-            "sortByColumn": "Status Rank",
-            "sourceColumn": "Family",
-            "summarizeBy": "none"
           },
           {
-            "name": "Status Rank",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "dataType": "int64",
-            "formatString": "0",
-            "lineageTag": "7c521ef3-e96c-4e0b-9e60-6393c332f78a",
-            "sourceColumn": "Status Rank",
-            "summarizeBy": "none"
-          },
-          {
-            "name": "description",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "dataType": "string",
-            "lineageTag": "b5cb0977-f86d-4a14-a55f-4042c2fe9b19",
-            "sourceColumn": "description",
-            "summarizeBy": "none"
-          },
-          {
-            "name": "id",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "dataType": "string",
-            "lineageTag": "190dad8f-5e4e-4023-809c-a06bc9462312",
-            "sourceColumn": "id",
-            "summarizeBy": "none"
-          },
-          {
-            "name": "Status",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "changedProperties": [
-              {
-                "property": "SortByColumn"
-              }
-            ],
-            "dataType": "string",
-            "lineageTag": "3a54cb6e-10ae-44fa-ac80-d514deafe39d",
-            "sortByColumn": "Status Rank",
-            "sourceColumn": "Status",
-            "summarizeBy": "none"
-          },
-          {
-            "name": "Is terminal",
+            "name": "Overdue",
             "annotations": [
               {
                 "name": "SummarizationSetBy",
@@ -1321,108 +2541,25 @@
             ],
             "dataType": "boolean",
             "formatString": "\"TRUE\";\"TRUE\";\"FALSE\"",
-            "lineageTag": "68730141-b389-49ff-9286-b3cbedfbaf7b",
-            "sourceColumn": "Is terminal",
+            "lineageTag": "084aa23b-9964-4f4b-9162-773ae6c0f424",
+            "sourceColumn": "Overdue",
             "summarizeBy": "none"
           }
         ],
-        "description": "All the statuses in JIRA",
-        "lineageTag": "4d93aed3-0bb0-4100-aace-a437ba1ed31f",
+        "lineageTag": "4adae639-dbf3-4b0d-8016-e6bce3b421c3",
         "partitions": [
           {
-            "name": "Status Codes",
+            "name": "Issues",
             "mode": "import",
-            "queryGroup": "03 Supporting Tables\\03.1 Staging\\03.2 Lookup tables",
+            "queryGroup": "04 Finalised Tables",
             "source": {
               "expression": [
                 "let",
-                "    Source = #\"JIRA Lookup tables\",",
-                "    #\"Removed Other Columns\" = Table.SelectColumns(Source,{\"status\"}),",
-                "    #\"Expanded status\" = Table.ExpandRecordColumn(#\"Removed Other Columns\", \"status\", {\"description\", \"id\", \"name\"}, {\"description\", \"id\", \"name\"}),",
-                "    #\"Removed Duplicates\" = Table.Distinct(#\"Expanded status\"),",
-                "    #\"Merged Queries\" = Table.NestedJoin(#\"Removed Duplicates\", {\"name\"}, #\"Status Ranks\", {\"status.name\"}, \"Status Ranks\", JoinKind.LeftOuter),",
-                "    #\"Expanded Status Ranks\" = Table.ExpandTableColumn(#\"Merged Queries\", \"Status Ranks\", {\"Family\", \"Is terminal\", \"Status Rank\"}, {\"Family\", \"Is terminal\", \"Status Rank\"}),",
-                "    #\"Sorted Rows\" = Table.Sort(#\"Expanded Status Ranks\",{{\"id\", Order.Ascending}}),",
-                "    #\"Renamed Columns\" = Table.RenameColumns(#\"Sorted Rows\",{{\"name\", \"Status\"}}),",
-                "    #\"Changed types\" = Table.TransformColumnTypes(#\"Renamed Columns\",{{\"id\", type text}, {\"Is terminal\", type logical}})",
+                "    Source = #\"Issues Load\",",
+                "    #\"Antijoin w/ Epics\" = Table.NestedJoin(Source, {\"issue ID\"}, Epics, {\"issue ID\"}, \"Epics\", JoinKind.LeftAnti),",
+                "    #\"Removed Columns\" = Table.RemoveColumns(#\"Antijoin w/ Epics\",{\"Epics\"})",
                 "in",
-                "    #\"Changed types\""
-              ],
-              "type": "m"
-            }
-          }
-        ]
-      },
-      {
-        "name": "Environments Lookup",
-        "annotations": [
-          {
-            "name": "PBI_ResultType",
-            "value": "Table"
-          }
-        ],
-        "columns": [
-          {
-            "name": "environment",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "changedProperties": [
-              {
-                "property": "SortByColumn"
-              }
-            ],
-            "dataType": "string",
-            "lineageTag": "d0dde667-42c2-4ff4-bb34-26c3ce2ec44a",
-            "sortByColumn": "Sort Order",
-            "sourceColumn": "environment",
-            "summarizeBy": "none"
-          },
-          {
-            "name": "Env Cleaned",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "dataType": "string",
-            "lineageTag": "d6ad891d-b7a8-4afb-869d-25319a8e4104",
-            "sourceColumn": "Env Cleaned",
-            "summarizeBy": "none"
-          },
-          {
-            "name": "Sort Order",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "dataType": "string",
-            "lineageTag": "15ea3bde-1b2b-45d3-92af-7dff84ff4da8",
-            "sourceColumn": "Sort Order",
-            "summarizeBy": "none"
-          }
-        ],
-        "lineageTag": "8e1336ec-5282-4676-a053-971ab75fb8ea",
-        "partitions": [
-          {
-            "name": "Environments Lookup",
-            "mode": "import",
-            "queryGroup": "03 Supporting Tables\\03.1 Staging\\0.3.1.1 Manual mappings",
-            "source": {
-              "expression": [
-                "let",
-                "    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText(\"dY9BSwNBDIX/SpiThdldqp4EkYUV8WSxVZBtkbCTdhbHzTqTsfTfm67Vk15eQvK+l5m2NYvHh8bYn3JhNrY1ze2zhad6ZWG5urOAg4PTvg5B9XJyLSK73EnPwx88wJmjzyIQxqEfduX7wRMG8VuOod9SyXFXYp4pombV+QRmFO31sur59yQpDR07Ai8ypquqUlPhu38Sq5s9x7cxYEevR+q6Wdb39QuI7xMkzzk4wCxcjDzmgEK6IVibvUcBtRw4RzhGwJQxXV4b+MiUTj/9fd3mCw==\", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [environment = _t, #\"Env Cleaned\" = _t, #\"Sort Order\" = _t]),",
-                "    #\"Changed Type\" = Table.TransformColumnTypes(Source,{{\"environment\", type text}, {\"Env Cleaned\", type text}}),",
-                "    #\"Replaced Value\" = Table.ReplaceValue(#\"Changed Type\",\"null\",null,Replacer.ReplaceValue,{\"environment\", \"Env Cleaned\"}),",
-                "    #\"Uppercased Text\" = Table.TransformColumns(#\"Replaced Value\",{{\"environment\", Text.Upper, type text}})",
-                "in",
-                "    #\"Uppercased Text\""
+                "    #\"Removed Columns\""
               ],
               "type": "m"
             }
@@ -1432,6 +2569,10 @@
       {
         "name": "DateDimensionBI",
         "annotations": [
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
+          },
           {
             "name": "PBI_ResultType",
             "value": "Table"
@@ -1452,7 +2593,7 @@
             ],
             "dataType": "dateTime",
             "formatString": "Long Date",
-            "lineageTag": "5ce257f7-a227-4808-a1fe-51cf46873f0f",
+            "lineageTag": "7e3dd0da-ab5c-450b-8036-51c7b3623788",
             "sourceColumn": "Date",
             "summarizeBy": "none"
           },
@@ -1466,9 +2607,9 @@
             ],
             "dataType": "int64",
             "formatString": "0",
-            "lineageTag": "bfba96dd-9215-41a6-a2fe-1a4c51e3497e",
+            "lineageTag": "9ca3171d-8ae4-4613-98e8-889b64097d49",
             "sourceColumn": "Year",
-            "summarizeBy": "sum"
+            "summarizeBy": "none"
           },
           {
             "name": "Start of Year",
@@ -1484,7 +2625,7 @@
             ],
             "dataType": "dateTime",
             "formatString": "Long Date",
-            "lineageTag": "ca696202-2f90-44f9-b258-8d873397d77a",
+            "lineageTag": "0dbf16f6-04f7-42af-8dee-ff18876f650f",
             "sourceColumn": "Start of Year",
             "summarizeBy": "none"
           },
@@ -1502,7 +2643,7 @@
             ],
             "dataType": "dateTime",
             "formatString": "Long Date",
-            "lineageTag": "0e781b80-b31c-4758-9026-cfe7975c7160",
+            "lineageTag": "a13b3539-d0a0-4236-9fe5-eaa15f8d42a7",
             "sourceColumn": "End of Year",
             "summarizeBy": "none"
           },
@@ -1516,9 +2657,9 @@
             ],
             "dataType": "int64",
             "formatString": "0",
-            "lineageTag": "f2c838c9-ffc8-4ad5-b723-79db8411bd41",
+            "lineageTag": "1734aaed-23ac-4abf-b2ae-39341f248e89",
             "sourceColumn": "Month Number",
-            "summarizeBy": "sum"
+            "summarizeBy": "none"
           },
           {
             "name": "Month Name",
@@ -1529,7 +2670,7 @@
               }
             ],
             "dataType": "string",
-            "lineageTag": "2457bd2b-c325-450f-b9eb-6e54810bfee9",
+            "lineageTag": "9525c681-5379-4f6d-9e50-59748f63d7fb",
             "sourceColumn": "Month Name",
             "summarizeBy": "none"
           },
@@ -1547,7 +2688,7 @@
             ],
             "dataType": "dateTime",
             "formatString": "Long Date",
-            "lineageTag": "1132f8dc-55de-4cd1-aa40-963b5740c0ff",
+            "lineageTag": "c27e9a7b-c3d0-4f8d-bec9-70afc7d01e67",
             "sourceColumn": "Month Start Date",
             "summarizeBy": "none"
           },
@@ -1565,7 +2706,7 @@
             ],
             "dataType": "dateTime",
             "formatString": "Long Date",
-            "lineageTag": "e53c6e6a-c4a0-4cb5-b6d1-7c76f51afd0c",
+            "lineageTag": "39dffa05-d164-4ff4-88fc-12da43ad2344",
             "sourceColumn": "Month End Date",
             "summarizeBy": "none"
           },
@@ -1579,9 +2720,9 @@
             ],
             "dataType": "int64",
             "formatString": "0",
-            "lineageTag": "009e0532-9cad-4229-a0c6-673021a0120f",
+            "lineageTag": "1ddd9fd2-63e1-4e63-93b8-450be8ce317f",
             "sourceColumn": "Days in Month",
-            "summarizeBy": "sum"
+            "summarizeBy": "none"
           },
           {
             "name": "Quarter Number",
@@ -1593,9 +2734,9 @@
             ],
             "dataType": "int64",
             "formatString": "0",
-            "lineageTag": "418d48ea-855f-4f48-b15f-ad5bb825088e",
+            "lineageTag": "20508d3d-e670-463f-abcc-7184d2fc05d4",
             "sourceColumn": "Quarter Number",
-            "summarizeBy": "sum"
+            "summarizeBy": "none"
           },
           {
             "name": "Quarter Start Date",
@@ -1611,7 +2752,7 @@
             ],
             "dataType": "dateTime",
             "formatString": "Long Date",
-            "lineageTag": "8d1a3155-6757-40ce-aa22-4bde595bda15",
+            "lineageTag": "876cee67-dbaa-4eae-ba90-132d745bd8cf",
             "sourceColumn": "Quarter Start Date",
             "summarizeBy": "none"
           },
@@ -1629,7 +2770,7 @@
             ],
             "dataType": "dateTime",
             "formatString": "Long Date",
-            "lineageTag": "e335020d-213d-42fa-b60e-f8e050414779",
+            "lineageTag": "138d09f2-16ab-4cd1-994f-f94cf5850dec",
             "sourceColumn": "Quarter End Date",
             "summarizeBy": "none"
           },
@@ -1643,9 +2784,9 @@
             ],
             "dataType": "int64",
             "formatString": "0",
-            "lineageTag": "d2ec176d-89d6-410a-a64e-a2611eed7eac",
+            "lineageTag": "7a3c8f28-423f-4e27-be5a-5503507ff257",
             "sourceColumn": "Week Number of Year",
-            "summarizeBy": "sum"
+            "summarizeBy": "none"
           },
           {
             "name": "Week Number of Month",
@@ -1657,9 +2798,9 @@
             ],
             "dataType": "int64",
             "formatString": "0",
-            "lineageTag": "de280321-a975-4217-ab6a-72de892b0037",
+            "lineageTag": "f52599d6-f775-426d-a30b-71ef983d52ad",
             "sourceColumn": "Week Number of Month",
-            "summarizeBy": "sum"
+            "summarizeBy": "none"
           },
           {
             "name": "Week Start Date",
@@ -1675,7 +2816,7 @@
             ],
             "dataType": "dateTime",
             "formatString": "Long Date",
-            "lineageTag": "0927cf9f-c2d2-48ab-95f2-fecb54e21293",
+            "lineageTag": "b71cb3ed-8b47-43a5-bd78-24734f039cb4",
             "sourceColumn": "Week Start Date",
             "summarizeBy": "none"
           },
@@ -1693,7 +2834,7 @@
             ],
             "dataType": "dateTime",
             "formatString": "Long Date",
-            "lineageTag": "1475501a-9cf3-4c7a-80e7-24f3b1a91f4b",
+            "lineageTag": "73e060d7-beee-4db3-b4de-6134baa521e0",
             "sourceColumn": "Week End Date",
             "summarizeBy": "none"
           },
@@ -1707,9 +2848,9 @@
             ],
             "dataType": "int64",
             "formatString": "0",
-            "lineageTag": "15dca206-bea1-4a32-b9a9-0c037970381d",
+            "lineageTag": "1969a414-1b62-41ae-b714-5eb657a0065e",
             "sourceColumn": "Day of Month",
-            "summarizeBy": "sum"
+            "summarizeBy": "none"
           },
           {
             "name": "Day of Week",
@@ -1721,9 +2862,9 @@
             ],
             "dataType": "int64",
             "formatString": "0",
-            "lineageTag": "5702f848-2664-4521-9aba-fb0afd18cff0",
+            "lineageTag": "a6022ea1-1435-47be-a4ed-59e5c55b3db1",
             "sourceColumn": "Day of Week",
-            "summarizeBy": "sum"
+            "summarizeBy": "none"
           },
           {
             "name": "Day of Year",
@@ -1735,9 +2876,9 @@
             ],
             "dataType": "int64",
             "formatString": "0",
-            "lineageTag": "02083b9b-1aa2-416a-adfe-683085964ed1",
+            "lineageTag": "12f207e9-5eaf-4194-8094-47902b309035",
             "sourceColumn": "Day of Year",
-            "summarizeBy": "sum"
+            "summarizeBy": "none"
           },
           {
             "name": "Day Name",
@@ -1748,7 +2889,7 @@
               }
             ],
             "dataType": "string",
-            "lineageTag": "52228ede-5de7-4010-a8fb-94f1f8f9165c",
+            "lineageTag": "06602ce7-1914-4cbc-9d26-441364e88344",
             "sourceColumn": "Day Name",
             "summarizeBy": "none"
           },
@@ -1762,7 +2903,7 @@
             ],
             "dataType": "boolean",
             "formatString": "\"TRUE\";\"TRUE\";\"FALSE\"",
-            "lineageTag": "2ab6b170-568a-4c24-9f8f-5715e2f3bee4",
+            "lineageTag": "0ef2eb61-800f-428d-b148-c1ba85362e29",
             "sourceColumn": "t-90",
             "summarizeBy": "none"
           },
@@ -1776,7 +2917,7 @@
             ],
             "dataType": "boolean",
             "formatString": "\"TRUE\";\"TRUE\";\"FALSE\"",
-            "lineageTag": "f5591d8d-38ad-49a1-8712-47fa95af19c3",
+            "lineageTag": "fb3a7525-751a-4e49-9401-ff27e9162dc3",
             "sourceColumn": "isFuture",
             "summarizeBy": "none"
           },
@@ -1790,7 +2931,7 @@
             ],
             "dataType": "boolean",
             "formatString": "\"TRUE\";\"TRUE\";\"FALSE\"",
-            "lineageTag": "9a428c26-3ff7-4971-b860-dc016af42693",
+            "lineageTag": "e48cc1c5-354d-41fe-98b5-6c4474619a80",
             "sourceColumn": "Reporting Month",
             "summarizeBy": "none"
           },
@@ -1804,12 +2945,12 @@
             ],
             "dataType": "boolean",
             "formatString": "\"TRUE\";\"TRUE\";\"FALSE\"",
-            "lineageTag": "1f6685be-4031-4bef-b312-c66510e088dc",
+            "lineageTag": "267ece7a-cc27-4368-9e6c-1def8cec3124",
             "sourceColumn": "Reporting Month - Last year",
             "summarizeBy": "none"
           }
         ],
-        "lineageTag": "47b9e66b-7026-4e3f-8bbf-27bb11fd5c56",
+        "lineageTag": "23b36ecd-7048-45f8-9234-0ae403eff073",
         "partitions": [
           {
             "name": "DateDimensionBI",
@@ -1818,13 +2959,37 @@
             "source": {
               "expression": [
                 "let",
-                "    Source = PowerPlatform.Dataflows(null),",
-                "    Workspaces = Source{[Id=\"Workspaces\"]}[Data],",
-                "    #\"6f7c04d6-f8ec-4722-a220-364c2598401d\" = Workspaces{[workspaceId=\"6f7c04d6-f8ec-4722-a220-364c2598401d\"]}[Data],",
-                "    #\"b9ac9667-3d19-4d70-8128-20287e809db0\" = #\"6f7c04d6-f8ec-4722-a220-364c2598401d\"{[dataflowId=\"b9ac9667-3d19-4d70-8128-20287e809db0\"]}[Data],",
-                "    DateDimensionBI_ = #\"b9ac9667-3d19-4d70-8128-20287e809db0\"{[entity=\"DateDimensionBI\",version=\"\"]}[Data]",
-                "in",
-                "    DateDimensionBI_"
+                "    Source = {Number.From(#date(2016,1,1)) .. Number.From(#date(2026,12,31))},",
+                "#\"Converted to Table\" = Table.FromList(Source, Splitter.SplitByNothing(), null, null, ExtraValues.Error),",
+                "#\"Changed Type\" = Table.TransformColumnTypes(#\"Converted to Table\", {{\"Column1\", type date}}),",
+                "#\"Renamed Columns\" = Table.RenameColumns(#\"Changed Type\", {{\"Column1\", \"Date\"}}),",
+                "#\"Added Year\" = Table.AddColumn(#\"Renamed Columns\", \"Year\", each Date.Year([Date]), Int64.Type), // Year Number (2021, 2022)",
+                "#\"Added Start of Year\" = Table.AddColumn(#\"Added Year\", \"Start of Year\", each Date.StartOfYear([Date]), type date), // \"Start of Year Date (01-01-2021)",
+                "#\"Added End of Year\" = Table.AddColumn(#\"Added Start of Year\", \"End of Year\", each Date.EndOfYear([Date]), type date),  // \"End of Year Date (31-12-2021)",
+                "#\"Added Month Number\" = Table.AddColumn(#\"Added End of Year\", \"Month Number\", each Date.Month([Date]), Int64.Type), // Month Number\" (1-12)",
+                "#\"Added Month Name\" = Table.AddColumn(#\"Added Month Number\", \"Month Name\", each Date.MonthName([Date])), // Month Name (January - December)",
+                "#\"Added Month Start Date\" = Table.AddColumn(#\"Added Month Name\", \"Month Start Date\", each Date.StartOfMonth([Date]), type date), // Month Start Date (01-02-2021)",
+                "#\"Added Month End Date\" = Table.AddColumn(#\"Added Month Start Date\", \"Month End Date\", each Date.EndOfMonth([Date]), type date), // Month End Date (28-02-2021)",
+                "#\"Added Days in Month\" = Table.AddColumn(#\"Added Month End Date\", \"Days in Month\", each Date.DaysInMonth([Date]), Int64.Type), // Days in Month (31, 28, 30 )",
+                "#\"Added Quarter Number\" = Table.AddColumn(#\"Added Days in Month\", \"Quarter Number\", each Date.QuarterOfYear([Date]), Int64.Type), // Quarter Number (1-4)",
+                "#\"Added Quarter Start Date\" = Table.AddColumn(#\"Added Quarter Number\", \"Quarter Start Date\", each Date.StartOfQuarter([Date]), type date), // Quarter Start Date (01-04-2021)",
+                "#\"Added Quarter End Date\" = Table.AddColumn(#\"Added Quarter Start Date\", \"Quarter End Date\", each Date.EndOfQuarter([Date]), type date), // Quarter End Date (31-03-2021)",
+                "#\"Added Week Number of Year\" = Table.AddColumn(#\"Added Quarter End Date\", \"Week Number of Year\", each Date.WeekOfYear([Date]), Int64.Type), // Week Number of Year (1-53)",
+                "#\"Added Week Number of Month\" = Table.AddColumn(#\"Added Week Number of Year\", \"Week Number of Month\", each Date.WeekOfMonth([Date]), Int64.Type), // Week Number of Month (1-5 )",
+                "#\"Added Week Start Date\" = Table.AddColumn(#\"Added Week Number of Month\", \"Week Start Date\", each Date.StartOfWeek([Date]), type date), // Week Start Date (18-01-2021)",
+                "#\"Added Week End Date\" = Table.AddColumn(#\"Added Week Start Date\", \"Week End Date\", each Date.EndOfWeek([Date]), type date), // Week End Date (24-01-2021)",
+                "#\"Added Day of Month\" = Table.AddColumn(#\"Added Week End Date\", \"Day of Month\", each Date.Day([Date]), Int64.Type), // Day of Month (1-31 )",
+                "#\"Added Day of Week\" = Table.AddColumn(#\"Added Day of Month\", \"Day of Week\", each Date.DayOfWeek([Date]), Int64.Type), // Day of Week (1-7)",
+                "#\"Added Day of Year\" = Table.AddColumn(#\"Added Day of Week\", \"Day of Year\", each Date.DayOfYear([Date]), Int64.Type), // Day of Year (1-365)",
+                "#\"Added Day Name\" = Table.AddColumn(#\"Added Day of Year\", \"Day Name\", each Date.DayOfWeekName([Date])),",
+                "#\"Added t-90\" = Table.AddColumn(#\"Added Day Name\", \"t-90\", each ([Date] >= Date.AddDays(DateTime.Date(DateTime.LocalNow()), - 90)) and [Date] <= DateTime.Date(DateTime.LocalNow())),",
+                "#\"Added isFuture\" = Table.AddColumn(#\"Added t-90\", \"isFuture\", each [Date] > DateTime.Date(DateTime.LocalNow())), ",
+                "#\"Changed Type1\" = Table.TransformColumnTypes(#\"Added isFuture\", {{\"t-90\", type logical}, {\"isFuture\", type logical}}),",
+                "#\"Transform columns\" = Table.TransformColumnTypes(#\"Changed Type1\", {{\"Month Name\", type text}, {\"Day Name\", type text}}), // Full month for reporting purposes",
+                "#\"Added is previous month\" = Table.TransformColumnTypes(Table.AddColumn(#\"Transform columns\", \"Reporting Month\", each Date.IsInPreviousMonth([Date])), {{\"Reporting Month\", type logical}}), // Full month for reporting purposes, parallel time period for  comparisons",
+                "#\"Added is previous month last year\" = Table.TransformColumnTypes(Table.AddColumn(#\"Added is previous month\", \"Reporting Month - Last year\", each ([Date] >=#date(Date.Year(DateTime.LocalNow()) -1 , Date.Month(DateTime.LocalNow())-1, 1)) and ([Date] <#date(Date.Year(DateTime.LocalNow()) -1 , Date.Month(DateTime.LocalNow())+1, 1))), {{\"Reporting Month - Last year\", type logical}})",
+                "in ",
+                "#\"Added is previous month last year\""
               ],
               "type": "m"
             }
@@ -1832,7 +2997,7 @@
         ]
       },
       {
-        "name": "Report last refresh",
+        "name": "Epics",
         "annotations": [
           {
             "name": "PBI_ResultType",
@@ -1841,976 +3006,60 @@
         ],
         "columns": [
           {
-            "name": "Report last refreshed",
+            "name": "issue ID",
             "annotations": [
               {
                 "name": "SummarizationSetBy",
                 "value": "Automatic"
               }
             ],
-            "dataType": "dateTime",
-            "formatString": "General Date",
-            "lineageTag": "4436e61c-452f-43bf-bfce-8181544214e2",
-            "sourceColumn": "Report last refreshed",
+            "dataType": "string",
+            "lineageTag": "9bc3b3ee-0d67-455a-ae3c-62a2018f57d2",
+            "sourceColumn": "issue ID",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "issue key",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "dcfbc41b-7132-4f44-82bd-0bead55d8558",
+            "sourceColumn": "issue key",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Epic",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "f23ecbf5-30bd-471b-97b2-3cdcf7ac9780",
+            "sourceColumn": "Epic",
             "summarizeBy": "none"
           }
         ],
-        "lineageTag": "bf9b8781-8e93-477f-a782-9485f598984b",
+        "lineageTag": "e256705b-52b1-4634-a7a6-6255e8724f94",
         "partitions": [
           {
-            "name": "Report last refresh",
-            "mode": "import",
-            "queryGroup": "01 Utilities",
-            "source": {
-              "expression": [
-                "let",
-                "    Source = DateTime.LocalNow(),",
-                "    #\"Converted to Table\" = #table(1, {{Source}}),",
-                "    #\"Changed Type\" = Table.TransformColumnTypes(#\"Converted to Table\",{{\"Column1\", type datetime}}),",
-                "    #\"Renamed Columns\" = Table.RenameColumns(#\"Changed Type\",{{\"Column1\", \"Report last refreshed\"}})",
-                "in",
-                "    #\"Renamed Columns\""
-              ],
-              "type": "m"
-            }
-          }
-        ]
-      },
-      {
-        "name": "MeasuresTable",
-        "annotations": [
-          {
-            "name": "PBI_ResultType",
-            "value": "Table"
-          }
-        ],
-        "lineageTag": "fd0df1c5-53ce-4997-9be9-4f6abbd43477",
-        "measures": [
-          {
-            "name": "Blocked Tickets",
-            "expression": [
-              "CALCULATE(",
-              "    [Tickets]",
-              "    , 'Status Codes'[Family] = \"Blocked\"",
-              ")"
-            ],
-            "formatString": "0",
-            "lineageTag": "bb3b243f-5fb3-465d-844a-a721767f55c1"
-          },
-          {
-            "name": "Cancelled Tickets",
-            "expression": [
-              "CALCULATE(",
-              "    [Tickets]",
-              "    , 'Status Codes'[Family] = \"Cancelled\"",
-              ")"
-            ],
-            "formatString": "0",
-            "lineageTag": "3c0c9e24-6c1a-47d2-b7df-b2b4a9a0cb4a"
-          },
-          {
-            "name": "Waiting Tickets",
-            "expression": [
-              "CALCULATE(",
-              "    [Tickets]",
-              "    , (",
-              "        'Status Codes'[Family] = \"Waiting\" ",
-              "        || 'Status Codes'[Family] = \"Awaiting Business\"",
-              "    )",
-              ")"
-            ],
-            "formatString": "0",
-            "lineageTag": "d64f2918-cf4c-4553-b2ac-a7f15b16d911"
-          },
-          {
-            "name": "Active Tickets",
-            "expression": [
-              "CALCULATE(",
-              "    [Tickets]",
-              "    , NOT(",
-              "\t    'Status Codes'[Family] = \"Blocked\"",
-              "\t    || 'Status Codes'[Family] = \"Cancelled\"",
-              "\t    || 'Status Codes'[Family] = \"Done\" ",
-              "\t    ||  'Status Codes'[Family] = \"Cloned\"",
-              "\t    ||'Status Codes'[Family] = \"Waiting\" ",
-              "        || 'Status Codes'[Family] = \"Awaiting Business\"",
-              "    ) // end not - can't just subtrack the other statuses bc it goes wobbly when filtering by status",
-              ") // end calculate"
-            ],
-            "formatString": "0",
-            "lineageTag": "42830f16-d860-407d-be4a-33e7d0d1dacd"
-          },
-          {
-            "name": "Resolved Tickets",
-            "expression": [
-              "CALCULATE(",
-              "    [Tickets]",
-              "    , 'Status Codes'[Family] = \"Done\" ||  'Status Codes'[Family] = \"Cloned\"",
-              ") // end calc"
-            ],
-            "formatString": "0",
-            "lineageTag": "1dad6b8e-4075-40bd-b8ea-bdb7b38de540"
-          },
-          {
-            "name": "Tickets",
-            "expression": [
-              "CALCULATE(",
-              "    DISTINCTCOUNT('YourOrg issues'[issue ID])",
-              "    , USERELATIONSHIP('YourOrg issues'[created - Date], DateDimensionBI[Date])",
-              ")"
-            ],
-            "formatString": "0",
-            "lineageTag": "c5203401-2dfd-4c57-a618-3fd1a7f3b273"
-          }
-        ],
-        "partitions": [
-          {
-            "name": "MeasuresTable",
-            "mode": "import",
-            "queryGroup": "01 Utilities",
-            "source": {
-              "expression": [
-                "let",
-                "    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText(\"i44FAA==\", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Column1 = _t]),",
-                "    #\"Changed Type\" = Table.TransformColumnTypes(Source,{{\"Column1\", type text}}),",
-                "    #\"Removed Columns\" = Table.RemoveColumns(#\"Changed Type\",{\"Column1\"})",
-                "in",
-                "    #\"Removed Columns\""
-              ],
-              "type": "m"
-            }
-          }
-        ]
-      },
-      {
-        "name": "Priorities",
-        "annotations": [
-          {
-            "name": "PBI_ResultType",
-            "value": "Table"
-          }
-        ],
-        "columns": [
-          {
-            "name": "self",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "dataCategory": "WebUrl",
-            "dataType": "string",
-            "lineageTag": "e58efa64-7aed-45ab-af30-1b1cd4188926",
-            "sourceColumn": "self",
-            "summarizeBy": "none"
-          },
-          {
-            "name": "Priority",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "changedProperties": [
-              {
-                "property": "SortByColumn"
-              }
-            ],
-            "dataType": "string",
-            "lineageTag": "934aa2c7-d03e-4b6d-bdd3-d8d264dc5764",
-            "sortByColumn": "id",
-            "sourceColumn": "Priority",
-            "summarizeBy": "none"
-          },
-          {
-            "name": "id",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "dataType": "string",
-            "lineageTag": "ce8e9cd7-85df-499a-8507-dc31f1b1e580",
-            "sourceColumn": "id",
-            "summarizeBy": "none"
-          }
-        ],
-        "lineageTag": "1e069bc1-10d3-4ecc-8d60-778ef46322f6",
-        "partitions": [
-          {
-            "name": "Priorities",
-            "mode": "import",
-            "queryGroup": "03 Supporting Tables\\03.1 Staging\\03.2 Lookup tables",
-            "source": {
-              "expression": [
-                "let",
-                "    Source = #\"JIRA Lookup tables\",",
-                "    #\"Removed Other Columns\" = Table.SelectColumns(Source,{\"priority\"}),",
-                "    #\"Expanded priority\" = Table.ExpandRecordColumn(#\"Removed Other Columns\", \"priority\", {\"self\", \"name\", \"id\"}, {\"self\", \"name\", \"id\"}),",
-                "    #\"Removed Duplicates\" = Table.Distinct(#\"Expanded priority\"),",
-                "    #\"Renamed Columns\" = Table.RenameColumns(#\"Removed Duplicates\",{{\"name\", \"Priority\"}}),",
-                "    #\"Changed Type\" = Table.TransformColumnTypes(#\"Renamed Columns\",{{\"id\", type text}})",
-                "in",
-                "    #\"Changed Type\""
-              ],
-              "type": "m"
-            }
-          }
-        ]
-      },
-      {
-        "name": "Fixes",
-        "annotations": [
-          {
-            "name": "PBI_ResultType",
-            "value": "Table"
-          }
-        ],
-        "columns": [
-          {
-            "name": "self",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "dataCategory": "WebUrl",
-            "dataType": "string",
-            "lineageTag": "a0b05bcb-0e64-4dea-bc07-ada2da36a67c",
-            "sourceColumn": "self",
-            "summarizeBy": "none"
-          },
-          {
-            "name": "id",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "dataType": "string",
-            "lineageTag": "c38deffb-cc89-49c3-9b50-7296065b1677",
-            "sourceColumn": "id",
-            "summarizeBy": "none"
-          },
-          {
-            "name": "description",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "dataType": "string",
-            "lineageTag": "71d17bf2-4a40-4408-9ff6-66dd21d7b887",
-            "sourceColumn": "description",
-            "summarizeBy": "none"
-          },
-          {
-            "name": "Fix",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "dataType": "string",
-            "lineageTag": "78641c9c-3161-42e3-83a1-ba9a76d35c02",
-            "sourceColumn": "Fix",
-            "summarizeBy": "none"
-          },
-          {
-            "name": "archived",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "dataType": "string",
-            "lineageTag": "5cea3313-7e0d-4d3b-ae26-2e5260618b91",
-            "sourceColumn": "archived",
-            "summarizeBy": "none"
-          },
-          {
-            "name": "released",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "dataType": "string",
-            "lineageTag": "5cad35e7-1c6b-4dc8-9b0f-92bb05b43b7c",
-            "sourceColumn": "released",
-            "summarizeBy": "none"
-          },
-          {
-            "name": "releaseDate",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              },
-              {
-                "name": "UnderlyingDateTimeDataType",
-                "value": "Date"
-              },
-              {
-                "name": "PBI_FormatHint",
-                "value": "{\"isDateTimeCustom\":true}"
-              }
-            ],
-            "dataType": "dateTime",
-            "formatString": "yyyy/mm/dd",
-            "lineageTag": "bfca6da0-ce72-4881-a790-71d6d61e55f0",
-            "sourceColumn": "releaseDate",
-            "summarizeBy": "none"
-          }
-        ],
-        "lineageTag": "ea8878f1-77ef-4706-b487-d73627e64de3",
-        "partitions": [
-          {
-            "name": "Fixes",
-            "mode": "import",
-            "queryGroup": "03 Supporting Tables\\03.1 Staging\\03.2 Lookup tables",
-            "source": {
-              "expression": [
-                "let",
-                "    Source = #\"JIRA Lookup tables\",",
-                "    #\"Removed Other Columns\" = Table.SelectColumns(Source,{\"fixVersions\"}),",
-                "    #\"Expanded fixVersions\" = Table.ExpandListColumn(#\"Removed Other Columns\", \"fixVersions\"),",
-                "    #\"Expanded fixVersions1\" = Table.ExpandRecordColumn(#\"Expanded fixVersions\", \"fixVersions\", {\"self\", \"id\", \"description\", \"name\", \"archived\", \"released\", \"releaseDate\"}, {\"self\", \"id\", \"description\", \"name\", \"archived\", \"released\", \"releaseDate\"}),",
-                "    #\"Removed Duplicates\" = Table.Distinct(#\"Expanded fixVersions1\"),",
-                "    #\"Removed Blank Rows\" = Table.SelectRows(#\"Removed Duplicates\", each not List.IsEmpty(List.RemoveMatchingItems(Record.FieldValues(_), {\"\", null}))),",
-                "    #\"Changed Type\" = Table.TransformColumnTypes(#\"Removed Blank Rows\",{{\"releaseDate\", type date}}),",
-                "    #\"Renamed Columns\" = Table.RenameColumns(#\"Changed Type\",{{\"name\", \"Fix\"}}),",
-                "    #\"Changed Type1\" = Table.TransformColumnTypes(#\"Renamed Columns\",{{\"id\", type text}})",
-                "in",
-                "    #\"Changed Type1\""
-              ],
-              "type": "m"
-            }
-          }
-        ]
-      },
-      {
-        "name": "Devs",
-        "annotations": [
-          {
-            "name": "PBI_ResultType",
-            "value": "Table"
-          }
-        ],
-        "columns": [
-          {
-            "name": "self",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "dataCategory": "WebUrl",
-            "dataType": "string",
-            "lineageTag": "869cfc83-2278-4e03-85ea-41ae5e5141f7",
-            "sourceColumn": "self",
-            "summarizeBy": "none"
-          },
-          {
-            "name": "accountId",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "dataType": "string",
-            "lineageTag": "031918be-69ac-4f27-b07d-9a20e519c203",
-            "sourceColumn": "accountId",
-            "summarizeBy": "none"
-          },
-          {
-            "name": "emailAddress",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "dataType": "string",
-            "lineageTag": "941507bb-0e17-4d60-92c8-7eb99aac2046",
-            "sourceColumn": "emailAddress",
-            "summarizeBy": "none"
-          },
-          {
-            "name": "avatarUrls.48x48",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "dataCategory": "ImageUrl",
-            "dataType": "string",
-            "lineageTag": "538c0a02-4dd4-4cfd-83bb-fd63878ffe8d",
-            "sourceColumn": "avatarUrls.48x48",
-            "summarizeBy": "none"
-          },
-          {
-            "name": "avatarUrls.24x24",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "dataCategory": "ImageUrl",
-            "dataType": "string",
-            "lineageTag": "ef420db2-0aa0-4ba0-ab76-9d0ad724f394",
-            "sourceColumn": "avatarUrls.24x24",
-            "summarizeBy": "none"
-          },
-          {
-            "name": "avatarUrls.16x16",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "dataCategory": "ImageUrl",
-            "dataType": "string",
-            "lineageTag": "87e78b98-5eb6-4212-8981-67b88e332ebd",
-            "sourceColumn": "avatarUrls.16x16",
-            "summarizeBy": "none"
-          },
-          {
-            "name": "avatarUrls.32x32",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "dataCategory": "ImageUrl",
-            "dataType": "string",
-            "lineageTag": "93ac0aa3-d287-405a-b2ca-e281ae2c713c",
-            "sourceColumn": "avatarUrls.32x32",
-            "summarizeBy": "none"
-          },
-          {
-            "name": "displayName",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "dataType": "string",
-            "lineageTag": "43d1d4d8-9acd-41e5-b0f8-61c242f6ebc8",
-            "sourceColumn": "displayName",
-            "summarizeBy": "none"
-          },
-          {
-            "name": "active",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "dataType": "boolean",
-            "formatString": "\"TRUE\";\"TRUE\";\"FALSE\"",
-            "lineageTag": "f51484b1-dba9-40f7-b5bf-94b562801e53",
-            "sourceColumn": "active",
-            "summarizeBy": "none"
-          },
-          {
-            "name": "timeZone",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "dataType": "string",
-            "lineageTag": "a195dc48-7cb7-404e-870c-ad8e907e9fff",
-            "sourceColumn": "timeZone",
-            "summarizeBy": "none"
-          },
-          {
-            "name": "accountType",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "dataType": "string",
-            "lineageTag": "91a6e296-162c-419d-83d3-a062ff96fa86",
-            "sourceColumn": "accountType",
-            "summarizeBy": "none"
-          }
-        ],
-        "lineageTag": "a942d02d-b409-471a-b5cd-c5c5d8a5ce67",
-        "partitions": [
-          {
-            "name": "Devs",
-            "mode": "import",
-            "queryGroup": "03 Supporting Tables\\03.1 Staging\\03.2 Lookup tables",
-            "source": {
-              "expression": [
-                "let",
-                "    Source = #\"JIRA Lookup tables\",",
-                "    #\"Removed Other Columns\" = Table.SelectColumns(Source,{\"assignee\"}),",
-                "    #\"Expanded assignee\" = Table.ExpandRecordColumn(#\"Removed Other Columns\", \"assignee\", {\"self\", \"accountId\", \"emailAddress\", \"avatarUrls\", \"displayName\", \"active\", \"timeZone\", \"accountType\"}, {\"self\", \"accountId\", \"emailAddress\", \"avatarUrls\", \"displayName\", \"active\", \"timeZone\", \"accountType\"}),",
-                "    #\"Expanded assignee.avatarUrls\" = Table.ExpandRecordColumn(#\"Expanded assignee\", \"avatarUrls\", {\"48x48\", \"24x24\", \"16x16\", \"32x32\"}, {\"avatarUrls.48x48\", \"avatarUrls.24x24\", \"avatarUrls.16x16\", \"avatarUrls.32x32\"}),",
-                "    #\"Removed Duplicates\" = Table.Distinct(#\"Expanded assignee.avatarUrls\"),",
-                "    #\"Removed Blank Rows\" = Table.SelectRows(#\"Removed Duplicates\", each not List.IsEmpty(List.RemoveMatchingItems(Record.FieldValues(_), {\"\", null}))),",
-                "    #\"Changed Type\" = Table.TransformColumnTypes(#\"Removed Blank Rows\",{{\"active\", type logical}})",
-                "in",
-                "    #\"Changed Type\""
-              ],
-              "type": "m"
-            }
-          }
-        ]
-      },
-      {
-        "name": "Linked Issues",
-        "annotations": [
-          {
-            "name": "PBI_ResultType",
-            "value": "Exception"
-          }
-        ],
-        "columns": [
-          {
-            "name": "Child key",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "dataType": "string",
-            "lineageTag": "8a29917f-f4ac-4119-874c-d651005905c9",
-            "sourceColumn": "Child key",
-            "summarizeBy": "none"
-          },
-          {
-            "name": "Parent key",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "dataType": "string",
-            "lineageTag": "00541337-d59d-4116-9cae-be1d64d96473",
-            "sourceColumn": "Parent key",
-            "summarizeBy": "none"
-          }
-        ],
-        "lineageTag": "f47a492b-6658-47bf-b4b9-41d95de0075a",
-        "partitions": [
-          {
-            "name": "Linked Issues",
+            "name": "Epics",
             "mode": "import",
             "queryGroup": "04 Finalised Tables",
             "source": {
               "expression": [
                 "let",
-                "    Source = #\"YourOrg issues\",",
-                "    #\"Removed Other Columns\" = Table.SelectColumns(Source,{\"issue key\", \"parent.key\"}),",
-                "    #\"removed rows with no parents\" = Table.SelectRows(#\"Removed Other Columns\", each ([parent.key] <> null)),",
-                "    #\"Renamed Columns\" = Table.RenameColumns(#\"removed rows with no parents\",{{\"issue key\", \"Child key\"}, {\"parent.key\", \"Parent key\"}})",
-                "in",
-                "    #\"Renamed Columns\""
-              ],
-              "type": "m"
-            }
-          }
-        ]
-      },
-      {
-        "name": "Projects",
-        "annotations": [
-          {
-            "name": "PBI_ResultType",
-            "value": "Table"
-          }
-        ],
-        "columns": [
-          {
-            "name": "self",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "dataCategory": "WebUrl",
-            "dataType": "string",
-            "lineageTag": "642774ac-2035-4624-b076-54df223db572",
-            "sourceColumn": "self",
-            "summarizeBy": "none"
-          },
-          {
-            "name": "id",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "dataType": "string",
-            "lineageTag": "a86b9cf2-6dbc-44ca-a3cc-84e53cc241ee",
-            "sourceColumn": "id",
-            "summarizeBy": "none"
-          },
-          {
-            "name": "key",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "dataType": "string",
-            "lineageTag": "ea0eefd1-26da-4f39-9010-8454ba6040ef",
-            "sourceColumn": "key",
-            "summarizeBy": "none"
-          },
-          {
-            "name": "Project",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "dataType": "string",
-            "lineageTag": "117dd649-6ad9-4ee9-82c5-0e5217da2c31",
-            "sourceColumn": "Project",
-            "summarizeBy": "none"
-          },
-          {
-            "name": "projectTypeKey",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "dataType": "string",
-            "lineageTag": "ffeeb2b3-293b-47ba-b8b6-8e1b525f5828",
-            "sourceColumn": "projectTypeKey",
-            "summarizeBy": "none"
-          },
-          {
-            "name": "simplified",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "dataType": "string",
-            "lineageTag": "84013e2b-9dec-44ee-9c57-1262a9cbadd1",
-            "sourceColumn": "simplified",
-            "summarizeBy": "none"
-          },
-          {
-            "name": "avatarUrls.48x48",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "dataCategory": "ImageUrl",
-            "dataType": "string",
-            "lineageTag": "9d44f819-281e-4d84-ae23-d537fef3ecba",
-            "sourceColumn": "avatarUrls.48x48",
-            "summarizeBy": "none"
-          },
-          {
-            "name": "avatarUrls.24x24",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "dataCategory": "ImageUrl",
-            "dataType": "string",
-            "lineageTag": "29261b7d-32a3-4ac5-a828-5fa7b1edca70",
-            "sourceColumn": "avatarUrls.24x24",
-            "summarizeBy": "none"
-          },
-          {
-            "name": "avatarUrls.16x16",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "dataCategory": "ImageUrl",
-            "dataType": "string",
-            "lineageTag": "f8d2c17d-0e59-4290-a411-e6534876a5cb",
-            "sourceColumn": "avatarUrls.16x16",
-            "summarizeBy": "none"
-          },
-          {
-            "name": "avatarUrls.32x32",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "dataCategory": "ImageUrl",
-            "dataType": "string",
-            "lineageTag": "a8dc409a-b158-4269-ab85-8d3b9dea6247",
-            "sourceColumn": "avatarUrls.32x32",
-            "summarizeBy": "none"
-          },
-          {
-            "name": "projectCategory.self",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "dataCategory": "WebUrl",
-            "dataType": "string",
-            "lineageTag": "2f782610-b656-4269-9929-479664410c3d",
-            "sourceColumn": "projectCategory.self",
-            "summarizeBy": "none"
-          },
-          {
-            "name": "projectCategory.id",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "dataType": "string",
-            "lineageTag": "6a6f4ee1-a7dc-4f03-b1ac-d57bac9589c9",
-            "sourceColumn": "projectCategory.id",
-            "summarizeBy": "none"
-          },
-          {
-            "name": "projectCategory.description",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "dataType": "string",
-            "lineageTag": "7fbb6841-2ea5-46ee-b6fa-22804cfe90c2",
-            "sourceColumn": "projectCategory.description",
-            "summarizeBy": "none"
-          },
-          {
-            "name": "projectCategory.name",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "dataType": "string",
-            "lineageTag": "0fd65fcf-6b85-463d-9bcd-fa75e57c635e",
-            "sourceColumn": "projectCategory.name",
-            "summarizeBy": "none"
-          }
-        ],
-        "lineageTag": "eda4aec9-5929-40c5-9a98-e5c3cff37b6b",
-        "partitions": [
-          {
-            "name": "Projects",
-            "mode": "import",
-            "queryGroup": "03 Supporting Tables\\03.1 Staging\\03.2 Lookup tables",
-            "source": {
-              "expression": [
-                "let",
-                "    Source = #\"JIRA Lookup tables\",",
-                "    #\"Removed Other Columns\" = Table.SelectColumns(Source,{\"project\"}),",
-                "    #\"Expanded project\" = Table.ExpandRecordColumn(#\"Removed Other Columns\", \"project\", {\"self\", \"id\", \"key\", \"name\", \"projectTypeKey\", \"simplified\", \"avatarUrls\", \"projectCategory\"}, {\"self\", \"id\", \"key\", \"project\", \"projectTypeKey\", \"simplified\", \"avatarUrls\", \"projectCategory\"}),",
-                "    #\"Removed Duplicates\" = Table.Distinct(#\"Expanded project\"),",
-                "    #\"Expanded avatarUrls\" = Table.ExpandRecordColumn(#\"Removed Duplicates\", \"avatarUrls\", {\"48x48\", \"24x24\", \"16x16\", \"32x32\"}, {\"avatarUrls.48x48\", \"avatarUrls.24x24\", \"avatarUrls.16x16\", \"avatarUrls.32x32\"}),",
-                "    #\"Expanded projectCategory\" = Table.ExpandRecordColumn(#\"Expanded avatarUrls\", \"projectCategory\", {\"self\", \"id\", \"description\", \"name\"}, {\"projectCategory.self\", \"projectCategory.id\", \"projectCategory.description\", \"projectCategory.name\"}),",
-                "    #\"Renamed Columns\" = Table.RenameColumns(#\"Expanded projectCategory\",{{\"project\", \"Project\"}}),",
-                "    // Filtered out Service Mangement board, because all the other boards contain subtickets cloned off SM tickets. Also, completing items in sub-boards doesn't feedback to SM, so they stay open",
-                "    // ",
-                "    // Filtered out a board, as it's not relevant to this org group",
-                "    #\"Filtered out non-group boards\" = Table.SelectRows(#\"Renamed Columns\", each ([Project] <> \"Operations-Reporting\" and [Project] <> \"Service Management\"))",
-                "in",
-                "    #\"Filtered out non-group boards\""
-              ],
-              "type": "m"
-            }
-          }
-        ]
-      },
-      {
-        "name": "Issue Types",
-        "annotations": [
-          {
-            "name": "PBI_ResultType",
-            "value": "Table"
-          }
-        ],
-        "columns": [
-          {
-            "name": "self",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "dataType": "string",
-            "lineageTag": "f1ad0b14-a386-4647-ba28-9dc93e0df967",
-            "sourceColumn": "self",
-            "summarizeBy": "none"
-          },
-          {
-            "name": "id",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "dataType": "string",
-            "lineageTag": "94bfee61-ae1b-4526-ad97-30b1ef306d6c",
-            "sourceColumn": "id",
-            "summarizeBy": "none"
-          },
-          {
-            "name": "iconUrl",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "dataType": "string",
-            "lineageTag": "5288ee03-3b9c-46d5-b77e-8e215c123fc6",
-            "sourceColumn": "iconUrl",
-            "summarizeBy": "none"
-          },
-          {
-            "name": "Issue Type",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "dataType": "string",
-            "lineageTag": "c77fe2f1-3fb9-4e60-9a39-c95ec89d8a64",
-            "sourceColumn": "Issue Type",
-            "summarizeBy": "none"
-          },
-          {
-            "name": "is subtask",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "dataType": "boolean",
-            "formatString": "\"TRUE\";\"TRUE\";\"FALSE\"",
-            "lineageTag": "b2f965a7-86d0-4095-8914-67cdbaa41211",
-            "sourceColumn": "is subtask",
-            "summarizeBy": "none"
-          },
-          {
-            "name": "avatarId",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "dataType": "string",
-            "lineageTag": "ea624b11-5990-4242-a159-cca7b1cce45d",
-            "sourceColumn": "avatarId",
-            "summarizeBy": "none"
-          },
-          {
-            "name": "hierarchyLevel",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "dataType": "int64",
-            "formatString": "0",
-            "lineageTag": "ab2792c6-89ac-49e4-ab20-ef0cfadedb58",
-            "sourceColumn": "hierarchyLevel",
-            "summarizeBy": "none"
-          },
-          {
-            "name": "Issue type description",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "dataType": "string",
-            "lineageTag": "f2890d10-57db-4e1b-99e4-1d54647e41bd",
-            "sourceColumn": "Issue type description",
-            "summarizeBy": "none"
-          },
-          {
-            "name": "Issue type family",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "dataType": "string",
-            "lineageTag": "3bd42cd7-966f-4e9a-93b9-50c995ca2c75",
-            "sourceColumn": "Issue type family",
-            "summarizeBy": "none"
-          }
-        ],
-        "lineageTag": "c92ff046-27c6-44c0-ac99-56ce866f6282",
-        "partitions": [
-          {
-            "name": "Issue Types",
-            "mode": "import",
-            "queryGroup": "03 Supporting Tables\\03.1 Staging\\03.2 Lookup tables",
-            "source": {
-              "expression": [
-                "let",
-                "    Source = #\"JIRA Lookup tables\",",
-                "    #\"Removed Other Columns\" = Table.SelectColumns(Source,{\"issuetype\"}),",
-                "    #\"Expanded issuetype\" = Table.ExpandRecordColumn(#\"Removed Other Columns\", \"issuetype\", {\"self\", \"id\", \"description\", \"iconUrl\", \"name\", \"subtask\", \"avatarId\", \"hierarchyLevel\"}, {\"self\", \"id\", \"description\", \"iconUrl\", \"name\", \"is subtask\", \"avatarId\", \"hierarchyLevel\"}),",
-                "    #\"Changed Type\" = Table.TransformColumnTypes(#\"Expanded issuetype\",{{\"is subtask\", type logical}, {\"hierarchyLevel\", Int64.Type}}),",
-                "    #\"Removed Duplicates\" = Table.Distinct(#\"Changed Type\", {\"name\"}),",
-                "    #\"Merged Queries\" = Table.NestedJoin(#\"Removed Duplicates\", {\"name\"}, #\"Issue Families\", {\"Issue type\"}, \"Issue Families\", JoinKind.LeftOuter),",
-                "    #\"Expanded Issue Families\" = Table.ExpandTableColumn(#\"Merged Queries\", \"Issue Families\", {\"Issue type description\", \"Issue type family\"}, {\"Issue type description\", \"Issue type family\"}),",
-                "    #\"Removed Columns\" = Table.RemoveColumns(#\"Expanded Issue Families\",{\"description\"}),",
-                "    #\"Renamed Columns\" = Table.RenameColumns(#\"Removed Columns\",{{\"name\", \"Issue Type\"}})",
+                "    Source = #\"Issues Load\",",
+                "    #\"Merged Queries\" = Table.NestedJoin(Source, {\"issuetype.id\"}, #\"Issue Types\", {\"id\"}, \"Issue Types\", JoinKind.LeftOuter),",
+                "    #\"Expanded Issue Types\" = Table.ExpandTableColumn(#\"Merged Queries\", \"Issue Types\", {\"Issue Type\"}, {\"Issue Type\"}),",
+                "    #\"Filtered Rows\" = Table.SelectRows(#\"Expanded Issue Types\", each ([Issue Type] = \"Epic\")),",
+                "    #\"Removed Other Columns\" = Table.SelectColumns(#\"Filtered Rows\",{\"issue ID\", \"issue key\", \"summary\"}),",
+                "    #\"Renamed Columns\" = Table.RenameColumns(#\"Removed Other Columns\",{{\"summary\", \"Epic\"}})",
                 "in",
                 "    #\"Renamed Columns\""
               ],
