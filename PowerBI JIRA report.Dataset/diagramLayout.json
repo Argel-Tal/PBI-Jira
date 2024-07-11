@@ -10,19 +10,6 @@
       "nodes": [
         {
           "location": {
-            "x": 408.20413889224739,
-            "y": 452.89401060380129
-          },
-          "nodeIndex": "YourOrg issues",
-          "nodeLineageTag": "4adae639-dbf3-4b0d-8016-e6bce3b421c3",
-          "size": {
-            "height": 300,
-            "width": 234
-          },
-          "zIndex": 11
-        },
-        {
-          "location": {
             "x": 0,
             "y": 736
           },
@@ -32,7 +19,7 @@
             "height": 152,
             "width": 234
           },
-          "zIndex": 6
+          "zIndex": 8
         },
         {
           "location": {
@@ -45,7 +32,7 @@
             "height": 200,
             "width": 234
           },
-          "zIndex": 7
+          "zIndex": 9
         },
         {
           "location": {
@@ -71,7 +58,7 @@
             "height": 104,
             "width": 234
           },
-          "zIndex": 9
+          "zIndex": 10
         },
         {
           "location": {
@@ -84,12 +71,12 @@
             "height": 104,
             "width": 234
           },
-          "zIndex": 10
+          "zIndex": 11
         },
         {
           "location": {
-            "x": 653.80286938930612,
-            "y": 0
+            "x": 970.90282751805762,
+            "y": 207.1719726441176
           },
           "nodeIndex": "Devs",
           "nodeLineageTag": "a942d02d-b409-471a-b5cd-c5c5d8a5ce67",
@@ -97,7 +84,7 @@
             "height": 300,
             "width": 234
           },
-          "zIndex": 1
+          "zIndex": 3
         },
         {
           "location": {
@@ -110,11 +97,11 @@
             "height": 248,
             "width": 234
           },
-          "zIndex": 2
+          "zIndex": 4
         },
         {
           "location": {
-            "x": 356.47231698462406,
+            "x": 683.43760714404755,
             "y": 0
           },
           "nodeIndex": "Linked Issues",
@@ -123,7 +110,7 @@
             "height": 128,
             "width": 234
           },
-          "zIndex": 3
+          "zIndex": 5
         },
         {
           "location": {
@@ -136,12 +123,12 @@
             "height": 152,
             "width": 234
           },
-          "zIndex": 4
+          "zIndex": 6
         },
         {
           "location": {
-            "x": 710.93897434656878,
-            "y": 1009.8592145120354
+            "x": 575.00792407346921,
+            "y": 1109.9218679659969
           },
           "nodeIndex": "Projects",
           "nodeLineageTag": "eda4aec9-5929-40c5-9a98-e5c3cff37b6b",
@@ -149,23 +136,49 @@
             "height": 300,
             "width": 234
           },
-          "zIndex": 5
+          "zIndex": 7
         },
         {
           "location": {
-            "x": 929.308128843148,
-            "y": 454.30334375104019
+            "x": 973.79897713798528,
+            "y": 705.44325470843341
           },
           "nodeIndex": "DateDimensionBI",
+          "nodeLineageTag": "23b36ecd-7048-45f8-9234-0ae403eff073",
           "size": {
             "height": 300,
             "width": 234
           },
-          "zIndex": 0
+          "zIndex": 2
+        },
+        {
+          "location": {
+            "x": 408.20413889224739,
+            "y": 452.89401060380129
+          },
+          "nodeIndex": "Issues",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 1
+        },
+        {
+          "location": {
+            "x": 416.42708823636468,
+            "y": 1.4093331472388968
+          },
+          "nodeIndex": "Epics",
+          "nodeLineageTag": "e256705b-52b1-4634-a7a6-6255e8724f94",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 13
         }
       ],
       "name": "All tables",
-      "zoomValue": 70.955543900968792,
+      "zoomValue": 70.955543900968834,
       "pinKeyFieldsToTop": false,
       "showExtraHeaderInfo": false,
       "hideKeyFieldsWhenCollapsed": false,
